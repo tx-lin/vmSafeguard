@@ -14,8 +14,9 @@ require('controller.php');
 </div>
 
 <div class="w3-container w3-half w3-green">
-  <?php 
-    echo "<pre>" .shell_exec("sudo ssh -p $PORT root@$HOTE 'sh -s' < allStart.sh"). "/<pre>";
+  <?php
+    $VMID = 10;
+    echo "<pre>" .shell_exec("sudo ssh -p $PORT root@$HOTE 'sh -s' < listBackupFolders.sh "). "/<pre>";
   ?>
 
 </div>
