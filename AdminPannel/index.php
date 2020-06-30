@@ -8,7 +8,7 @@ require('controller.php');
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Majestic Admin</title>
+  <title>EWMT - ESXI WEB MANAGEMENT TOOL</title>
   <!-- plugins:css -->
   <link rel="stylesheet" href="vendors/mdi/css/materialdesignicons.min.css">
   <link rel="stylesheet" href="vendors/base/vendor.bundle.base.css">
@@ -40,11 +40,11 @@ require('controller.php');
           <li class="nav-item nav-search d-none d-lg-block w-100">
             <div class="input-group">
               <div class="input-group-prepend">
-                <span class="input-group-text" id="search">
+                <!--<span class="input-group-text" id="search">
                   <i class="mdi mdi-magnify"></i>
                 </span>
               </div>
-              <input type="text" class="form-control" placeholder="Search now" aria-label="search" aria-describedby="search">
+               <input type="text" class="form-control" placeholder="Search now" aria-label="search" aria-describedby="search">-->
             </div>
           </li>
         </ul>
@@ -246,7 +246,8 @@ require('controller.php');
                 <div class="d-flex align-items-end flex-wrap">
                   <div class="mr-md-3 mr-xl-5">
                     <h2>Welcome back,</h2>
-                    <p class="mb-md-0">Your analytics dashboard template.</p>
+                    <p class="mb-md-0">Vous êtes connecté à : <?php echo shell_exec("sudo ssh -p $PORT root@$HOST 'hostname'");?>
+                    <?php echo shell_exec("sudo ssh -p $PORT root@$HOST 'esxcli system version get | grep Version'");?></p>
                   </div>
                   <div class="d-flex">
                     <i class="mdi mdi-home text-muted hover-cursor"></i>
@@ -311,7 +312,7 @@ require('controller.php');
                         <div class="d-flex py-3 border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
                           <i class="mdi mdi-flag mr-3 icon-lg text-danger"></i>
                           <div class="d-flex flex-column justify-content-around">
-                            <small class="mb-1 text-muted">Flagged</small>
+                            <small class="mb-1 text-muted">Shutdown VM</small>
                             <h5 class="mr-2 mb-0"><?php echo shell_exec("sudo ssh -p $PORT root@$HOST 'sh -s' < scripts/shutdownVMsList.sh");?></h5> 
                           </div>
                         </div>
@@ -326,27 +327,30 @@ require('controller.php');
             <div class="col-md-7 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <p class="card-title">Cash deposits</p>
-                  <p class="mb-4">To start a blog, think of a topic about and first brainstorm party is ways to write details</p>
-                  <div id="cash-deposits-chart-legend" class="d-flex justify-content-center pt-3"></div>
-                  <canvas id="cash-deposits-chart"></canvas>
+                  <p class="card-title">Last Backup : </p>
+                  <p class="mb-4"> Note that every 60 days, the last backup folder will be deleted. </p>
+                  <h5 class="mr-2 mb-0"><?php echo "<pre>".shell_exec("sudo ssh -p $PORT root@$HOST '$CHACKBACKUPFOLDER'")."</pre>";?></h5>
                 </div>
               </div>
             </div>
             <div class="col-md-5 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <p class="card-title">Total sales</p>
-                  <h1>$ 28835</h1>
+                  <!--<p class="card-title">Total sales</p>-->
+                 <!--<h1>$ 28</h1>-->
                   <h4>Gross sales over the years</h4>
                   <p class="text-muted">Today, many people rely on computers to do homework, work, and create or store useful information. Therefore, it is important </p>
                   <div id="total-sales-chart-legend"></div>                  
                 </div>
-                <canvas id="total-sales-chart"></canvas>
-              </div>
+                    <button type="button" class="btn btn-success btn-rounded btn-fw" style="width:165px;height:40px;margin:0 auto;display:block;"><a style="color:white;"href="scripts/startAll.php">Start all VM</a></button> </br>
+                    <button type="button" class="btn btn-warning btn-rounded btn-fw" style="width:165px;height:40px;margin:0 auto;display:block;"><a style="color:white;"href="scripts/suspendAll.php">Suspend all VM</a></button> </br>
+                    <button type="button" class="btn btn-danger btn-rounded btn-fw" style="width:165px;height:40px;margin:0 auto;display:block;"><a style="color:white;"href="scripts/shutdownAll.php">Shutdown all VM</a></button> </br>
+                    <button type="button" class="btn btn-primary btn-rounded btn-fw" style="width:165px;height:40px;margin:0 auto;display:block;"><a style="color:white;"href="scripts/shutdownAll.php">Shutdown all VM</a></button> </br>
+                    <button type="button" class="btn btn-primary btn-rounded btn-fw" style="width:165px;height:40px;margin:0 auto;display:block;"><a style="color:white;"href="scripts/shutdownAll.php">Shutdown all VM</a></button> </br>
+                    <button type="button" class="btn btn-primary btn-rounded btn-fw" style="width:165px;height:40px;margin:0 auto;display:block;"><a style="color:white;"href="scripts/shutdownAll.php">Shutdown all VM</a></button> </br>
             </div>
           </div>
-          <div class="row">
+          <!--<div class="row">
             <div class="col-md-12 stretch-card">
               <div class="card">
                 <div class="card-body">
@@ -435,13 +439,13 @@ require('controller.php');
               </div>
             </div>
           </div>
-        </div>
+        </div>-->
         <!-- content-wrapper ends -->
         <!-- partial:partials/_footer.html -->
         <footer class="footer">
           <div class="d-sm-flex justify-content-center justify-content-sm-between">
-            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2018 <a href="https://www.bootstrapdash.com/" target="_blank">Bootstrapdash</a>. All rights reserved.</span>
-            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i class="mdi mdi-heart text-danger"></i></span>
+            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">EWMT © 2018 <a href="https://www.bootstrapdash.com/" target="_blank">Thank's to Bootstrapdash</a>. All rights reserved.</span>
+            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">GSB Edit<i class="mdi mdi-heart text-danger"></i></span>
           </div>
         </footer>
         <!-- partial -->
