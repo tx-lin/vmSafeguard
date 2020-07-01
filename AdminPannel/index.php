@@ -248,11 +248,14 @@ require('controller.php');
                     <h2>Welcome back,</h2>
                     <p class="mb-md-0">Vous êtes connecté à : <?php echo shell_exec("sudo ssh -p $PORT root@$HOST 'hostname'");?>
                     <?php echo shell_exec("sudo ssh -p $PORT root@$HOST 'esxcli system version get | grep Version'");?></p>
+                    <p class="mb-md-0">
+                      IP <?php echo shell_exec("sudo ssh -p $PORT root@$HOST 'sh -s' < scripts/getIPNM.sh");?> 
+                    </p>
                   </div>
                   <div class="d-flex">
                     <i class="mdi mdi-home text-muted hover-cursor"></i>
                     <p class="text-muted mb-0 hover-cursor">&nbsp;/&nbsp;Dashboard&nbsp;/&nbsp;</p>
-                    <p class="text-primary mb-0 hover-cursor">Analytics</p>
+                    <!--<p class="text-primary mb-0 hover-cursor">Analytics</p>-->
                   </div>
                 </div>
                 <div class="d-flex justify-content-between align-items-end flex-wrap">
