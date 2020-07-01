@@ -9,8 +9,8 @@ for VM in $VMS ; do
      if [ "$PWR" == "Powered on" ] ; then
           RUNNING=1
           vim-cmd vmsvc/power.shutdown $VM > /dev/null &
-          echo "$name ($VM) has been shutdown"
+          echo "$name (VMID : $VM) has been shutdown"
      else
-          echo "WARNING : $name ($VM) is already shutdown !"
+          echo "WARNING : $name (VMID : $VM) is already shutdown !"
      fi
 done
