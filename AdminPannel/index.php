@@ -28,8 +28,8 @@ require('controller.php');
     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
       <div class="navbar-brand-wrapper d-flex justify-content-center">
         <div class="navbar-brand-inner-wrapper d-flex justify-content-between align-items-center w-100">  
-          <a class="navbar-brand brand-logo" href="index.php"><img src="images/logo.svg" alt="logo"/></a>
-          <a class="navbar-brand brand-logo-mini" href="index.php"><img src="images/logo-mini.svg" alt="logo"/></a>
+          <!--<a class="navbar-brand brand-logo" href="index.php"><img src="images/logo.svg" alt="logo"/></a>
+          <a class="navbar-brand brand-logo-mini" href="index.php"><img src="images/logo-mini.svg" alt="logo"/></a>-->
           <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
             <span class="mdi mdi-sort-variant"></span>
           </button>
@@ -145,7 +145,7 @@ require('controller.php');
           <li class="nav-item nav-profile dropdown">
             <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
               <img src="images/faces/face5.jpg" alt="profile"/>
-              <span class="nav-profile-name">Louis Barnett</span>
+              <span class="nav-profile-name">OCD</span>
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
               <a class="dropdown-item">
@@ -348,11 +348,34 @@ require('controller.php');
                     <button type="button" class="btn btn-success btn-rounded btn-fw" style="width:165px;height:40px;margin:0 auto;display:block;"><a style="color:white;"href="scripts/startAll.php">Start all VM</a></button> </br>
                     <button type="button" class="btn btn-warning btn-rounded btn-fw" style="width:165px;height:40px;margin:0 auto;display:block;"><a style="color:white;"href="scripts/suspendAll.php">Suspend all VM</a></button> </br>
                     <button type="button" class="btn btn-danger btn-rounded btn-fw" style="width:165px;height:40px;margin:0 auto;display:block;"><a style="color:white;"href="scripts/shutdownAll.php">Shutdown all VM</a></button> </br>
-                    <button type="button" class="btn btn-primary btn-rounded btn-fw" style="width:165px;height:40px;margin:0 auto;display:block;"><a style="color:white;"href="scripts/shutdownAll.php">Shutdown all VM</a></button> </br>
-                    <button type="button" class="btn btn-primary btn-rounded btn-fw" style="width:165px;height:40px;margin:0 auto;display:block;"><a style="color:white;"href="scripts/shutdownAll.php">Shutdown all VM</a></button> </br>
-                    <button type="button" class="btn btn-primary btn-rounded btn-fw" style="width:165px;height:40px;margin:0 auto;display:block;"><a style="color:white;"href="scripts/shutdownAll.php">Shutdown all VM</a></button> </br>
+                    <button type="button" class="btn btn-primary btn-rounded btn-fw" style="width:165px;height:40px;margin:0 auto;display:block;"><a style="color:white;"href="scripts/summaryAll.php">Summary all VM</a></button> </br>
+                    <!--<button type="button" class="btn btn-primary btn-rounded btn-fw" style="width:165px;height:40px;margin:0 auto;display:block;"><a style="color:white;"href="scripts/shutdownAll.php">Shutdown all VM</a></button> </br>
+                    <button type="button" class="btn btn-primary btn-rounded btn-fw" style="width:165px;height:40px;margin:0 auto;display:block;"><a style="color:white;"href="scripts/shutdownAll.php">Shutdown all VM</a></button> </br>-->
             </div>
           </div>
+          <div class="col-md-7 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Inline forms</h4>
+                  <p class="card-description">
+                    
+                  </p>
+                  <form class="form-inline">                  
+                    <label class="sr-only" for="inlineFormInputGroupUsername2">Enter the VMID of the VM</label>
+                    <div class="input-group mb-2 mr-sm-2">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text">VMID</div>
+                      </div>
+                      <input type="text" class="form-control" id="inlineFormInputGroupUsername2" placeholder="Username">
+                    </div>
+                    <div class="form-check mx-sm-2">
+                    </div>
+                    <button type="submit" class="btn btn-primary mb-2">Submit</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+
           <!--<div class="row">
             <div class="col-md-12 stretch-card">
               <div class="card">
