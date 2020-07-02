@@ -1,3 +1,4 @@
 #!/bin/sh
-esxcfg-vmknic -l | sed 's/\|/ /'| awk '{print $4}' | head -2 | tail -1 # IP 
-echo  " Netmask : `esxcfg-vmknic -l | sed 's/\|/ /'| awk '{print $5}' | head -2 | tail -1`" # Netmask
+echo  "IP :  $(esxcli network ip interface ipv4 get | sed 's/\|/ /'| awk '{print $2}' | tail -1)," 
+echo  "Net Mask :  $(esxcli network ip interface ipv4 get | sed 's/\|/ /'| awk '{print $3}' | tail -1),"
+echo  "Gateway :  $(esxcli network ip interface ipv4 get | sed 's/\|/ /'| awk '{print $6}' | tail -1)"

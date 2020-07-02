@@ -249,7 +249,7 @@ require('controller.php');
                     <p class="mb-md-0">Vous êtes connecté à : <?php echo shell_exec("sudo ssh -p $PORT root@$HOST 'hostname'");?>
                     <?php echo shell_exec("sudo ssh -p $PORT root@$HOST 'esxcli system version get | grep Version'");?></p>
                     <p class="mb-md-0">
-                      IP <?php echo shell_exec("sudo ssh -p $PORT root@$HOST 'sh -s' < scripts/getIPNM.sh");?> 
+                      <?php echo shell_exec("sudo ssh -p $PORT root@$HOST 'sh -s' < scripts/getIPNM.sh");?> 
                     </p>
                   </div>
                   <div class="d-flex">
