@@ -292,14 +292,14 @@ require('controller.php');
                     <div class="tab-pane fade show active" id="overview" role="tabpanel" aria-labelledby="overview-tab">
                       <div class="d-flex flex-wrap justify-content-xl-between">
                         <div class="d-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
-                          <i class="mdi mdi-currency-usd mr-3 icon-lg text-danger"></i>
+                          <i class="mdi mdi-counter mr-3 icon-lg text-danger"></i>
                           <div class="d-flex flex-column justify-content-around">
                             <small class="mb-1 text-muted">Number of VM</small>
                             <h5 class="mr-2 mb-0"><?php echo shell_exec("sudo ssh -p $PORT root@$HOST 'vim-cmd vmsvc/getallvms | tail -n +2 | wc -l'");?></h5> 
                           </div>
                         </div>
                         <div class="d-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
-                          <i class="mdi mdi-eye mr-3 icon-lg text-success"></i> <!-- icon -->
+                          <i class="mdi mdi-arrow-right-drop-circle-outline mr-3 icon-lg text-success"></i> <!-- icon -->
                           <div class="d-flex flex-column justify-content-around">
                             <small class="mb-1 text-muted">Powered VM </small>
                             <h5 class="mr-2 mb-0"><?php echo shell_exec("sudo ssh -p $PORT root@$HOST 'esxcli vm process list | grep \"World ID\" | wc -l'");?></h5> 
@@ -356,17 +356,15 @@ require('controller.php');
           <div class="col-md-7 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <h4 class="card-title">Inline forms</h4>
-                  <p class="card-description">
-                    
-                  </p>
-                  <form class="form-inline">                  
-                    <label class="sr-only" for="inlineFormInputGroupUsername2">Enter the VMID of the VM</label>
+                  <h4 class="card-title">Single Backup</h4>
+                  <p class="card-description"></p>
+                  <form class="form-inline" action="scripts/BackupSingleVM.php" method="post">                  
+                    <label class="sr-only" for="inlineFormInputGroupUsername2"></label>
                     <div class="input-group mb-2 mr-sm-2">
                       <div class="input-group-prepend">
                         <div class="input-group-text">VMID</div>
                       </div>
-                      <input type="text" class="form-control" id="inlineFormInputGroupUsername2" placeholder="Username">
+                      <input type="text" class="form-control" name="vmid" id="inlineFormInputGroupUsername2" placeholder="Enter the VMID of the VM">
                     </div>
                     <div class="form-check mx-sm-2">
                     </div>
@@ -375,6 +373,29 @@ require('controller.php');
                 </div>
               </div>
             </div>
+
+           <div class="col-md-5 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                <h4 class="card-title">Pool Backup</h4>
+                <p class="card-description">Be sure that all VM "in the pool" are shutdown before to process</p>
+                <form class="form-inline" action="scripts/PoolVMBackupVM.php" method="post">                  
+                    <label class="sr-only" for="inlineFormInputGroupUsername2"></label>
+                    <div class="input-group mb-2 mr-sm-2">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text"></div>
+                      </div>
+                      <input type="text" class="form-control" name="answer" id="inlineFormInputGroupUsername2" placeholder="Enter yes, to confirm">
+                    </div>
+                    <div class="form-check mx-sm-2">
+                    </div>
+                    <button type="submit" class="btn btn-primary mb-2">Submit</button>
+                </form>               
+            </div>
+          </div>
+        </div>
+      </div>
+        <?php include('footer.php') ?>
 
           <!--<div class="row">
             <div class="col-md-12 stretch-card">
@@ -468,5 +489,5 @@ require('controller.php');
         </div>-->
         <!-- content-wrapper ends -->
         <!-- partial:partials/_footer.html -->
-<?php include('footer.php') ?>
+
 
