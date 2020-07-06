@@ -7,7 +7,7 @@ require('../controller.php');
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>EWMT | Summary Section</title>
+  <title>EWMT | Shutdown Section</title>
   <!-- plugins:css -->
   <link rel="stylesheet" href="../vendors/mdi/css/materialdesignicons.min.css">
   <link rel="stylesheet" href="../vendors/base/vendor.bundle.base.css">
@@ -241,9 +241,21 @@ require('../controller.php');
             <div class="col-12 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <h4 class="card-title">Shutdown section</h4>
+                  <h4 class="card-title">Backup Single VM</h4>
                   <p class="card-description">
-                      <?php echo "<pre>".shell_exec("sudo ssh -p $PORT root@$HOST 'sh -s' < summaryAll.sh")."/<pre>";?>
+                    <?php
+          						if (isset($_POST['answer'])) {
+                        if ($_POST['answer'] == "yes" OR ($_POST['answer'] == "YES")) {
+                        echo "<pre>".shell_exec("sudo ssh -p $PORT root@$HOST 'sh -s' < PoolVMBackup.sh &")."/<pre>";
+                        }
+                        else {
+                          echo "<pre> Error, answer Yes to valide the backup pool process ! /<pre>";
+                        }
+          						}
+          						else {
+          							echo "<pre> Error, answer Yes to valide the backup pool process from index.php ! /<pre>";
+          						}	
+                    ?>
                   </p>
                   </form>
                 </div>
@@ -253,30 +265,4 @@ require('../controller.php');
         </div>
         <!-- content-wrapper ends -->
         <!-- partial:partials/_footer.html -->
-        <footer class="footer">
-          <div class="d-sm-flex justify-content-center justify-content-sm-between">
-            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2018 <a href="../https://www.bootstrapdash.com/" target="_blank">Bootstrapdash</a>. All rights reserved.</span>
-            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i class="mdi mdi-heart text-danger"></i></span>
-          </div>
-        </footer>
-        <!-- partial -->
-      </div>
-      <!-- main-panel ends -->
-    </div>
-    <!-- page-body-wrapper ends -->
-  </div>
-  <!-- container-scroller -->
-  <!-- plugins:js -->
-  <script src="../vendors/base/vendor.bundle.base.js"></script>
-  <!-- endinject -->
-  <!-- inject:js -->
-  <script src="../js/off-canvas.js"></script>
-  <script src="../js/hoverable-collapse.js"></script>
-  <script src="../js/template.js"></script>
-  <!-- endinject -->
-  <!-- Custom js for this page-->
-  <script src="../js/file-upload.js"></script>
-  <!-- End custom js for this page-->
-</body>
-
-</html>
+<?php include('../footer.php') ?>
