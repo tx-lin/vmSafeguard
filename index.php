@@ -49,7 +49,7 @@ require('controller.php');
           </li>
         </ul>
         <ul class="navbar-nav navbar-nav-right">
-          <li class="nav-item dropdown mr-1">
+          <!--<li class="nav-item dropdown mr-1">
             <a class="nav-link count-indicator dropdown-toggle d-flex justify-content-center align-items-center" id="messageDropdown" href="#" data-toggle="dropdown">
               <i class="mdi mdi-message-text mx-0"></i>
               <span class="count"></span>
@@ -141,10 +141,10 @@ require('controller.php');
                 </div>
               </a>
             </div>
-          </li>
+          </li>-->
           <li class="nav-item nav-profile dropdown">
             <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-              <img src="images/faces/face5.jpg" alt="profile"/>
+              <img src="images/faces/person.png" alt="profile"/>
               <span class="nav-profile-name">OCD</span>
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
@@ -234,6 +234,12 @@ require('controller.php');
               <span class="menu-title">Documentation</span>
             </a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="scripts/show-log.php">
+              <i class="mdi mdi-note-text menu-icon"></i>
+              <span class="menu-title">Logs</span>
+            </a>
+          </li>
         </ul>
       </nav>
       <!-- partial -->
@@ -246,7 +252,7 @@ require('controller.php');
                 <div class="d-flex align-items-end flex-wrap">
                   <div class="mr-md-3 mr-xl-5">
                     <h2>Welcome back,</h2>
-                    <p class="mb-md-0">Vous êtes connecté à : <?php echo shell_exec("sudo ssh -p $PORT root@$HOST 'hostname'");?>
+                    <p class="mb-md-0">You are connected to : <?php echo shell_exec("sudo ssh -p $PORT root@$HOST 'hostname'");?>
                     <?php echo shell_exec("sudo ssh -p $PORT root@$HOST 'esxcli system version get | grep Version'");?></p>
                     <p class="mb-md-0">
                       <?php echo shell_exec("sudo ssh -p $PORT root@$HOST 'sh -s' < scripts/getIPNM.sh");?> 
@@ -259,7 +265,7 @@ require('controller.php');
                   </div>
                 </div>
                 <div class="d-flex justify-content-between align-items-end flex-wrap">
-                  <button type="button" class="btn btn-light bg-white btn-icon mr-3 d-none d-md-block ">
+                  <!--<button type="button" class="btn btn-light bg-white btn-icon mr-3 d-none d-md-block ">
                     <i class="mdi mdi-download text-muted"></i>
                   </button>
                   <button type="button" class="btn btn-light bg-white btn-icon mr-3 mt-2 mt-xl-0">
@@ -267,7 +273,7 @@ require('controller.php');
                   </button>
                   <button type="button" class="btn btn-light bg-white btn-icon mr-3 mt-2 mt-xl-0">
                     <i class="mdi mdi-plus text-muted"></i>
-                  </button>
+                  </button>-->
                   <button class="btn btn-primary mt-2 mt-xl-0">Generate report</button>
                 </div>
               </div>
@@ -341,8 +347,8 @@ require('controller.php');
                 <div class="card-body">
                   <!--<p class="card-title">Total sales</p>-->
                  <!--<h1>$ 28</h1>-->
-                  <h4>Gross sales over the years</h4>
-                  <p class="text-muted">Today, many people rely on computers to do homework, work, and create or store useful information. Therefore, it is important </p>
+                  <h4>Quick actions</h4>
+                  <p class="text-muted"></p>
                   <div id="total-sales-chart-legend"></div>                  
                 </div>
                     <button type="button" class="btn btn-success btn-rounded btn-fw" style="width:165px;height:40px;margin:0 auto;display:block;"><a style="color:white;"href="scripts/startAll.php">Start all VM</a></button> </br>

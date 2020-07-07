@@ -22,7 +22,7 @@ require('../controller.php');
 
 <body>
 <?php
-require('scripts-menu-header-top-left.php');
+include('scripts-menu-header-top-left.php');
 ?>
       <!-- partial -->
       <div class="main-panel">        
