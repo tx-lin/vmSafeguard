@@ -338,7 +338,7 @@ require('controller.php');
                 <div class="card-body">
                   <p class="card-title">Last Backup : </p>
                   <i><p class="mb-4"> Note that every 60 days, the last backup folder will be deleted. </p></i>
-                  <h5 class="mr-2 mb-0"><?php echo "<pre>".shell_exec("sudo ssh -p $PORT root@$HOST '$CHACKBACKUPFOLDER'")."</pre>";?></h5>
+                  <h5 class="mr-2 mb-0"><?php echo "<pre>".shell_exec("sudo ssh -p $PORT root@$HOST '$CHECKBACKUPFOLDER'")."</pre>";?></h5>
                 </div>
               </div>
             </div>
