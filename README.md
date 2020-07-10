@@ -8,6 +8,7 @@ facilitate the management of an ESXi espially for Group (VMs) actions and group 
 - ESXi(s) Server operational and available trought your local network :) 
 - All machines of your ESXi need to have the VMwareTools, without it, EWMT can't be a run correctly 
 - SSH service activated in your ESXi
+- SSH password less -> ssh-key pair between the two host for the authentication
 
 ## :pushpin: Installation (Easyest) 1/2
 
@@ -84,7 +85,7 @@ You can use one of them, it's does not matter
 
 We need to edit .sh / .php files. Let's start with controller.php file. (Location : Root of the project)
 ```
-nano /var/www/html/ESXi-Web-Management-Tool
+nano /var/www/html/ESXi-Web-Management-Tool/controller.php
 ```
 
 ```
@@ -101,30 +102,61 @@ save the changes, and go to the sub folder scripts.
 cd /var/www/html/ESXi-Web-Management-Tool/scripts
 ```
 
-Patience, two more edit, and we can start to access to the project trought the WEB. :) 
+Patience, <b>two more edit</b>, and we can start to access to the project trought the WEB. :) 
 
+#### The first .sh file 
 ``` 
 nano BackupSingleVM.sh
 ```
 ```
-PATHLOG="/vmfs/volumes/datastore-backup/logbackup.txt" # TO CHANGE
-mkdir /vmfs/volumes/datastore-backup/backup-vm-$date # TO CHANGE --- Change just the name of the datastore
-PATHBACKUP="/vmfs/volumes/datastore-backup/backup-vm-$date" # TO CHANGE --- Change just the name of the datastore 
+PATHLOG="/vmfs/volumes/datastore-backup/logbackup.txt" 
+# TO CHANGE --- Change just the name of the datastore
+
+mkdir /vmfs/volumes/datastore-backup/backup-vm-$date 
+# TO CHANGE --- Change just the name of the datastore
+
+PATHBACKUP="/vmfs/volumes/datastore-backup/backup-vm-$date" 
+# TO CHANGE --- Change just the name of the datastore 
+
 echo -e "`ls -dt /vmfs/volumes/datastore-backup/backup*`\n" >> $PATHLOG 
-find /vmfs/volumes/datastore-backup/backup* -mtime +30 -exec rm -rf {} \; # permit to delete all backup* folders > 30 Days
+# TO CHANGE --- Change just the name of the datastore
+
+find /vmfs/volumes/datastore-backup/backup* -mtime +30 -exec rm -rf {} \; 
+# TO CHANGE --- Change just the name of the datastore
+# permit to delete all backup* folders > 30 Days
 ```
+#### The second .sh file 
 ```
 nano PoolVMBackup.sh
 ```
 ```
-PATHLOG="/vmfs/volumes/datastore-backup/logbackup.txt" # TO CHANGE --- Change just the name of the datastore
-mkdir /vmfs/volumes/datastore-backup/backup-vm-$date # TO CHANGE --- Change just the name of the datastore
-PATHBACKUP="/vmfs/volumes/datastore-backup/backup-vm-$date" # TO CHANGE --- Change just the name of the datastore 
+PATHLOG="/vmfs/volumes/datastore-backup/logbackup.txt" 
+# TO CHANGE --- Change just the name of the datastore
+
+mkdir /vmfs/volumes/datastore-backup/backup-vm-$date 
+# TO CHANGE --- Change just the name of the datastore
+
+PATHBACKUP="/vmfs/volumes/datastore-backup/backup-vm-$date" 
+# TO CHANGE --- Change just the name of the datastore 
+
 echo -e "`ls -dt /vmfs/volumes/datastore-backup/backup*`\n" >> $PATHLOG 
-find /vmfs/volumes/datastore-backup/backup* -mtime +30 -exec rm -rf {} \; # To CHANGE --- Change just the name of the datastore 
+# TO CHANGE --- Change just the name of the datastore 
+
+find /vmfs/volumes/datastore-backup/backup* -mtime +30 -exec rm -rf {} \; 
+# To CHANGE --- Change just the name of the datastore 
 # Permit to delete all backup* folders > 30 Days
 ```
-:warning: Warning : Your VMs can be stored in any datastores of your ESXI, but they need to be at the root of the datastore like <code> /vmfs/volumes/mydatastore/MyVirtualMachineDebian </code> <br>
+
+<i> If you want to add some VMs for th "pool backup" check the following screenshot </i>
+
+<img src="https://i.imgur.com/ZJt87Vu.jpg">
+
+
+
+
+### :warning: Warning : 
+
+Your VMs can be stored in any datastores of your ESXI, but they need to be at the root of the datastore like <code> /vmfs/volumes/mydatastore/MyVirtualMachineDebian </code> <br>
 
 if it's not the case, change the value of the variable <code>"cutedpath=" </code>in the function backupVM(), you will need to edit this variable 4 times, two times in each files.  BackupSingleVM.sh / PoolVMBackup.sh
 
@@ -140,8 +172,7 @@ go to http://ip/ESXi-Web-Management-Tool/ (the loading take ~ 7/8 secs)
 <img src="https://i.imgur.com/oFNUZ3e.jpg">
 <i> Example of the shutdown section (For poweroff all the VMs of your ESXi). </i>
 <img src="https://i.imgur.com/AQauBMu.jpg">
-<i> Example of the shutdown section (For poweroff all the VMs of your ESXi). </i>
-<i> Example of the shutdown section (For poweroff all the VMs of your ESXi). </i>
+<i> Example of the summary section. Very useful part if you want to know a vmid of your VMs to proced to a single backup ! </i>
 
 ## :point_right: Features & tools 
 

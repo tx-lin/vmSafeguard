@@ -27,23 +27,20 @@ backupVM() {
       fi
 }
 date=`date +%d-%m-%Y`
-PATHLOG="/vmfs/volumes/5e566f71-06f2da78-82d5-441ea15ee924/scripts/logbackup.txt"
-mkdir /vmfs/volumes/5e566f71-06f2da78-82d5-441ea15ee924/backup-vm-$date # TO CHANGE --- permit to use a incremental backup
-PATHBACKUP="/vmfs/volumes/5e566f71-06f2da78-82d5-441ea15ee924/backup-vm-$date" # TO CHANGE --- change data store "backup" area for your ESXI configuration 
-RUNNING=0
-VMS=`vim-cmd vmsvc/getallvms | grep -v Vmid | awk '{print $1}'` # VMF = VMIDs of each virtual machines 
+PATHLOG="/vmfs/volumes/HDD2-backup/logbackup.txt"
+mkdir /vmfs/volumes/HDD2-backup/backup-vm-$date # TO CHANGE --- permit to use a incremental backup
+PATHBACKUP="/vmfs/volumes/HDD2-backup/backup-vm-$date" # TO CHANGE --- change data store "backup" area for your ESXI configuration 
 echo -e "-------> SINGLE BACKUP process start : `date`\n" >> $PATHLOG
-for VM in $VMS ; do
-     PWR=`vim-cmd vmsvc/power.getstate $VM | grep -v "Retrieved runtime info"`
-     name=`vim-cmd vmsvc/get.config $VM | grep -i "name =" | awk '{print $3}' | head -1 | awk -F'"' '{print $2}'` 
-    if [ "$VM" == "$1" ] ; then
-      backupVM
-    fi
+for VM in $1 
+do
+    PWR=`vim-cmd vmsvc/power.getstate $VM | grep -v "Retrieved runtime info"`
+    name=`vim-cmd vmsvc/get.config $VM | grep -i "name =" | awk '{print $3}' | head -1 | awk -F'"' '{print $2}'` 
+    backupVM
     # free to you for ad some VM...
 done
 echo -e "List of present backup folder and old backup folders : " >> $PATHLOG 
 # TO CHANGE :         --------------------------------------------------------
-echo -e "`ls -dt /vmfs/volumes/5e566f71-06f2da78-82d5-441ea15ee924/backup*`\n" >> $PATHLOG 
+echo -e "`ls -dt /vmfs/volumes/HDD2-backup/backup*`\n" >> $PATHLOG 
 # TO CHANGE : -----------------------------------------------------------------------------
-find /vmfs/volumes/5e566f71-06f2da78-82d5-441ea15ee924/backup* -mtime +30 -exec rm -rf {} \; # permit to delete all backup* folder > 30 Days
+find /vmfs/volumes/HDD2-backup/backup* -mtime +30 -exec rm -rf {} \; # permit to delete all backup* folder > 30 Days
 echo -e "<-------- SINGLE BACKUP process end : `date`\n" >> $PATHLOG
