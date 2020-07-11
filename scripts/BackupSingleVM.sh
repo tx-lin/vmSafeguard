@@ -11,6 +11,7 @@ backupVM() {
           echo -e "   --> $name has been started again (`date`)\n" >> $PATHLOG
       else
       	  vim-cmd vmsvc/power.shutdown $VM
+      	  sleep 15
           while [ "$PWR" == "Powered on" ] # Allow to the VM to shutdown securly (Especially if her want to update her os, before shutdown)
           do
             PWR=`vim-cmd vmsvc/power.getstate $VM | grep -v "Retrieved runtime info"`
