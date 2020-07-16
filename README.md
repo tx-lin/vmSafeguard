@@ -1,31 +1,29 @@
-# ESXi Web Management Tool -  Project 
-EWMT project has been create to 
-facilitate the management of an ESXi espially for Group (VMs) actions and group vm backuping 
+# ESXi Web Management Tool -  Project
+EWMT project has been created to facilitate the management and the VMs<b> backup </b> of an ESXi. With this tool, you will be able to backup a pool of VMs, Single Vm, Read the Backup logs etc.
+
+Enjoy :) 
 
 Table of contents
-=================
-
-<!--ts-->
-   * [](#gh-md-toc)
+=
    * [Prerequisite](#bookmark_tabs-prerequisite-)
    * [Installation (Easyest) 1/2](#pushpin-installation-easyest-12)
    * [Installation (Easyest) 1/2](#pushpin-installation-hand-installation-22)
    * [configuration](#computer-configuration-12---on-your-server-who-host-ewmt-)
+      * [Create your own ssh-key pair](##create-your-ssh-key-pair)
       * [Location for backup](#location-for-backup)
       * [Files to edit](#files-to-edit)
       * [Warning !](#warning-warning-)
    * [Web Panel](#access-to-the-web-panel)
-   * [Issues]()
+   * [Notes]()
    * [Errors Code](#errors-code)
-<!--te-->
 
 ## :bookmark_tabs: Prerequisite !
 
-- EWMT can be installed under "Debian Family". For the  devloppment of this project, I currently use Ubuntu 20.04
-- ESXi(s) Server operational and available trought your local network
-- All machines of your ESXi need to have the VMwareTools, without it, EWMT can't be a run correctly 
-- SSH service activated in your ESXi
-- SSH password less -> ssh-key pair between the two host for the authentication
+- EWMT can be installed under "Debian Family". For the  devloppment of this project, I currently use Ubuntu 20.04, Php 7.4, Apache 2.4.X.
+- ESXi Server operational and available trought your local network.
+- All machines of your ESXi need to have the VMwareTools, without it, EWMT can't be a run correctly.
+- SSH service activated on your ESXi
+- "SSH password less" -> ssh-key pair between the two host for the authentication Tuto
 
 ## :pushpin: Installation (Easyest) 1/2
 
@@ -35,7 +33,7 @@ Table of contents
 ```
 curl -sL https://raw.githubusercontent.com/brlndtech/Beta-ESXi-Management-Tool/master/setup.sh | sh
 ``` 
-**WARNING** : You need to be <b>root</b> or have sudo rights for executing these commands. 
+**WARNING**: <i>You need to be <b>root</b> or have sudo rights for executing these commands.</i> 
 
 ## :pushpin: Installation (Hand installation) 2/2
 ```
@@ -47,11 +45,11 @@ sudo chown -R www-data:www-data /var/www/html/ESXi-Web-Management-Tool
 sudo echo 'www-data ALL = (ALL) NOPASSWD: ALL' >> /etc/sudoers.d/myOverrides
 ```
 
-**WARNING** : You need to be <b>root</b> or have sudo rights for executing these commands. 
+**WARNING** : <i>You need to be <b>root</b> or have sudo rights for executing these commands.</i>
 
 ## :computer: Configuration 1/2 - On your server (Who host EWMT) : 
 
-Once you have finished the installation process, you will need to do some stuff before edit some files of the project (previous to access to the EWMT trought http). 
+Once you have finished the installation process, you will need to do some stuff before to edit some files of the project (previous to access to the EWMT trought http(s)). 
 
 
 ### Create your ssh-key pair 
@@ -62,10 +60,11 @@ ssh-keygen -t rsa
 
 ### Upluad your public key to the ESXi server
 
-<b> Before, you need to allow ssh on your ESXI, trought the Web panel. https://www.tech2tech.fr/vmware-esxi-6-5-activer-lacces-ssh/</b>
+Before, you need to allow ssh on your ESXI, trought the <a href="https://www.tech2tech.fr/vmware-esxi-6-5-activer-lacces-ssh/">Official Web panel of ESXi Vmware</a>.
+
+On your linux server : 
 
 ```
-# on the server
 cd /root/.ssh/
 cat id_rsa.pub | ssh root@the-ip-of-your-esxi \ 'cat >> /etc/ssh/keys-root/authorized_keys'
 # answer "yes"
@@ -80,14 +79,15 @@ ssh -p 22 root@the-ip-of-your-esxi
 
 ### Location for backup 
 
-On the ESXi host, you will need to a specific datastore for store the futur backup. In my case, I will use the datastore : <b> datastore-backup </b> for example
+On the ESXi host, you will need a specific datastore for store the futur VMs backup. In my case, I will use the datastore : <b> datastore-backup </b> as an example.
 
 ```
 ssh -p 22 root@the-ip-of-your-esxi
 cd /vmfs/volumes/
-ls # your datastore will be apears" 
-# your datastore is identify by an inode (datastore-backup) and an id* like this : 
-# 5e566f71-06f2da78-82d5-441ea15ee924
+ls 
+# your datastore will be apears" 
+# your datastore is identify by an inode (datastore-backup) and an id : 
+# 5e566f71-06f2da78-82d5-441ea15ee924*
 cd datastore-backup
 
 ```
@@ -128,6 +128,8 @@ Patience, <b>two more edit</b>, and we can start to access to the project trough
 ``` 
 nano BackupSingleVM.sh
 ```
+<b>localize the following lines : </b>
+
 ```
 PATHLOG="/vmfs/volumes/datastore-backup/logbackup.txt" 
 # TO CHANGE --- Change just the name of the datastore
@@ -146,9 +148,12 @@ find /vmfs/volumes/datastore-backup/backup* -mtime +30 -exec rm -rf {} \;
 # permit to delete all backup* folders > 30 Days
 ```
 #### The second .sh file 
+
 ```
 nano PoolVMBackup.sh
 ```
+<b>localize the following lines : </b>
+
 ```
 PATHLOG="/vmfs/volumes/datastore-backup/logbackup.txt" 
 # TO CHANGE --- Change just the name of the datastore
@@ -167,7 +172,7 @@ find /vmfs/volumes/datastore-backup/backup* -mtime +30 -exec rm -rf {} \;
 # Permit to delete all backup* folders > 30 Days
 ```
 
-<i> If you want to add some VMs for th "pool backup" check the following screenshot </i>
+<i> If you want to add some VMs in to the  "pool backup" check the following screenshot </i>
 
 <img src="https://i.imgur.com/ZJt87Vu.jpg">
 
@@ -176,37 +181,51 @@ find /vmfs/volumes/datastore-backup/backup* -mtime +30 -exec rm -rf {} \;
 
 ### :warning: Warning : 
 
-Your VMs can be stored in any datastores of your ESXI, but they need to be at the root of the datastore like <code> /vmfs/volumes/mydatastore/MyVirtualMachineDebian </code> <br>
+Your VMs can be stored in any datastores of your ESXI, but they need to be at the root of the datastore like <code> /vmfs/volumes/mydatastore/myVirtualMachineDebianFolder </code> <br>
 
-if it's not the case, change the value of the variable <code>"cutedpath=" </code>in the function backupVM(), you will need to edit this variable 4 times, two times in each files.  BackupSingleVM.sh / PoolVMBackup.sh
+if it's not the case, change the value of the variable <code>"cutedpath=" </code>in the function backupVM(), you will need to edit this variable 4 times, two times in each files.  BackupSingleVM.sh / PoolVMBackup.sh.
 
 
-#### That's it for the configuration of EWMT :white_check_mark:
+#### That's it for the configuration of EWMT :white_check_mark, you will be able to start EWMT trought the web
 
 ## Access to the web panel
 
-go to http://ip/ESXi-Web-Management-Tool/ (the loading take ~ 7/8 secs)
+Go to http://ip/ESXi-Web-Management-Tool/ (the loading takes ~ 7/8 secs)
 
 <img src="https://i.imgur.com/H3u7cAb.jpg">
-<i> this is le welcome page of EWMT. </i>
+<i> This is the welcome page of EWMT. </i> <br> <br>
 <img src="https://i.imgur.com/oFNUZ3e.jpg">
-<i> Example of the shutdown section (For poweroff all the VMs of your ESXi). </i>
+<i> Example of the shutdown section (For poweroff all the VMs of your ESXi). </i> <br> <br>
 <img src="https://i.imgur.com/AQauBMu.jpg">
-<i> Example of the summary section. Very useful part if you want to know a vmid of your VMs to proced to a single backup ! </i>
+<i> Example of the summary section. Very useful part if you want to know a vmid of your VMs to proced to a single backup ! </i> <br> <br>
+
+## Automating the backup process with cron tasks
+
+On the host server, edit your crontab as root 
+
+```
+sudo su
+<mdp root>
+crontab -e 
+```
+Example 
+
+```
+# Every day at 23H50, PoolVMBackup.sh will be executed !
+50 23 * * * /var/www/html/ESXi-Web-Management-Tool/scripts/PoolVMBackup.sh
+```
 
 ## :point_right: [NEW] Features 
 
-the description is coming soon !
 
-## :question::speech_balloon: Issues 
+## :question::speech_balloon: Notes / common questions
 
-1 -  EWMT is available only for debian family. 
+1 - EWMT is available only for debian based OS family 
 
 
 ### Errors Code 
 
-If you detect an error in the program please open an github issue,
-Coming soon !
+If you detect an error in EWMT, please open a github issue,
 
 #### <center>Brlndtech &copy; 2020</center>
 
