@@ -2,6 +2,23 @@
 EWMT project has been create to 
 facilitate the management of an ESXi espially for Group (VMs) actions and group vm backuping 
 
+Table of contents
+=================
+
+<!--ts-->
+   * [](#gh-md-toc)
+   * [Prerequisite](#bookmark_tabs-prerequisite-)
+   * [Installation (Easyest) 1/2](#pushpin-installation-easyest-12)
+   * [Installation (Easyest) 1/2](#pushpin-installation-hand-installation-22)
+   * [configuration](#computer-configuration-12---on-your-server-who-host-ewmt-)
+      * [Location for backup](#location-for-backup)
+      * [Files to edit](#files-to-edit)
+      * [Warning !](#warning-warning-)
+   * [Web Panel](#access-to-the-web-panel)
+   * [Issues]()
+   * [Errors Code](#errors-code)
+<!--te-->
+
 ## :bookmark_tabs: Prerequisite !
 
 - EWMT can be installed under "Debian Family". For the  devloppment of this project, I currently use Ubuntu 20.04
@@ -45,7 +62,7 @@ ssh-keygen -t rsa
 
 ### Upluad your public key to the ESXi server
 
-<b> Before, you need to allow ssh on your ESXI, trought the Web Pannel. https://www.tech2tech.fr/vmware-esxi-6-5-activer-lacces-ssh/</b>
+<b> Before, you need to allow ssh on your ESXI, trought the Web panel. https://www.tech2tech.fr/vmware-esxi-6-5-activer-lacces-ssh/</b>
 
 ```
 # on the server
@@ -166,7 +183,7 @@ if it's not the case, change the value of the variable <code>"cutedpath=" </code
 
 #### That's it for the configuration of EWMT :white_check_mark:
 
-## Access to the web Pannel
+## Access to the web panel
 
 go to http://ip/ESXi-Web-Management-Tool/ (the loading take ~ 7/8 secs)
 
@@ -177,11 +194,11 @@ go to http://ip/ESXi-Web-Management-Tool/ (the loading take ~ 7/8 secs)
 <img src="https://i.imgur.com/AQauBMu.jpg">
 <i> Example of the summary section. Very useful part if you want to know a vmid of your VMs to proced to a single backup ! </i>
 
-## :point_right: Features & tools 
+## :point_right: [NEW] Features 
 
 the description is coming soon !
 
-## :question: :speech_balloon:Issues 
+## :question::speech_balloon: Issues 
 
 1 -  EWMT is available only for debian family. 
 
