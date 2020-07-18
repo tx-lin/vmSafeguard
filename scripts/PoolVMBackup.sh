@@ -32,7 +32,7 @@ PATHLOG="/vmfs/volumes/HDD2-backup/logbackup.txt"
 mkdir /vmfs/volumes/HDD2-backup/backup-vm-$date # TO CHANGE --- permit to use a incremental backup
 PATHBACKUP="/vmfs/volumes/HDD2-backup/backup-vm-$date" # TO CHANGE --- change data store "backup" area for your ESXI configuration 
 echo -e "-------> Backup process start : `date`\n" >> $PATHLOG
-for VM in 10 9 12 # ADD others VMID in the list 
+for VM in 13 10 9 # ADD others VMID in the list 
 do
     PWR=`vim-cmd vmsvc/power.getstate $VM | grep -v "Retrieved runtime info"`
     name=`vim-cmd vmsvc/get.config $VM | grep -i "name =" | awk '{print $3}' | head -1 | awk -F'"' '{print $2}'` 
