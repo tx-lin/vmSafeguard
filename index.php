@@ -145,7 +145,7 @@ require('controller.php');
           <li class="nav-item nav-profile dropdown">
             <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
               <img src="images/faces/person.png" alt="profile"/>
-              <span class="nav-profile-name">OCD</span>
+              <span class="nav-profile-name">Admin</span>
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
               <a class="dropdown-item">
@@ -229,7 +229,7 @@ require('controller.php');
             </div>
           </li>-->
           <li class="nav-item">
-            <a class="nav-link" href="documentation/documentation.html">
+            <a class="nav-link" href="https://github.com/brlndtech/ESXi-Web-Management-Tool/blob/master/README.md" target="_blank">
               <i class="mdi mdi-file-document-box-outline menu-icon"></i>
               <span class="menu-title">Documentation</span>
             </a>

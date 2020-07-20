@@ -6,8 +6,8 @@ Enjoy :)
 Table of contents
 =
    * [Prerequisite](#bookmark_tabs-prerequisite-)
-   * [Installation (Easyest) 1/2](#pushpin-installation-easyest-12)
-   * [Installation (Easyest) 1/2](#pushpin-installation-hand-installation-22)
+   * [Installation (Easyest)](#pushpin-installation-easyest)
+   * [Installation (Hand installation)](#pushpin-installation-hand-installation)
    * [configuration](#computer-configuration-12---on-your-server-who-host-ewmt-)
       * [Create your own ssh-key pair](##create-your-ssh-key-pair)
       * [Location for backup](#location-for-backup)
@@ -25,7 +25,7 @@ Table of contents
 - SSH service activated on your ESXi
 - "SSH password less" -> ssh-key pair between the two host for the authentication Tuto
 
-## :pushpin: Installation (Easyest) 1/2
+## :pushpin: Installation (Easyest) 
 
 ### Easiest Way - Run setup.sh with curl 
 <i> EWMT need some dependencies to work, You need to install them before setuping EWMT. </i>
@@ -35,7 +35,7 @@ curl -sL https://raw.githubusercontent.com/brlndtech/Beta-ESXi-Management-Tool/m
 ``` 
 **WARNING**: <i>You need to be <b>root</b> or have sudo rights for executing these commands.</i> 
 
-## :pushpin: Installation (Hand installation) 2/2
+## :pushpin: Installation (Hand installation)
 ```
 sudo apt install git apache2 php htop wget
 sudo git clone https://github.com/brlndtech/ESXi-Web-Management-Tool
