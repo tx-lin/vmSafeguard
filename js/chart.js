@@ -4,22 +4,29 @@ $(function() {
    * Data and config for chartjs
    */
   'use strict';
+  var allVMs = document.getElementById("esxiVMs").value ;
+  var allStartedVMs = document.getElementById("esxiStartedVMs").value ;
+  var allSuspendedVMs = document.getElementById("esxiSuspendedVMs").value ;
+  var allPoweredOffVMs = document.getElementById("esxiPoweredOffVMs").value ;
+
+  //var allVM = document.getElementById("esxiVMs").value ;
+  //var allVM = document.getElementById("esxiVMs").value ;
   var data = {
-    labels: ["2013", "2014", "2014", "2015"],
+    labels: ["all VMs", "all started VMs", "all suspended VMs", "all powered off VMs"],
     datasets: [{
-      label: '# of Votes',
-      data: [10, 19, 3, 5],
+      label: '->',
+      data: [allVMs, allStartedVMs, allSuspendedVMs, allPoweredOffVMs],
       backgroundColor: [
-        'rgba(255, 99, 132, 0.2)',
         'rgba(54, 162, 235, 0.2)',
+        'rgba(255, 99, 132, 0.2)',
         'rgba(255, 206, 86, 0.2)',
         'rgba(75, 192, 192, 0.2)',
         'rgba(153, 102, 255, 0.2)',
         'rgba(255, 159, 64, 0.2)'
       ],
       borderColor: [
-        'rgba(255,99,132,1)',
         'rgba(54, 162, 235, 1)',
+        'rgba(255,99,132,1)',
         'rgba(255, 206, 86, 1)',
         'rgba(75, 192, 192, 1)',
         'rgba(153, 102, 255, 1)',
