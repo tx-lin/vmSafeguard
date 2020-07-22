@@ -1,0 +1,4 @@
+AuthName "Access is restricted !"
+AuthType Basic
+AuthUserFile "/var/www/html/ESXi-Web-Management-Tool/.htpasswd"
+Require valid-user
