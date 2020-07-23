@@ -255,6 +255,16 @@ it's more user friendly.
 
 <img src ="https://i.imgur.com/9bxEfBR.png">
 
+## auth 
+
+Normally, when you access to EWMT, you need to provide IDs. 
+
+ID : admin
+Password : helloworld
+
+feel free to change them ASAP :)
+
+If you want to disable the auth process, remove .htaccess / .htpasswd (location : root of the project)
 
 ## :point_right: [NEW] Features 
 
