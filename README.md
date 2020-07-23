@@ -15,6 +15,7 @@ Table of contents
       * [Warning !](#warning-warning-)
    * [Web Panel](#access-to-the-web-panel)
    * [ Automating the pool backup process](##automating-the-backup-process-with-cron-tasks)
+   * [Auth process ](#auth)
    * [Coming soon](#point_right-new-features)
    * [Common Questions](#questionspeech_balloon-notes--common-questions)
    * [Errors Code](#errors-code)
@@ -260,9 +261,10 @@ it's more user friendly.
 Normally, when you access to EWMT, you need to provide IDs. 
 
 ID : admin
+
 Password : helloworld
 
-feel free to change them ASAP :)
+Feel free to change them ASAP :)
 
 If you want to disable the auth process, remove .htaccess / .htpasswd (location : root of the project)
 
