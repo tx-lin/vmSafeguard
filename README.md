@@ -6,8 +6,8 @@ Enjoy :)
 Table of contents
 =
    * [Prerequisite](#bookmark_tabs-prerequisite-)
-   * [Installation (Easyest)](#pushpin-installation-easyest)
-   * [Installation (Hand installation)](#pushpin-installation-hand-installation)
+   * [Installation (Easyest) 1/2](#pushpin-installation-easyest-12)
+   * [Installation (Easyest) 1/2](#pushpin-installation-hand-installation-22)
    * [configuration](#computer-configuration-12---on-your-server-who-host-ewmt-)
       * [Create your own ssh-key pair](##create-your-ssh-key-pair)
       * [Location for backup](#location-for-backup)
@@ -20,22 +20,28 @@ Table of contents
 ## :bookmark_tabs: Prerequisite !
 
 - EWMT can be installed under "Debian Family". For the  devloppment of this project, I currently use Ubuntu 20.04, Php 7.4, Apache 2.4.X.
+- <b> <code> curl </code> and <code> sudo </code> command need to be install  ! </b>
 - ESXi Server operational and available trought your local network.
 - All machines of your ESXi need to have the VMwareTools, without it, EWMT can't be a run correctly.
 - SSH service activated on your ESXi
 - "SSH password less" -> ssh-key pair between the two host for the authentication Tuto
 
-## :pushpin: Installation (Easyest) 
+## :pushpin: Installation (Easyest) 1/2
 
 ### Easiest Way - Run setup.sh with curl 
+
+**WARNING**: <i>You need to be <b>root</b> or have sudo rights for executing these commands. <b>If you using debian, please enter in root privileged mode with <code> su - </code> before to run these following commands</i> </b>
+
+Update your server before to start the installation with <code>apt update</code> 
+
+
 <i> EWMT need some dependencies to work, You need to install them before setuping EWMT. </i>
 
 ```
 curl -sL https://raw.githubusercontent.com/brlndtech/Beta-ESXi-Management-Tool/master/setup.sh | sh
 ``` 
-**WARNING**: <i>You need to be <b>root</b> or have sudo rights for executing these commands.</i> 
 
-## :pushpin: Installation (Hand installation)
+## :pushpin: Installation (Hand installation) 2/2
 ```
 sudo apt install git apache2 php htop wget
 sudo git clone https://github.com/brlndtech/ESXi-Web-Management-Tool
