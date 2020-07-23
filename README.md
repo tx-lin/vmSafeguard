@@ -9,22 +9,24 @@ Table of contents
    * [Installation (Easyest) 1/2](#pushpin-installation-easyest-12)
    * [Installation (Easyest) 1/2](#pushpin-installation-hand-installation-22)
    * [configuration](#computer-configuration-12---on-your-server-who-host-ewmt-)
-      * [Create your own ssh-key pair](##create-your-ssh-key-pair)
+      * [Create your own ssh-key pair](##create-your-ssh-key-pair-as-root)
       * [Location for backup](#location-for-backup)
       * [Files to edit](#files-to-edit)
       * [Warning !](#warning-warning-)
    * [Web Panel](#access-to-the-web-panel)
-   * [Notes]()
+   * [ Automating the pool backup process](##automating-the-backup-process-with-cron-tasks)
+   * [Coming soon](#point_right-new-features)
+   * [Common Questions](#questionspeech_balloon-notes--common-questions)
    * [Errors Code](#errors-code)
 
 ## :bookmark_tabs: Prerequisite !
 
-- EWMT can be installed under "Debian Family". For the  devloppment of this project, I currently use Ubuntu 20.04, Php 7.4, Apache 2.4.X.
+- EWMT can be installed under "Debian Family". For the  devloppment of this project, I currently use Ubuntu 20.04, Php 7.4, Apache 2.4.X. To avoid unknow errors, I recommand you to use Ubuntu too.
 - <b> <code> curl </code> and <code> sudo </code> command need to be install  ! </b>
-- ESXi Server operational and available trought your local network.
-- All machines of your ESXi need to have the VMwareTools, without it, EWMT can't be a run correctly.
+- An ESXi Server operational and available trought your local network.
+- All machines of your ESXi need to have the VMwareTools, without it, EWMT can't run correctly.
 - SSH service activated on your ESXi
-- "SSH password less" -> ssh-key pair between the two host for the authentication Tuto
+- "SSH password less" -> ssh-key pair between the two hosts for the auth.
 
 ## :pushpin: Installation (Easyest) 1/2
 
@@ -32,7 +34,7 @@ Table of contents
 
 **WARNING**: <i>You need to be <b>root</b> or have sudo rights for executing these commands. <b>If you using debian, please enter in root privileged mode with <code> su - </code> before to run these following commands</i> </b>
 
-Update your server before to start the installation with <code>apt update</code> 
+Update your server before to start the installation. <code>apt update</code> 
 
 
 <i> EWMT need some dependencies to work, You need to install them before setuping EWMT. </i>
@@ -43,22 +45,47 @@ curl -sL https://raw.githubusercontent.com/brlndtech/Beta-ESXi-Management-Tool/m
 
 ## :pushpin: Installation (Hand installation) 2/2
 ```
-sudo apt install git apache2 php htop wget
+sudo apt update && apt upgrade
+sudo apt install git apache2 php htop wget sudo curl
 sudo git clone https://github.com/brlndtech/ESXi-Web-Management-Tool
 sudo mv ESXi-Web-Management-Tool /var/www/html
 sudo chmod 700 -R /var/www/html/ESXi-Web-Management-Tool
 sudo chown -R www-data:www-data /var/www/html/ESXi-Web-Management-Tool
 sudo echo 'www-data ALL = (ALL) NOPASSWD: ALL' >> /etc/sudoers.d/myOverrides
+sudo sed -i '/<Directory \/var\/www\/>/,/<\/Directory>/ s/AllowOverride None/AllowOverride All/' /etc/apache2/apache2.conf
+
+sudo touch /etc/apache2/sites-available/ESXi-Web-Management-Tool.conf
 ```
+### Create a specific virtual host
+
+``` 
+nano /etc/apache2/sites-available/ESXi-Web-Management-Tool.conf
+
+ <VirtualHost *:80>
+	# ServerName 
+	DocumentRoot /var/www/html/ESXi-Web-Management-Tool
+	<Directory "/var/www/html/ESXi-Web-Management-Tool">
+		Order allow,deny
+		AllowOverride All
+		Allow from all
+		Require all granted
+	</Directory>
+</VirtualHost>
+``` 
+
+``` 
+sudo a2ensite ESXi-Web-Management-Tool.conf
+sudo systemctl restart apache2
+``` 
 
 **WARNING** : <i>You need to be <b>root</b> or have sudo rights for executing these commands.</i>
 
 ## :computer: Configuration 1/2 - On your server (Who host EWMT) : 
 
-Once you have finished the installation process, you will need to do some stuff before to edit some files of the project (previous to access to the EWMT trought http(s)). 
+Once you have finished the installation process, you will need to do some stuff before to edit few files of the project (previous to access to the EWMT trought http(s)). 
 
 
-### Create your ssh-key pair 
+### Create your ssh-key pair as root
 
 ```
 ssh-keygen -t rsa 
@@ -122,7 +149,7 @@ $LOG="/vmfs/volumes/datastore-backup/logbackup.txt";
 // TO CHANGE, the file will be created automaticaly later
 ```
 
-save the changes, and go to the sub folder scripts. 
+Save changes, and go to the sub folder scripts/. 
 
 ```
 cd /var/www/html/ESXi-Web-Management-Tool/scripts
@@ -178,7 +205,7 @@ find /vmfs/volumes/datastore-backup/backup* -mtime +30 -exec rm -rf {} \;
 # Permit to delete all backup* folders > 30 Days
 ```
 
-<i> If you want to add some VMs in to the  "pool backup" check the following screenshot </i>
+<i> If you want to add some VMs in to the  "pool backup" check the following screenshot. 10 12 9 represent 3 VMID of 3 different VMs </i>
 
 <img src="https://i.imgur.com/ZJt87Vu.jpg">
 
@@ -187,12 +214,12 @@ find /vmfs/volumes/datastore-backup/backup* -mtime +30 -exec rm -rf {} \;
 
 ### :warning: Warning : 
 
-Your VMs can be stored in any datastores of your ESXI, but they need to be at the root of the datastore like <code> /vmfs/volumes/mydatastore/myVirtualMachineDebianFolder </code> <br>
+Your VMs can be stored in any datastores of your ESXI, <b> BUT they need to be at the root of the datastore like <code> /vmfs/volumes/mydatastore/myVirtualMachineDebianFolder </code> <br> </b>
 
 if it's not the case, change the value of the variable <code>"cutedpath=" </code>in the function backupVM(), you will need to edit this variable 4 times, two times in each files.  BackupSingleVM.sh / PoolVMBackup.sh.
 
 
-#### That's it for the configuration of EWMT :white_check_mark, you will be able to start EWMT trought the web
+#### That's it for the configuration of EWMT :white_check_mark: , you will be able to start EWMT trought the web
 
 ## Access to the web panel
 
@@ -203,15 +230,15 @@ Go to http://ip/ESXi-Web-Management-Tool/ (the loading takes ~ 7/8 secs)
 <img src="https://i.imgur.com/oFNUZ3e.jpg">
 <i> Example of the shutdown section (For poweroff all the VMs of your ESXi). </i> <br> <br>
 <img src="https://i.imgur.com/AQauBMu.jpg">
-<i> Example of the summary section. Very useful part if you want to know a vmid of your VMs to proced to a single backup ! </i> <br> <br>
+<i> Example of the summary section. Very useful part if you want to know the vmid of a VM(s) </i> <br> <br>
 
 ## Automating the backup process with cron tasks
 
-On the host server, edit your crontab as root 
+### With the terminal 
+
+On the host server, edit your crontab manually <b> as root or www-data </b>
 
 ```
-sudo su
-<mdp root>
 crontab -e 
 ```
 Example 
@@ -221,6 +248,14 @@ Example
 50 23 * * * /var/www/html/ESXi-Web-Management-Tool/scripts/PoolVMBackup.sh
 ```
 
+### With the web IHM : 
+
+You can schedule a crontask for the "PoolVMBackup.sh", with the Graphical Interface.
+it's more user friendly.
+
+<img src ="https://i.imgur.com/9bxEfBR.png">
+
+
 ## :point_right: [NEW] Features 
 
 
@@ -228,8 +263,13 @@ Example
 
 1 - EWMT is available only for debian based OS family 
 
+### Know Issues 
+1 - If the .htaccess / .htpasswd (not crutial for the project)auth does not work, please check the apache2.conf (/etc/apache2) and replace if you did not have the same result as the following picture : 
 
-### Errors Code 
+<img src="https://i.imgur.com/BpJiX1x.png">
+
+
+## Errors Code 
 
 If you detect an error in EWMT, please open a github issue,
 
