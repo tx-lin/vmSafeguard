@@ -235,6 +235,12 @@ require('controller.php');
             </a>
           </li>
           <li class="nav-item">
+            <a class="nav-link" href="scripts/crontask.php">
+              <i class="mdi mdi-file-document-box-outline menu-icon"></i>
+              <span class="menu-title">Schedule a pool backup</span>
+            </a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" href="scripts/show-log.php">
               <i class="mdi mdi-note-text menu-icon"></i>
               <span class="menu-title">Logs</span>
@@ -274,7 +280,7 @@ require('controller.php');
                   <button type="button" class="btn btn-light bg-white btn-icon mr-3 mt-2 mt-xl-0">
                     <i class="mdi mdi-plus text-muted"></i>
                   </button>-->
-                  <button class="btn btn-primary mt-2 mt-xl-0">Generate report</button>
+                  <button class="btn btn-primary mt-2 mt-xl-0">Graphic Report</button>
                 </div>
               </div>
             </div>
@@ -300,29 +306,22 @@ require('controller.php');
                         <div class="d-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
                           <i class="mdi mdi-counter mr-3 icon-lg text-danger"></i>
                           <div class="d-flex flex-column justify-content-around">
-                            <small class="mb-1 text-muted">Number of VM</small>
-                            <h5 class="mr-2 mb-0"><?php echo shell_exec("sudo ssh -p $PORT root@$HOST 'vim-cmd vmsvc/getallvms | tail -n +2 | wc -l'");?></h5> 
+                            <small class="mb-1 text-muted">Number of VMs</small>
+                            <h5 class="mr-2 mb-0"><?php $countVMs = shell_exec("sudo ssh -p $PORT root@$HOST 'vim-cmd vmsvc/getallvms | tail -n +2 | wc -l'"); echo $countVMs ; ?></h5> 
                           </div>
                         </div>
                         <div class="d-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
                           <i class="mdi mdi-arrow-right-drop-circle-outline mr-3 icon-lg text-success"></i> <!-- icon -->
                           <div class="d-flex flex-column justify-content-around">
-                            <small class="mb-1 text-muted">Powered VM </small>
-                            <h5 class="mr-2 mb-0"><?php echo shell_exec("sudo ssh -p $PORT root@$HOST 'esxcli vm process list | grep \"World ID\" | wc -l'");?></h5> 
-                          </div>
-                        </div>
-                        <div class="d-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
-                          <i class="mdi mdi-download mr-3 icon-lg text-warning"></i>
-                          <div class="d-flex flex-column justify-content-around">
-                            <small class="mb-1 text-muted">Suspended VM</small>
-                            <h5 class="mr-2 mb-0"><?php echo shell_exec("sudo ssh -p $PORT root@$HOST 'sh -s' < scripts/suspendedVMsList.sh");?></h5> 
+                            <small class="mb-1 text-muted">Powered VMs </small>
+                            <h5 class="mr-2 mb-0"><?php $poweredOnVMs = shell_exec("sudo ssh -p $PORT root@$HOST 'esxcli vm process list | grep \"World ID\" | wc -l'"); echo $poweredOnVMs ; ?></h5> 
                           </div>
                         </div>
                         <div class="d-flex py-3 border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
                           <i class="mdi mdi-flag mr-3 icon-lg text-danger"></i>
                           <div class="d-flex flex-column justify-content-around">
-                            <small class="mb-1 text-muted">Shutdown VM</small>
-                            <h5 class="mr-2 mb-0"><?php echo shell_exec("sudo ssh -p $PORT root@$HOST 'sh -s' < scripts/shutdownVMsList.sh");?></h5> 
+                            <small class="mb-1 text-muted">Shutdown VMs</small>
+                            <h5 class="mr-2 mb-0"><?php $shutdownVMs = shell_exec("sudo ssh -p $PORT root@$HOST 'sh -s' < scripts/shutdownVMsList.sh"); echo $shutdownVMs ;?></h5> 
                           </div>
                         </div>
                       </div>

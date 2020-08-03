@@ -58,6 +58,18 @@
             </a>
           </li>
           <li class="nav-item">
+            <a class="nav-link" href="crontask.php">
+              <i class="mdi mdi-file-document-box-outline menu-icon"></i>
+              <span class="menu-title">Schedule a pool backup</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="show-log.php">
+              <i class="mdi mdi-note-text menu-icon"></i>
+              <span class="menu-title">Logs</span>
+            </a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" target="_blank "href="https://github.com/brlndtech/ESXi-Web-Management-Tool/blob/master/README.md">
               <i class="mdi mdi-file-document-box-outline menu-icon"></i>
               <span class="menu-title">Documentation</span>

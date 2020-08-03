@@ -29,7 +29,7 @@ include('scripts-menu-header-top-left.php');
             <div class="col-12 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <h4 class="card-title">Start section</h4>
+                  <h4 class="card-title">/ Start</h4>
                   <p class="card-description">
                       <?php echo "<pre>".shell_exec("sudo ssh -p $PORT root@$HOST 'sh -s' < startAll.sh")."/<pre>";?>
                   </p>

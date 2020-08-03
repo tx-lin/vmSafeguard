@@ -6,29 +6,27 @@ $(function() {
   'use strict';
   var allVMs = document.getElementById("esxiVMs").value ;
   var allStartedVMs = document.getElementById("esxiStartedVMs").value ;
-  var allSuspendedVMs = document.getElementById("esxiSuspendedVMs").value ;
   var allPoweredOffVMs = document.getElementById("esxiPoweredOffVMs").value ;
-
-  //var allVM = document.getElementById("esxiVMs").value ;
-  //var allVM = document.getElementById("esxiVMs").value ;
+  var statsPer100 = document.getElementById("esxiStatsPer100").value ;
+  var total = 100 - statsPer100 ; 
   var data = {
-    labels: ["all VMs", "all started VMs", "all suspended VMs", "all powered off VMs"],
+    labels: ["all VMs", "all started VMs", "all powered off VMs"],
     datasets: [{
       label: '->',
-      data: [allVMs, allStartedVMs, allSuspendedVMs, allPoweredOffVMs],
+      data: [allVMs, allStartedVMs, allPoweredOffVMs],
       backgroundColor: [
         'rgba(54, 162, 235, 0.2)',
+        'rgba(75, 192, 192, 0.2)',
         'rgba(255, 99, 132, 0.2)',
         'rgba(255, 206, 86, 0.2)',
-        'rgba(75, 192, 192, 0.2)',
         'rgba(153, 102, 255, 0.2)',
         'rgba(255, 159, 64, 0.2)'
       ],
       borderColor: [
         'rgba(54, 162, 235, 1)',
+        'rgba(75, 192, 192, 1)',
         'rgba(255,99,132,1)',
         'rgba(255, 206, 86, 1)',
-        'rgba(75, 192, 192, 1)',
         'rgba(153, 102, 255, 1)',
         'rgba(255, 159, 64, 1)'
       ],
@@ -87,19 +85,19 @@ $(function() {
   };
   var doughnutPieData = {
     datasets: [{
-      data: [30, 40, 30],
+      data: [statsPer100, total],
       backgroundColor: [
-        'rgba(255, 99, 132, 0.5)',
         'rgba(54, 162, 235, 0.5)',
         'rgba(255, 206, 86, 0.5)',
+        'rgba(255, 99, 132, 0.5)',
         'rgba(75, 192, 192, 0.5)',
         'rgba(153, 102, 255, 0.5)',
         'rgba(255, 159, 64, 0.5)'
       ],
       borderColor: [
-        'rgba(255,99,132,1)',
         'rgba(54, 162, 235, 1)',
         'rgba(255, 206, 86, 1)',
+        'rgba(255,99,132,1)',
         'rgba(75, 192, 192, 1)',
         'rgba(153, 102, 255, 1)',
         'rgba(255, 159, 64, 1)'
@@ -108,9 +106,8 @@ $(function() {
 
     // These labels appear in the legend and in the tooltips when hovering different arcs
     labels: [
-      'Pink',
-      'Blue',
-      'Yellow',
+      '% Running VM',
+      '% Powered Off VM',
     ]
   };
   var doughnutPieOptions = {

@@ -1,3 +1,7 @@
+<?php
+require '../controller.php';
+?> 
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +9,7 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Majestic Admin</title>
+  <title>Graph</title>
   <!-- plugins:css -->
   <link rel="stylesheet" href="../vendors/mdi/css/materialdesignicons.min.css">
   <link rel="stylesheet" href="../vendors/base/vendor.bundle.base.css">
@@ -24,15 +28,15 @@ include('scripts-menu-header-top-left.php');
           <div class="row">
             <div class="col-lg-6 grid-margin stretch-card">
             <?php 
-            	$VMs = 18 ; 
-            	$allStarted = 10 ; 
-            	$allSuspended = 2 ; 
-            	$allPoweredOff = 6 ; 
-            	echo "<input type=\"hidden\" id=\"esxiVMs\" name=\"esxiVMs\" value=\"$VMs\"/>";
-            	echo "<input type=\"hidden\" id=\"esxiStartedVMs\" name=\"esxiStartedVMs\" value=\"$allStarted\"/>";
-            	echo "<input type=\"hidden\" id=\"esxiSuspendedVMs\" name=\"esxiSuspendedVMs\" value=\"$allSuspended\"/>";
-            	echo "<input type=\"hidden\" id=\"esxiPoweredOffVMs\" name=\"esxiPoweredOffVMs\" value=\"$allPoweredOff\"/>";
-            	// echo $number;
+              // backend 
+              $countVMs = shell_exec("sudo ssh -p $PORT root@$HOST 'vim-cmd vmsvc/getallvms | tail -n +2 | wc -l'");
+              $poweredOnVMs = shell_exec("sudo ssh -p $PORT root@$HOST 'esxcli vm process list | grep \"World ID\" | wc -l'");
+              $shutdownVMs = shell_exec("sudo ssh -p $PORT root@$HOST 'sh -s' < shutdownVMsList.sh");
+              $statsPer100 = intval($poweredOnVMs) / intval($countVMs) * 100 ; 
+            	echo "<input type=\"hidden\" id=\"esxiVMs\" name=\"esxiVMs\" value=\"$countVMs\"/>";
+            	echo "<input type=\"hidden\" id=\"esxiStartedVMs\" name=\"esxiStartedVMs\" value=\"$poweredOnVMs\"/>";
+            	echo "<input type=\"hidden\" id=\"esxiPoweredOffVMs\" name=\"esxiPoweredOffVMs\" value=\"$shutdownVMs\"/>";
+              echo "<input type=\"hidden\" id=\"esxiStatsPer100\" name=\"stats\" value=\"$statsPer100\"/>";
             ?>
               <div class="card">
                 <div class="card-body">
@@ -42,25 +46,18 @@ include('scripts-menu-header-top-left.php');
               </div>
             </div>
           </div>
-          <!-- 
           <div class="row">
-            <div class="col-lg-6 grid-margin stretch-card">
-              <div class="card">
-                <div class="card-body">
-                  <h4 class="card-title">Area chart</h4>
-                  <canvas id="areaChart"></canvas>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-6 grid-margin stretch-card">
-              <div class="card">
-                <div class="card-body">
-                  <h4 class="card-title">Doughnut chart</h4>
-                  <canvas id="doughnutChart"></canvas>
+              <div class="col-lg-6 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title">% of ESXI occupation</h4>
+                    <canvas id="doughnutChart"></canvas>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
+          <!--
           <div class="row">
             <div class="col-lg-6 grid-margin grid-margin-lg-0 stretch-card">
               <div class="card">
@@ -80,20 +77,9 @@ include('scripts-menu-header-top-left.php');
             </div>
           </div>
         </div>
-        <!-- content-wrapper ends -->
+        content-wrapper ends -->
         <!-- partial:../../partials/_footer.html -->
-        <footer class="footer">
-          <div class="d-sm-flex justify-content-center justify-content-sm-between">
-            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2019 <a href="https://www.bootstrapdash.com/" target="_blank">Bootstrapdash</a>. All rights reserved.</span>
-            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Brlndtech Edit</span>
-          </div>
-        </footer>
-        <!-- partial -->
-      </div>
-      <!-- main-panel ends -->
-    </div>
-    <!-- page-body-wrapper ends -->
-  </div>
+        <?php require 'scripts-footer.php'; ?>
   <!-- container-scroller -->
   <!-- plugins:js -->
   <script src="../vendors/base/vendor.bundle.base.js"></script>
