@@ -31,6 +31,7 @@
   <script src="../js/jquery.dataTables.js"></script>
   <script src="../js/dataTables.bootstrap4.js"></script>
   <!-- End custom js for this page-->
+  <script src="../js/chart.js"></script>
 </body>
 
 </html>

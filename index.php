@@ -229,12 +229,6 @@ require('controller.php');
             </div>
           </li>-->
           <li class="nav-item">
-            <a class="nav-link" href="https://github.com/brlndtech/ESXi-Web-Management-Tool/blob/master/README.md" target="_blank">
-              <i class="mdi mdi-file-document-box-outline menu-icon"></i>
-              <span class="menu-title">Documentation</span>
-            </a>
-          </li>
-          <li class="nav-item">
             <a class="nav-link" href="scripts/crontask.php">
               <i class="mdi mdi-file-document-box-outline menu-icon"></i>
               <span class="menu-title">Schedule a pool backup</span>
@@ -244,6 +238,12 @@ require('controller.php');
             <a class="nav-link" href="scripts/show-log.php">
               <i class="mdi mdi-note-text menu-icon"></i>
               <span class="menu-title">Logs</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://github.com/brlndtech/ESXi-Web-Management-Tool/blob/master/README.md" target="_blank">
+              <i class="mdi mdi-file-document-box-outline menu-icon"></i>
+              <span class="menu-title">Documentation</span>
             </a>
           </li>
         </ul>
@@ -280,7 +280,7 @@ require('controller.php');
                   <button type="button" class="btn btn-light bg-white btn-icon mr-3 mt-2 mt-xl-0">
                     <i class="mdi mdi-plus text-muted"></i>
                   </button>-->
-                  <button class="btn btn-primary mt-2 mt-xl-0">Graphic Report</button>
+                  <button class="btn btn-primary mt-2 mt-xl-0"><a style="color:white;"href="scripts/esxiStats.php" >ESXI Stats</a></button>
                 </div>
               </div>
             </div>
@@ -321,7 +321,10 @@ require('controller.php');
                           <i class="mdi mdi-flag mr-3 icon-lg text-danger"></i>
                           <div class="d-flex flex-column justify-content-around">
                             <small class="mb-1 text-muted">Shutdown VMs</small>
-                            <h5 class="mr-2 mb-0"><?php $shutdownVMs = shell_exec("sudo ssh -p $PORT root@$HOST 'sh -s' < scripts/shutdownVMsList.sh"); echo $shutdownVMs ;?></h5> 
+                            <?php //backend 
+                              $shutdownVMs = intval($countVMs) - intval($poweredOnVMs) ; 
+                            ?>
+                            <h5 class="mr-2 mb-0"><?php echo $shutdownVMs ; ?></h5> 
                           </div>
                         </div>
                       </div>

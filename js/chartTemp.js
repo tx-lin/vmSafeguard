@@ -1,37 +1,31 @@
 $(function() {
+  'use strict';
   /* ChartJS
    * -------
    * Data and config for chartjs
    */
-  'use strict';
-  var allVMs = document.getElementById("esxiVMs").value ;
-  var allStartedVMs = document.getElementById("esxiStartedVMs").value ;
-  var allPoweredOffVMs = document.getElementById("esxiPoweredOffVMs").value ;
-  var statsPer100 = document.getElementById("esxiStatsPer100").value ;
-  var total = 100 - statsPer100 ; 
   var data = {
-    labels: ["all VMs", "all started VMs", "all powered off VMs"],
+    labels: ["2013", "2014", "2014", "2015", "2016", "2017"],
     datasets: [{
-      label: '',
-      data: [allVMs, allStartedVMs, allPoweredOffVMs],
+      label: '# of Votes',
+      data: [10, 19, 3, 5, 2, 3],
       backgroundColor: [
-        'rgba(54, 162, 235, 0.2)',
-        'rgba(75, 192, 192, 0.2)',
         'rgba(255, 99, 132, 0.2)',
+        'rgba(54, 162, 235, 0.2)',
         'rgba(255, 206, 86, 0.2)',
+        'rgba(75, 192, 192, 0.2)',
         'rgba(153, 102, 255, 0.2)',
         'rgba(255, 159, 64, 0.2)'
       ],
       borderColor: [
-        'rgba(54, 162, 235, 1)',
-        'rgba(75, 192, 192, 1)',
         'rgba(255,99,132,1)',
+        'rgba(54, 162, 235, 1)',
         'rgba(255, 206, 86, 1)',
+        'rgba(75, 192, 192, 1)',
         'rgba(153, 102, 255, 1)',
         'rgba(255, 159, 64, 1)'
       ],
-      borderWidth: 1,
-      fill: false
+      borderWidth: 1
     }]
   };
   var multiLineData = {
@@ -85,19 +79,19 @@ $(function() {
   };
   var doughnutPieData = {
     datasets: [{
-      data: [statsPer100, total],
+      data: [30, 40, 30],
       backgroundColor: [
+        'rgba(255, 99, 132, 0.5)',
         'rgba(54, 162, 235, 0.5)',
         'rgba(255, 206, 86, 0.5)',
-        'rgba(255, 99, 132, 0.5)',
         'rgba(75, 192, 192, 0.5)',
         'rgba(153, 102, 255, 0.5)',
         'rgba(255, 159, 64, 0.5)'
       ],
       borderColor: [
+        'rgba(255,99,132,1)',
         'rgba(54, 162, 235, 1)',
         'rgba(255, 206, 86, 1)',
-        'rgba(255,99,132,1)',
         'rgba(75, 192, 192, 1)',
         'rgba(153, 102, 255, 1)',
         'rgba(255, 159, 64, 1)'
@@ -106,8 +100,9 @@ $(function() {
 
     // These labels appear in the legend and in the tooltips when hovering different arcs
     labels: [
-      '% Running VM',
-      '% Powered Off VM',
+      'Pink',
+      'Blue',
+      'Yellow',
     ]
   };
   var doughnutPieOptions = {
@@ -117,6 +112,7 @@ $(function() {
       animateRotate: true
     }
   };
+
   var areaData = {
     labels: ["2013", "2014", "2015", "2016", "2017"],
     datasets: [{
@@ -139,7 +135,11 @@ $(function() {
         'rgba(255, 159, 64, 1)'
       ],
       borderWidth: 1,
-      fill: true, // 3: no fill
+      fill: 'origin', // 0: fill to 'origin'
+      fill: '+2', // 1: fill to dataset 3
+      fill: 1, // 2: fill to dataset 1
+      fill: false, // 3: no fill
+      fill: '-2' // 4: fill to dataset 2
     }]
   };
 
@@ -148,60 +148,6 @@ $(function() {
       filler: {
         propagate: true
       }
-    }
-  }
-
-  var multiAreaData = {
-    labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-    datasets: [{
-        label: 'Facebook',
-        data: [8, 11, 13, 15, 12, 13, 16, 15, 13, 19, 11, 14],
-        borderColor: ['rgba(255, 99, 132, 0.5)'],
-        backgroundColor: ['rgba(255, 99, 132, 0.5)'],
-        borderWidth: 1,
-        fill: true
-      },
-      {
-        label: 'Twitter',
-        data: [7, 17, 12, 16, 14, 18, 16, 12, 15, 11, 13, 9],
-        borderColor: ['rgba(54, 162, 235, 0.5)'],
-        backgroundColor: ['rgba(54, 162, 235, 0.5)'],
-        borderWidth: 1,
-        fill: true
-      },
-      {
-        label: 'Linkedin',
-        data: [6, 14, 16, 20, 12, 18, 15, 12, 17, 19, 15, 11],
-        borderColor: ['rgba(255, 206, 86, 0.5)'],
-        backgroundColor: ['rgba(255, 206, 86, 0.5)'],
-        borderWidth: 1,
-        fill: true
-      }
-    ]
-  };
-
-  var multiAreaOptions = {
-    plugins: {
-      filler: {
-        propagate: true
-      }
-    },
-    elements: {
-      point: {
-        radius: 0
-      }
-    },
-    scales: {
-      xAxes: [{
-        gridLines: {
-          display: false
-        }
-      }],
-      yAxes: [{
-        gridLines: {
-          display: false
-        }
-      }]
     }
   }
 
@@ -300,15 +246,6 @@ $(function() {
     });
   }
 
-  if ($("#areachart-multi").length) {
-    var multiAreaCanvas = $("#areachart-multi").get(0).getContext("2d");
-    var multiAreaChart = new Chart(multiAreaCanvas, {
-      type: 'line',
-      data: multiAreaData,
-      options: multiAreaOptions
-    });
-  }
-
   if ($("#doughnutChart").length) {
     var doughnutChartCanvas = $("#doughnutChart").get(0).getContext("2d");
     var doughnutChart = new Chart(doughnutChartCanvas, {
@@ -345,6 +282,125 @@ $(function() {
     });
   }
 
+  if ($("#sales-chart").length) {
+    var salesChartData ={
+      datasets: [{
+        data: [30, 40, 30],
+        backgroundColor: [
+            '#745af2',
+            '#5cd069',
+            '#fecb01'
+        ]
+      }],
+      labels: [
+          'Organic Sale',
+          'Search Engine',
+          'Marketing',
+      ]
+    };
+    var salesChartOptions = {
+      responsive: true,
+      cutoutPercentage: 70,
+      legend : false,
+      animation: {
+          animateScale: true,
+          animateRotate: true
+      }
+    };
+    var salesChartCanvas = $("#sales-chart").get(0).getContext("2d");
+    var salesChart = new Chart(salesChartCanvas, {
+      type: 'doughnut',
+      data: salesChartData,
+      options: salesChartOptions
+    });
+    $("#sales-chart-legend").html(salesChart.generateLegend());
+  }
+
+
+  // Dashboard Chart
+  var browserTrafficData = {
+    datasets: [{
+      data: [20, 20, 10, 30, 20],
+      backgroundColor: [
+        'rgba(255,99,132,1)',
+        'rgba(54, 162, 235, 1)',
+        'rgba(255, 206, 86, 1)',
+        'rgba(75, 192, 192, 1)',
+        'rgba(75, 192, 117, 1)',
+        'rgba(255, 159, 64, 1)'
+      ],
+      borderColor: [
+        'rgba(255,99,132,1)',
+        'rgba(54, 162, 235, 1)',
+        'rgba(255, 206, 86, 1)',
+        'rgba(75, 192, 192, 1)',
+        'rgba(75, 192, 117, 1)',
+        'rgba(255, 159, 64, 1)'
+      ],
+    }],
+
+    labels: [
+      'Firefox',
+      'Safari',
+      'Explorer',
+      'Chrome',
+      'Opera Mini'
+    ]
+  };
+  var multiAreaData = {
+    labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+    datasets: [{
+        label: 'Facebook',
+        data: [8, 11, 13, 15, 12, 13, 16, 15, 13, 19, 11, 14],
+        borderColor: ['rgba(255, 99, 132, 0.5)'],
+        backgroundColor: ['rgba(255, 99, 132, 0.5)'],
+        borderWidth: 1,
+        fill: true
+      },
+      {
+        label: 'Twitter',
+        data: [7, 17, 12, 16, 14, 18, 16, 12, 15, 11, 13, 9],
+        borderColor: ['rgba(54, 162, 235, 0.5)'],
+        backgroundColor: ['rgba(54, 162, 235, 0.5)'],
+        borderWidth: 1,
+        fill: true
+      },
+      {
+        label: 'Linkedin',
+        data: [6, 14, 16, 20, 12, 18, 15, 12, 17, 19, 15, 11],
+        borderColor: ['rgba(255, 206, 86, 0.5)'],
+        backgroundColor: ['rgba(255, 206, 86, 0.5)'],
+        borderWidth: 1,
+        fill: true
+      }
+    ]
+  };
+
+  var multiAreaOptions = {
+    plugins: {
+      filler: {
+        propagate: true
+      }
+    },
+    elements: {
+      point: {
+        radius: 0
+      }
+    },
+    scales: {
+      xAxes: [{
+        gridLines: {
+          display: false
+        }
+      }],
+      yAxes: [{
+        gridLines: {
+          display: false
+        }
+      }]
+    }
+  }
+
   if ($("#browserTrafficChart").length) {
     var doughnutChartCanvas = $("#browserTrafficChart").get(0).getContext("2d");
     var doughnutChart = new Chart(doughnutChartCanvas, {
@@ -353,4 +409,16 @@ $(function() {
       options: doughnutPieOptions
     });
   }
+
+  if ($("#areachart-multi").length) {
+    var multiAreaCanvas = $("#areachart-multi").get(0).getContext("2d");
+    var multiAreaChart = new Chart(multiAreaCanvas, {
+      type: 'line',
+      data: multiAreaData,
+      options: multiAreaOptions
+    });
+  }
+
+  // Dashboard Chart
+
 });

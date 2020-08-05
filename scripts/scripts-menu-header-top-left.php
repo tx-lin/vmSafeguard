@@ -70,6 +70,12 @@
             </a>
           </li>
           <li class="nav-item">
+            <a class="nav-link" href="esxiStats.php">
+              <i class="mdi mdi-note-text menu-icon"></i>
+              <span class="menu-title">ESXI stats</span>
+            </a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" target="_blank "href="https://github.com/brlndtech/ESXi-Web-Management-Tool/blob/master/README.md">
               <i class="mdi mdi-file-document-box-outline menu-icon"></i>
               <span class="menu-title">Documentation</span>
