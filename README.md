@@ -226,11 +226,11 @@ if it's not the case, change the value of the variable <code>"cutedpath=" </code
 
 Go to http://ip/ESXi-Web-Management-Tool/ (the loading takes ~ 7/8 secs)
 
-<img src="https://i.imgur.com/H3u7cAb.jpg">
+<img src="https://i.imgur.com/efwZ78a.png">
 <i> This is the welcome page of EWMT. </i> <br> <br>
-<img src="https://i.imgur.com/oFNUZ3e.jpg">
+<img src="https://i.imgur.com/TTRDY0D.png">
 <i> Example of the shutdown section (For poweroff all the VMs of your ESXi). </i> <br> <br>
-<img src="https://i.imgur.com/AQauBMu.jpg">
+<img src="https://i.imgur.com/dNO9elw.png">
 <i> Example of the summary section. Very useful part if you want to know the vmid of a VM(s) </i> <br> <br>
 
 ## Automating the backup process with cron tasks
@@ -247,28 +247,26 @@ Example
 ```
 # Every day at 23H50, PoolVMBackup.sh will be executed !
 50 23 * * * /var/www/html/ESXi-Web-Management-Tool/scripts/PoolVMBackup.sh
+# Executed as root
 ```
 
 ### With the web IHM : 
 
-You can schedule a crontask for the "PoolVMBackup.sh", with the Graphical Interface.
-it's more user friendly.
+You can schedule a crontask for the "PoolVMBackup.sh", with the Graphical Interface. it's more user friendly. (executed as www-data)
 
-<img src ="https://i.imgur.com/9bxEfBR.png">
+<img src="https://i.imgur.com/qxw9cJV.png">
 
-## auth 
+## Auth 
 
-Normally, when you access to EWMT, you need to provide IDs. 
+When you access to EWMT, you need to provide IDs. 
 
 ID : admin
-
 Password : helloworld
 
 Feel free to change them ASAP :)
 
 If you want to disable the auth process, remove .htaccess / .htpasswd (location : root of the project)
 
-## :point_right: [NEW] Features 
 
 
 ## :question::speech_balloon: Notes / common questions
@@ -279,6 +277,8 @@ If you want to disable the auth process, remove .htaccess / .htpasswd (location 
 1 - If the .htaccess / .htpasswd (not crutial for the project)auth does not work, please check the apache2.conf (/etc/apache2) and replace if you did not have the same result as the following picture : 
 
 <img src="https://i.imgur.com/BpJiX1x.png">
+
+2 - Don't add comment into the description of a vm (not multiple line, just one line. Otherwise the " number (total) of VMs will be false" )
 
 
 ## Errors Code 

@@ -32,10 +32,10 @@ include('scripts-menu-header-top-left.php');
                 <div class="card-body">
                   <h4 class="card-title">Crontask (as www-data) - Scheduller, for a "Pool Backup" of the VMs</h4>
                   <p class="card-description">
-                    Warning : You need to respect the <a href="https://crontab.guru/" target="_blank"> crontab </a> syntax. Otherwise, the crontask will not be write to /var/spool/crontab/www-data. 
+                    Warning : You need to respect the <a href="https://crontab.guru/" target="_blank"> crontab </a> syntax. Otherwise, the crontask will not be written to /var/spool/crontab/www-data. 
                   </p>
                   <p class="card-description">
-                    <i> The crontask will be executed the following script : <strong> PoolVMBackup.sh </strong> </i>
+                    <i> The crontask will be execute the following script : <strong> PoolVMBackup.sh </strong> </i>
                   </p>
                   <form class="forms-sample" action="saveCronTask.php" method="post">
                     <div class="form-group row">

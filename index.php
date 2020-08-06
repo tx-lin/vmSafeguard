@@ -28,8 +28,8 @@ require('controller.php');
     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
       <div class="navbar-brand-wrapper d-flex justify-content-center">
         <div class="navbar-brand-inner-wrapper d-flex justify-content-between align-items-center w-100">  
-          <!--<a class="navbar-brand brand-logo" href="index.php"><img src="images/logo.svg" alt="logo"/></a>
-          <a class="navbar-brand brand-logo-mini" href="index.php"><img src="images/logo-mini.svg" alt="logo"/></a>-->
+          <a class="navbar-brand brand-logo" href="index.php"><i>EWMT</i></a>
+          <a class="navbar-brand brand-logo-mini" href="index.php"><i>EWMT</i></a>
           <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
             <span class="mdi mdi-sort-variant"></span>
           </button>
@@ -230,7 +230,7 @@ require('controller.php');
           </li>-->
           <li class="nav-item">
             <a class="nav-link" href="scripts/crontask.php">
-              <i class="mdi mdi-file-document-box-outline menu-icon"></i>
+              <i class="mdi mdi-calendar-clock menu-icon"></i>
               <span class="menu-title">Schedule a pool backup</span>
             </a>
           </li>
@@ -347,18 +347,18 @@ require('controller.php');
             <div class="col-md-5 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <!--<p class="card-title">Total sales</p>-->
-                 <!--<h1>$ 28</h1>-->
-                  <h4>Quick actions</h4>
-                  <p class="text-muted"></p>
-                  <div id="total-sales-chart-legend"></div>                  
+	                <!--<p class="card-title">Total sales</p>-->
+	                <!--<h1>$ 28</h1>-->
+	                <h4>Quick actions</h4>
+	                <p class="text-muted"></p>
+	                <div id="total-sales-chart-legend"></div>                  
+	                	<button type="button" class="btn btn-success btn-rounded btn-fw" style="width:165px;height:40px;margin:0 auto;display:block;"><a style="color:white;"href="scripts/startAll.php">Start all VM</a></button> <br>
+	                    <button type="button" class="btn btn-warning btn-rounded btn-fw" style="width:165px;height:40px;margin:0 auto;display:block;"><a style="color:white;"href="scripts/suspendAll.php">Suspend all VM</a></button> <br>
+	                    <button type="button" class="btn btn-danger btn-rounded btn-fw" style="width:165px;height:40px;margin:0 auto;display:block;"><a style="color:white;"href="scripts/shutdownAll.php">Shutdown all VM</a></button> <br>
+	                    <button type="button" class="btn btn-primary btn-rounded btn-fw" style="width:165px;height:40px;margin:0 auto;display:block;"><a style="color:white;"href="scripts/summaryAll.php">Summary all VM</a></button> <br>
+	                    <!--<button type="button" class="btn btn-primary btn-rounded btn-fw" style="width:165px;height:40px;margin:0 auto;display:block;"><a style="color:white;"href="scripts/shutdownAll.php">Shutdown all VM</a></button> </br>
+	                    <button type="button" class="btn btn-primary btn-rounded btn-fw" style="width:165px;height:40px;margin:0 auto;display:block;"><a style="color:white;"href="scripts/shutdownAll.php">Shutdown all VM</a></button> </br>-->
                 </div>
-                    <button type="button" class="btn btn-success btn-rounded btn-fw" style="width:165px;height:40px;margin:0 auto;display:block;"><a style="color:white;"href="scripts/startAll.php">Start all VM</a></button> </br>
-                    <button type="button" class="btn btn-warning btn-rounded btn-fw" style="width:165px;height:40px;margin:0 auto;display:block;"><a style="color:white;"href="scripts/suspendAll.php">Suspend all VM</a></button> </br>
-                    <button type="button" class="btn btn-danger btn-rounded btn-fw" style="width:165px;height:40px;margin:0 auto;display:block;"><a style="color:white;"href="scripts/shutdownAll.php">Shutdown all VM</a></button> </br>
-                    <button type="button" class="btn btn-primary btn-rounded btn-fw" style="width:165px;height:40px;margin:0 auto;display:block;"><a style="color:white;"href="scripts/summaryAll.php">Summary all VM</a></button> </br>
-                    <!--<button type="button" class="btn btn-primary btn-rounded btn-fw" style="width:165px;height:40px;margin:0 auto;display:block;"><a style="color:white;"href="scripts/shutdownAll.php">Shutdown all VM</a></button> </br>
-                    <button type="button" class="btn btn-primary btn-rounded btn-fw" style="width:165px;height:40px;margin:0 auto;display:block;"><a style="color:white;"href="scripts/shutdownAll.php">Shutdown all VM</a></button> </br>-->
             </div>
           </div>
           <div class="col-md-7 grid-margin stretch-card">
@@ -406,7 +406,7 @@ require('controller.php');
 <footer class="footer">
           <div class="d-sm-flex justify-content-center justify-content-sm-between">
             <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">EWMT © 2020 <a href="https://www.bootstrapdash.com/" target="_blank">Thank's to Bootstrapdash</a>. All rights reserved.</span>
-            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">GSB Edit</span>
+            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Brlndtech Edit</span>
           </div>
         </footer>
         <!-- partial -->
