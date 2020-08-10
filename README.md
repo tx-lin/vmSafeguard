@@ -6,8 +6,8 @@ Enjoy :)
 Table of contents
 =
    * [Prerequisite](#bookmark_tabs-prerequisite-)
-   * [Installation (Easyest) 1/2](#pushpin-installation-easyest-12)
-   * [Installation (Easyest) 1/2](#pushpin-installation-hand-installation-22)
+   * [Installation (Easyest way)](#pushpin-installation-easyest-12)
+   * [Installation (Hand installation)](#pushpin-installation-hand-installation-22)
    * [configuration](#computer-configuration-12---on-your-server-who-host-ewmt-)
       * [Create your own ssh-key pair](##create-your-ssh-key-pair-as-root)
       * [Location for backup](#location-for-backup)
@@ -29,7 +29,7 @@ Table of contents
 - SSH service activated on your ESXi
 - "SSH password less" -> ssh-key pair between the two hosts for the auth.
 
-## :pushpin: Installation (Easyest) 1/2
+## :pushpin: Installation (Easyest)
 
 ### Easiest Way - Run setup.sh with curl 
 
@@ -44,7 +44,7 @@ Update your server before to start the installation. <code>apt update</code>
 curl -sL https://raw.githubusercontent.com/brlndtech/Beta-ESXi-Management-Tool/master/setup.sh | sh
 ``` 
 
-## :pushpin: Installation (Hand installation) 2/2
+## :pushpin: Installation (Hand installation)
 ```
 sudo apt update && apt upgrade
 sudo apt install git apache2 php htop wget sudo curl
