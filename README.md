@@ -54,28 +54,11 @@ sudo chmod 700 -R /var/www/html/ESXi-Web-Management-Tool
 sudo chown -R www-data:www-data /var/www/html/ESXi-Web-Management-Tool
 sudo echo 'www-data ALL = (ALL) NOPASSWD: ALL' >> /etc/sudoers.d/myOverrides
 sudo sed -i '/<Directory \/var\/www\/>/,/<\/Directory>/ s/AllowOverride None/AllowOverride All/' /etc/apache2/apache2.conf
+sudo a2enmod ssl
+sudo systemctl restart apache2
 sudo a2enmod rewrite
-sudo touch /etc/apache2/sites-available/ESXi-Web-Management-Tool.conf
-```
-### Create a specific virtual host
-
-``` 
-nano /etc/apache2/sites-available/ESXi-Web-Management-Tool.conf
-
- <VirtualHost *:80>
-	# ServerName 
-	DocumentRoot /var/www/html/ESXi-Web-Management-Tool
-	<Directory "/var/www/html/ESXi-Web-Management-Tool">
-		Order allow,deny
-		AllowOverride All
-		Allow from all
-		Require all granted
-	</Directory>
-</VirtualHost>
-``` 
-
-``` 
-sudo a2ensite ESXi-Web-Management-Tool.conf
+sudo systemctl restart apache2
+sudo a2ensite default-ssl.conf
 sudo systemctl restart apache2
 ``` 
 
@@ -224,7 +207,7 @@ if it's not the case, change the value of the variable <code>"cutedpath=" </code
 
 ## Access to the web panel
 
-Go to http://ip/ESXi-Web-Management-Tool/ (the loading takes ~ 7/8 secs)
+Go to http(s)://ip/ESXi-Web-Management-Tool/ (the loading takes ~ 7/8 secs)
 
 <img src="https://i.imgur.com/efwZ78a.png">
 <i> This is the welcome page of EWMT. </i> <br> <br>
