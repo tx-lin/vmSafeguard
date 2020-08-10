@@ -54,7 +54,7 @@ sudo chmod 700 -R /var/www/html/ESXi-Web-Management-Tool
 sudo chown -R www-data:www-data /var/www/html/ESXi-Web-Management-Tool
 sudo echo 'www-data ALL = (ALL) NOPASSWD: ALL' >> /etc/sudoers.d/myOverrides
 sudo sed -i '/<Directory \/var\/www\/>/,/<\/Directory>/ s/AllowOverride None/AllowOverride All/' /etc/apache2/apache2.conf
-
+sudo a2enmod rewrite
 sudo touch /etc/apache2/sites-available/ESXi-Web-Management-Tool.conf
 ```
 ### Create a specific virtual host
@@ -100,7 +100,7 @@ On your linux server :
 
 ```
 cd /root/.ssh/
-cat id_rsa.pub | ssh root@the-ip-of-your-esxi \ 'cat >> /etc/ssh/keys-root/authorized_keys'
+cat id_rsa.pub | ssh -p 22 root@the-ip-of-your-esxi \ 'cat >> /etc/ssh/keys-root/authorized_keys'
 # answer "yes"
 # "you are connected to your esxi host"
 exit
