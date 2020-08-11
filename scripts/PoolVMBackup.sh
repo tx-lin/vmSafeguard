@@ -28,7 +28,7 @@ backupVM() {
       fi
 }
 date=`date +%d-%m-%Y`
-PATHLOG="/vmfs/volumes/HDD2-backup/logbackup.txt"
+PATHLOG="/vmfs/volumes/HDD2-backup/logbackup.txt" # TO CHANGE --- create the file logbackup.txt to store logs info (one time)
 mkdir /vmfs/volumes/HDD2-backup/backup-vm-$date # TO CHANGE --- permit to use a incremental backup
 PATHBACKUP="/vmfs/volumes/HDD2-backup/backup-vm-$date" # TO CHANGE --- change data store "backup" area for your ESXI configuration 
 echo -e "-------> Backup process start : `date`\n" >> $PATHLOG
