@@ -7,8 +7,8 @@ $(function() {
   var allVMs = document.getElementById("esxiVMs").value ;
   var allStartedVMs = document.getElementById("esxiStartedVMs").value ;
   var allPoweredOffVMs = document.getElementById("esxiPoweredOffVMs").value ;
-  var statsPer100 = document.getElementById("esxiStatsPer100").value ;
-  var total = 100 - statsPer100 ; 
+  var vmOSWindowsJ = document.getElementById("vmOSWindows").value ;
+  var vmOSOtherLinux = allVMs - vmOSWindowsJ
   var data = {
     labels: ["all VMs", "all started VMs", "all powered off VMs"],
     datasets: [{
@@ -85,7 +85,7 @@ $(function() {
   };
   var doughnutPieData = {
     datasets: [{
-      data: [statsPer100, total],
+      data: [vmOSOtherLinux, vmOSWindowsJ],
       backgroundColor: [
         'rgba(255, 206, 86, 0.5)',
         'rgba(54, 162, 235, 0.5)',
@@ -106,8 +106,8 @@ $(function() {
 
     // These labels appear in the legend and in the tooltips when hovering different arcs
     labels: [
-      '% Running VM',
-      '% Powered Off VM',
+      '% Unix/Linux based OS',
+      '% Windows OS',
     ]
   };
   var doughnutPieOptions = {

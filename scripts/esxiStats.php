@@ -24,11 +24,11 @@ include 'scripts-menu-header-top-left.php';
     $countVMs = shell_exec("sudo ssh -p $PORT root@$HOST 'vim-cmd vmsvc/getallvms | tail -n +2 | wc -l'");
     $poweredOnVMs = shell_exec("sudo ssh -p $PORT root@$HOST 'esxcli vm process list | grep \"World ID\" | wc -l'");
     $shutdownVMs = intval($countVMs) - intval($poweredOnVMs) ;  
-    $statsPer100 = intval($poweredOnVMs) / intval($countVMs) * 100 ; 
+    $osWindows = shell_exec("sudo ssh -p $PORT root@$HOST 'sh -s' < detectOS.sh");
   	echo "<input type=\"hidden\" id=\"esxiVMs\" name=\"esxiVMs\" value=\"$countVMs\"/>";
    	echo "<input type=\"hidden\" id=\"esxiStartedVMs\" name=\"esxiStartedVMs\" value=\"$poweredOnVMs\"/>";
    	echo "<input type=\"hidden\" id=\"esxiPoweredOffVMs\" name=\"esxiPoweredOffVMs\" value=\"$shutdownVMs\"/>";
-    echo "<input type=\"hidden\" id=\"esxiStatsPer100\" name=\"stats\" value=\"$statsPer100\"/>";
+    echo "<input type=\"hidden\" id=\"vmOSWindows\" name=\"whichOs\" value=\"$osWindows\"/>";
 ?>
       <!-- partial -->
       <div class="main-panel">
@@ -45,7 +45,7 @@ include 'scripts-menu-header-top-left.php';
             <div class="col-lg-6 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <h4 class="card-title">% of ESXI occupation </h4>
+                  <h4 class="card-title">% OS kind  </h4>
                   <canvas id="doughnutChart"></canvas>
                 </div>
               </div>
