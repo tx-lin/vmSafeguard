@@ -366,7 +366,7 @@ require('controller.php');
                 <div class="card-body">
                   <h4 class="card-title">Single Backup</h4>
                   <p class="card-description"></p>
-                  <form class="form-inline" action="scripts/BackupSingleVM.php" method="post">                  
+                  <form class="form-inline" target="_blank" action="scripts/BackupSingleVM.php" method="post">                  
                     <label class="sr-only" for="inlineFormInputGroupUsername2"></label>
                     <div class="input-group mb-2 mr-sm-2">
                       <div class="input-group-prepend">
@@ -387,7 +387,7 @@ require('controller.php');
                 <div class="card-body">
                 <h4 class="card-title">Pool Backup</h4>
                 <p class="card-description"></p>
-                <form class="form-inline" action="scripts/PoolVMBackup.php" method="post">                  
+                <form class="form-inline" target="_blank" action="scripts/PoolVMBackup.php" method="post">                  
                     <label class="sr-only" for="inlineFormInputGroupUsername2"></label>
                     <div class="input-group mb-2 mr-sm-2">
                       <div class="input-group-prepend">

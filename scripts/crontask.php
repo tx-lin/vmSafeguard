@@ -66,6 +66,7 @@ include('scripts-menu-header-top-left.php');
                       <label for="exampleInputConfirmPassword2" class="col-sm-3 col-form-label">Day of week</label>
                       <div class="col-sm-9">
                             <select name="dayOfWeek"class="form-control">
+                              <option value="*" >All days</option>
                               <option value="1" >Monday</option>
                               <option value="2" >Tuesday</option>
                               <option value="3" >Wednesday</option>

@@ -15,7 +15,6 @@ Table of contents
       * [Warning !](#warning-warning-)
    * [Web Panel](#access-to-the-web-panel)
    * [ Automating the pool backup process](##automating-the-backup-process-with-cron-tasks)
-   * [Auth process ](#auth)
    * [Coming soon](#point_right-new-features)
    * [Common Questions](#questionspeech_balloon-notes--common-questions)
    * [Errors Code](#errors-code)
@@ -207,14 +206,34 @@ if it's not the case, change the value of the variable <code>"cutedpath=" </code
 
 ## Access to the web panel
 
+### Authentification with .htaccess / .htpasswd
+
+When you access to EWMT, you need to provide IDs. 
+
+- ID : admin
+- Password : helloworld
+
+Feel free to change them ASAP :)
+
+If you want to disable the auth process, remove .htaccess / .htpasswd (location : root of the project)
+
 Go to http(s)://ip/ESXi-Web-Management-Tool/ (the loading takes ~ 7/8 secs)
 
 <img src="https://i.imgur.com/efwZ78a.png">
 <i> This is the welcome page of EWMT. </i> <br> <br>
+
+ - If you want to perfom a single backup, enter the machine's vmid, and then click to submit. <b> Once you have done that, wait 2/3 secs and then you can close the tab. </b>
+
+- Same thing for the Pool backup, but add manuelly the vmid in PoolVMBackup.sh before to answer <u>yes</u> and click to submit. <b> Once you have done that, wait 2/3 secs and then you can close the tab. </b>
+
+
+
 <img src="https://i.imgur.com/TTRDY0D.png">
 <i> Example of the shutdown section (For poweroff all the VMs of your ESXi). </i> <br> <br>
 <img src="https://i.imgur.com/dNO9elw.png">
 <i> Example of the summary section. Very useful part if you want to know the vmid of a VM(s) </i> <br> <br>
+<img src="https://i.imgur.com/2x9XQ5R.png">
+<i> ESXI stats </i> <br> <br>
 
 ## Automating the backup process with cron tasks
 
@@ -233,22 +252,18 @@ Example
 # Executed as root
 ```
 
-### With the web IHM : 
+### With the web panel : 
 
 You can schedule a crontask for the "PoolVMBackup.sh", with the Graphical Interface. it's more user friendly. (executed as www-data)
 
 <img src="https://i.imgur.com/qxw9cJV.png">
 
-## Auth 
 
-When you access to EWMT, you need to provide IDs. 
+Once you have submited the form, you will see the crontask (If the cron syntax has been respected)
 
-ID : admin
-Password : helloworld
 
-Feel free to change them ASAP :)
+<img src="https://i.imgur.com/8ESPDIg.png">
 
-If you want to disable the auth process, remove .htaccess / .htpasswd (location : root of the project)
 
 
 
@@ -262,6 +277,7 @@ If you want to disable the auth process, remove .htaccess / .htpasswd (location 
 <img src="https://i.imgur.com/BpJiX1x.png">
 
 2 - Don't add comment into the description of a vm (not multiple line, just one line. Otherwise the " number (total) of VMs will be false" )
+
 
 
 ## Errors Code 
