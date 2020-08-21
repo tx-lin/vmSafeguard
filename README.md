@@ -40,7 +40,7 @@ Update your server before to start the installation. <code>apt update</code>
 <i> EWMT need some dependencies to work, You need to install them before setuping EWMT. </i>
 
 ```
-curl -sL https://raw.githubusercontent.com/brlndtech/ESXi-Web-Management-Tool/master/setup.sh | bash
+curl -sL https://raw.githubusercontent.com/brlndtech/ESXi-Web-Management-Tool/master/setup.sh | sh
 ``` 
 
 ## :pushpin: Installation (Hand installation)
