@@ -1,6 +1,5 @@
 <?php
 require '../controller.php';
-include 'scripts-menu-header-top-left.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -19,6 +18,7 @@ include 'scripts-menu-header-top-left.php';
   <!-- endinject -->
   <link rel="shortcut icon" href="../images/favicon.png" />
 </head>
+<?php include 'scripts-menu-header-top-left.php'; ?>
 <?php 
 // backend 
     $countVMs = shell_exec("sudo ssh -p $PORT root@$HOST 'vim-cmd vmsvc/getallvms | tail -n +2 | wc -l'");

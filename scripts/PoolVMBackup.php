@@ -7,7 +7,7 @@ require('../controller.php');
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>EWMT | Shutdown Section</title>
+  <title>EWMT | Backup Single VM</title>
   <!-- plugins:css -->
   <link rel="stylesheet" href="../vendors/mdi/css/materialdesignicons.min.css">
   <link rel="stylesheet" href="../vendors/base/vendor.bundle.base.css">
@@ -33,17 +33,17 @@ include('scripts-menu-header-top-left.php');
                   <h4 class="card-title">Backup Single VM</h4>
                   <p class="card-description">
                     <?php
-          						if (isset($_POST['answer'])) {
+          			if (isset($_POST['answer'])) {
                         if ($_POST['answer'] == "yes" OR ($_POST['answer'] == "YES")) {
-                        echo "<pre>".shell_exec("sudo ssh -p $PORT root@$HOST 'sh -s' < PoolVMBackup.sh &")."/<pre>";
+                        echo "<pre>".shell_exec("sudo ssh -p $PORT root@$HOST 'sh -s' < PoolVMBackup.sh &")."</pre>";
                         }
                         else {
-                          echo "<pre> Error, answer Yes to valide the backup pool process ! /<pre>";
+                          echo "<pre> Error, answer \"yes\" to valide the backup pool process ! </pre>";
                         }
-          						}
-          						else {
-          							echo "<pre> Error, answer Yes to valide the backup pool process from index.php ! /<pre>";
-          						}	
+          			}
+          			else {
+          				echo "<pre> Error, answer \"yes\" to valide the backup pool process from index.php ! /<pre>";
+          			}	
                     ?>
                   </p>
                   </form>

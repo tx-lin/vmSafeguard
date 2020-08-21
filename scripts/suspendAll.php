@@ -31,7 +31,7 @@ include('scripts-menu-header-top-left.php');
                 <div class="card-body">
                   <h4 class="card-title">/ Suspend</h4>
                   <p class="card-description">
-                      <?php echo "<pre>".shell_exec("sudo ssh -p $PORT root@$HOST 'sh -s' < suspendAll.sh")."/<pre>";?>
+                      <?php echo "<pre>".shell_exec("sudo ssh -p $PORT root@$HOST 'sh -s' < suspendAll.sh")."</pre>";?>
                   </p>
                   </form>
                 </div>

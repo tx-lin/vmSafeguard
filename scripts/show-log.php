@@ -29,11 +29,12 @@ include('scripts-menu-header-top-left.php');
             <div class="col-12 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <h4 class="card-title">Log Section (display the 200 last lignes) </h4>
+                  <h4 class="card-title">Log Section (display the 500 last lines) </h4>
+                  <button class="btn btn-primary mt-2 mt-xl-0"><a style="color:white;"href="#footer" >Latest logs</a></button>
                   <p class="card-description">
-                      <?php echo "<pre>".shell_exec("sudo ssh -p $PORT root@$HOST 'cat $LOG'")."/<pre>";?>
+                      <?php echo "<pre>".shell_exec("sudo ssh -p $PORT root@$HOST 'cat $LOG | tail -500 '")."</pre>";?>
+                      <button class="btn btn-primary mt-2 mt-xl-0"><a style="color:white;"href="#head" >Oldest logs</a></button>
                   </p>
-                  </form>
                 </div>
               </div>
             </div>
