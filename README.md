@@ -25,6 +25,7 @@ Table of contents
 - <b> <code> curl </code> and <code> sudo </code> command need to be install  ! </b>
 - An ESXi Server operational and available trought your local network.
 - All machines of your ESXi need to have the VMwareTools, without it, EWMT can't run correctly.
+- VMs need to have names like this : Debian-10-64Bits not Debian 10 64bits (don't add space between each words)
 - SSH service activated on your ESXi
 - "SSH password less" -> ssh-key pair between the two hosts for the auth.
 
@@ -159,9 +160,9 @@ PATHBACKUP="/vmfs/volumes/datastore-backup/backup-vm-$date"
 echo -e "`ls -dt /vmfs/volumes/datastore-backup/backup*`\n" >> $PATHLOG 
 # TO CHANGE --- Change just the name of the datastore
 
-find /vmfs/volumes/datastore-backup/backup* -mtime +30 -exec rm -rf {} \; 
+find /vmfs/volumes/datastore-backup/backup* -mtime +60 -exec rm -rf {} \; 
 # TO CHANGE --- Change just the name of the datastore
-# permit to delete all backup* folders > 30 Days
+# permit to delete all backup* folders > 60 Days
 ```
 #### The second .sh file 
 
@@ -183,14 +184,14 @@ PATHBACKUP="/vmfs/volumes/datastore-backup/backup-vm-$date"
 echo -e "`ls -dt /vmfs/volumes/datastore-backup/backup*`\n" >> $PATHLOG 
 # TO CHANGE --- Change just the name of the datastore 
 
-find /vmfs/volumes/datastore-backup/backup* -mtime +30 -exec rm -rf {} \; 
+find /vmfs/volumes/datastore-backup/backup* -mtime +60 -exec rm -rf {} \; 
 # To CHANGE --- Change just the name of the datastore 
-# Permit to delete all backup* folders > 30 Days
+# Permit to delete all backup* folders > 60 Days
 ```
 
-<i> If you want to add some VMs in to the  "pool backup" check the following screenshot. 10 12 9 represent 3 VMID of 3 different VMs </i>
+<i> If you want to add some VMs in to the PoolVMBackup.sh check the following screenshot. 10 12 9 represent 3 VMID of 3 different VMs </i>
 
-<img src="https://i.imgur.com/ZJt87Vu.jpg">
+<img src="https://i.imgur.com/WqdBHov.png">
 
 
 
@@ -219,7 +220,7 @@ If you want to disable the auth process, remove .htaccess / .htpasswd (location 
 
 Go to http(s)://ip/ESXi-Web-Management-Tool/ (the loading takes ~ 7/8 secs)
 
-<img src="https://i.imgur.com/efwZ78a.png">
+<img src="https://i.imgur.com/raRj3uU.png">
 <i> This is the welcome page of EWMT. </i> <br> <br>
 
  - If you want to perfom a single backup, enter the machine's vmid, and then click to submit. <b> Once you have done that, wait 2/3 secs and then you can close the tab. </b>
@@ -228,11 +229,11 @@ Go to http(s)://ip/ESXi-Web-Management-Tool/ (the loading takes ~ 7/8 secs)
 
 
 
-<img src="https://i.imgur.com/TTRDY0D.png">
+<img src="https://i.imgur.com/Iza3VUk.png">
 <i> Example of the shutdown section (For poweroff all the VMs of your ESXi). </i> <br> <br>
-<img src="https://i.imgur.com/dNO9elw.png">
+<img src="https://i.imgur.com/ATbuaQe.png">
 <i> Example of the summary section. Very useful part if you want to know the vmid of a VM(s) </i> <br> <br>
-<img src="https://i.imgur.com/2x9XQ5R.png">
+<img src="https://i.imgur.com/boIPUnv.png">
 <i> ESXI stats </i> <br> <br>
 
 ## Automating the backup process with cron tasks
@@ -256,13 +257,13 @@ Example
 
 You can schedule a crontask for the "PoolVMBackup.sh", with the Graphical Interface. it's more user friendly. (executed as www-data)
 
-<img src="https://i.imgur.com/qxw9cJV.png">
+<img src="https://i.imgur.com/YttVGdx.png">
 
 
 Once you have submited the form, you will see the crontask (If the cron syntax has been respected)
 
 
-<img src="https://i.imgur.com/8ESPDIg.png">
+<img src="https://i.imgur.com/8BU4JED.png">
 
 
 
@@ -274,9 +275,11 @@ Once you have submited the form, you will see the crontask (If the cron syntax h
 ### Know Issues 
 1 - If the .htaccess / .htpasswd (not crutial for the project)auth does not work, please check the apache2.conf (/etc/apache2) and replace if you did not have the same result as the following picture : 
 
-<img src="https://i.imgur.com/BpJiX1x.png">
+<img src="https://i.imgur.com/qJnXFUs.png">
 
 2 - Don't add comment into the description of a vm (not multiple line, just one line. Otherwise the " number (total) of VMs will be false" )
+
+3 - Don't turn off your server who host EWMT, when a backup is running. Otherwise it will be cancel the ssh connexion between EWMT and the ESXI
 
 
 

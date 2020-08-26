@@ -363,7 +363,7 @@ require('controller.php');
               <div class="card">
                 <div class="card-body">
                   <h4 class="card-title">Single Backup</h4>
-                  <p class="card-description"></p>
+                  <p class="card-description"><i>When you have submitted the form, you can close the new tab after 2/3 secs</i></p>
                   <form class="form-inline" target="_blank" action="scripts/BackupSingleVM.php" method="post">                  
                     <label class="sr-only" for="inlineFormInputGroupUsername2"></label>
                     <div class="input-group mb-2 mr-sm-2">
@@ -384,7 +384,7 @@ require('controller.php');
               <div class="card">
                 <div class="card-body">
                 <h4 class="card-title">Pool Backup</h4>
-                <p class="card-description"></p>
+                <p class="card-description"><i>When you have submitted the form, you can close the new tab after 2/3 secs</i></p>
                 <form class="form-inline" target="_blank" action="scripts/PoolVMBackup.php" method="post">                  
                     <label class="sr-only" for="inlineFormInputGroupUsername2"></label>
                     <div class="input-group mb-2 mr-sm-2">

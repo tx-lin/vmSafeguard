@@ -43,5 +43,5 @@ echo -e "List of present backup folder and old backup folders : " >> $PATHLOG
 # TO CHANGE :         --------------------------------------------------------
 echo -e "`ls -dt /vmfs/volumes/HDD2-backup/backup*`\n" >> $PATHLOG 
 # TO CHANGE : -----------------------------------------------------------------------------
-find /vmfs/volumes/HDD2-backup/backup* -mtime +30 -exec rm -rf {} \; # permit to delete all backup* folder > 30 Days
+find /vmfs/volumes/HDD2-backup/backup* -mtime +60 -exec rm -rf {} \; # permit to delete all backup* folder > 30 Days
 echo -e "<-------- SINGLE BACKUP process end : `date`\n" >> $PATHLOG
