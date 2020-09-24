@@ -26,7 +26,7 @@ Table of contents
 - An ESXi Server operational and available trought your local network.
 - All machines of your ESXi need to have the VMwareTools, without it, EWMT can't run correctly.
 - VMs need to have names like this : Debian-10-64Bits not Debian 10 64bits (don't add space between each words)
-- SSH service activated on your ESXi
+- SSH service, and ESXI shell need to be activated at the ESXI startup
 - "SSH password less" -> ssh-key pair between the two hosts for the auth.
 
 ## :pushpin: Installation (Easyest)
