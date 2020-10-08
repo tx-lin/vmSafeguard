@@ -41,25 +41,25 @@ include('scripts-menu-header-top-left.php');
                     <div class="form-group row">
                       <label for="exampleInputUsername2" class="col-sm-3 col-form-label">Minutes</label>
                       <div class="col-sm-9">
-                        <input type="text" required maxlength="2" name="min"class="form-control" id="min"  placeholder="10">
+                        <input type="text" name="min"class="form-control" id="min"  placeholder="10">
                       </div>
                     </div>
                     <div class="form-group row">
                       <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Hour</label>
                       <div class="col-sm-9">
-                        <input type="text" required maxlength="2" name="hour"class="form-control" id="hour" placeholder="10">
+                        <input type="text" name="hour"class="form-control" id="hour" placeholder="10">
                       </div>
                     </div>
                     <div class="form-group row">
                       <label for="exampleInputMobile" class="col-sm-3 col-form-label">Day of month</label>
                       <div class="col-sm-9">
-                        <input type="text" required maxlength="2" name="dayOfMonth"class="form-control" id="dayOfMonth" placeholder="*">
+                        <input type="text" name="dayOfMonth"class="form-control" id="dayOfMonth" placeholder="*">
                       </div>
                     </div>
                     <div class="form-group row">
                       <label for="exampleInputPassword2" class="col-sm-3 col-form-label">Month</label>
                       <div class="col-sm-9">
-                        <input type="text" required maxlength="2" name="month"class="form-control" id="month" placeholder="*">
+                        <input type="text" name="month"class="form-control" id="month" placeholder="*">
                       </div>
                     </div>
                     <div class="form-group row">

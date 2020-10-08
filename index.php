@@ -351,11 +351,22 @@ require('controller.php');
 	                <p class="text-muted"></p>
 	                <div id="total-sales-chart-legend"></div>                  
 	                	<button type="button" class="btn btn-success btn-rounded btn-fw" style="width:165px;height:40px;margin:0 auto;display:block;"><a style="color:white;"href="scripts/startAll.php">Start all VM</a></button> <br>
-	                    <button type="button" class="btn btn-warning btn-rounded btn-fw" style="width:165px;height:40px;margin:0 auto;display:block;"><a style="color:white;"href="scripts/suspendAll.php">Suspend all VM</a></button> <br>
-	                    <button type="button" class="btn btn-danger btn-rounded btn-fw" style="width:165px;height:40px;margin:0 auto;display:block;"><a style="color:white;"href="scripts/shutdownAll.php">Shutdown all VM</a></button> <br>
+                    <button type="button" class="btn btn-danger btn-rounded btn-fw" style="width:165px;height:40px;margin:0 auto;display:block;"><a style="color:white;"href="scripts/shutdownAll.php">Shutdown all VM</a></button> <br>
 	                    <button type="button" class="btn btn-primary btn-rounded btn-fw" style="width:165px;height:40px;margin:0 auto;display:block;"><a style="color:white;"href="scripts/summaryAll.php">Summary all VM</a></button> <br>
 	                    <!--<button type="button" class="btn btn-primary btn-rounded btn-fw" style="width:165px;height:40px;margin:0 auto;display:block;"><a style="color:white;"href="scripts/shutdownAll.php">Shutdown all VM</a></button> </br>
 	                    <button type="button" class="btn btn-primary btn-rounded btn-fw" style="width:165px;height:40px;margin:0 auto;display:block;"><a style="color:white;"href="scripts/shutdownAll.php">Shutdown all VM</a></button> </br>-->
+                    <form class="form-inline" target="_blank" action="scripts/summarySingleVM.php" method="post">                  
+                    <label class="sr-only" for="inlineFormInputGroupUsername2"></label>
+                    <div class="input-group mb-2 mr-sm-2">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text"></div>
+                      </div>
+                      <input type="text" class="form-control" required name="vmid" id="inlineFormInputGroupUsername2" placeholder="Enter a VM name">
+                    </div>
+                    <div class="form-check mx-sm-2">
+                    </div>
+                    <button type="submit" class="btn btn-warning mb-2"><a style="color:white">Get info</a></button>
+                </form>       
                 </div>
             </div>
           </div>
@@ -370,7 +381,7 @@ require('controller.php');
                       <div class="input-group-prepend">
                         <div class="input-group-text">VMID</div>
                       </div>
-                      <input type="Number" class="form-control" name="vmid" id="inlineFormInputGroupUsername2" placeholder="Enter the VMID of the VM">
+                      <input required type="Number" class="form-control" name="vmid" id="inlineFormInputGroupUsername2" placeholder="Enter the VM VMID's">
                     </div>
                     <div class="form-check mx-sm-2">
                     </div>
@@ -379,7 +390,6 @@ require('controller.php');
                 </div>
               </div>
             </div>
-
            <div class="col-md-5 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
@@ -391,7 +401,7 @@ require('controller.php');
                       <div class="input-group-prepend">
                         <div class="input-group-text"></div>
                       </div>
-                      <input type="text" class="form-control" name="answer" id="inlineFormInputGroupUsername2" placeholder="Enter yes, to confirm">
+                      <input type="text" required class="form-control" name="answer" id="inlineFormInputGroupUsername2" placeholder="Enter yes to start">
                     </div>
                     <div class="form-check mx-sm-2">
                     </div>
