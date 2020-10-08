@@ -25,7 +25,9 @@ Table of contents
 - <b> <code> curl </code> and <code> sudo </code> command need to be install  ! </b>
 - An ESXi Server operational and available trought your local network.
 - All machines of your ESXi need to have the VMwareTools, without it, EWMT can't run correctly.
-- VMs need to have names like this : Debian-10-64Bits not Debian 10 64bits (don't add space between each words)
+- VMs need to have a
+nomenclature like this : Debian-10-64Bits or Debian_10_64bits not Debian 10 64bits (don't add space between each words)
+- VMs need to be stored at the root of a specific datastore
 - SSH service, and ESXI shell need to be activated at the ESXI startup
 - "SSH password less" -> ssh-key pair between the two hosts for the auth.
 
@@ -141,10 +143,8 @@ cd /var/www/html/ESXi-Web-Management-Tool/scripts
 
 Patience, <b>two more edit</b>, and we can start to access to the project trought the WEB. :) 
 
-#### The first .sh file 
-``` 
-nano BackupSingleVM.sh
-```
+### The first .sh file (BackupSingleVM.sh)
+<br>
 <b>localize the following lines : </b>
 
 ```
@@ -164,7 +164,12 @@ find /vmfs/volumes/datastore-backup/backup* -mtime +60 -exec rm -rf {} \;
 # TO CHANGE --- Change just the name of the datastore
 # permit to delete all backup* folders > 60 Days
 ```
-#### The second .sh file 
+
+<img src="https://i.imgur.com/kscpv6r.png">
+
+
+### The second .sh file (PoolVMBackup.sh)
+<br>
 
 ```
 nano PoolVMBackup.sh
@@ -189,11 +194,17 @@ find /vmfs/volumes/datastore-backup/backup* -mtime +60 -exec rm -rf {} \;
 # Permit to delete all backup* folders > 60 Days
 ```
 
+<img src="https://i.imgur.com/BQGJ9dv.png">
+<br>
+<br>
 <i> If you want to add some VMs in to the PoolVMBackup.sh check the following screenshot. 10 12 9 represent 3 VMID of 3 different VMs </i>
+<br>
+<br>
 
 <img src="https://i.imgur.com/WqdBHov.png">
 
-
+<br>
+<br>
 
 
 ### :warning: Warning : 

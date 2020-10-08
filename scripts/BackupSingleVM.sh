@@ -28,20 +28,22 @@ backupVM() {
       fi
 }
 date=`date +%d-%m-%Y`
-PATHLOG="/vmfs/volumes/HDD2-backup/logbackup.txt" # TO CHANGE --- create the file logbackup.txt to store logs info (one time)
-mkdir /vmfs/volumes/HDD2-backup/backup-vm-$date # TO CHANGE --- permit to use a incremental backup
-PATHBACKUP="/vmfs/volumes/HDD2-backup/backup-vm-$date" # TO CHANGE --- change data store "backup" area for your ESXI configuration 
+PATHLOG="/vmfs/volumes/HDD2-backup/logbackup.txt" 
+# TO CHANGE --- create the file logbackup.txt to store logs info | change data store "HDD2-Backup" area to your ESXI "backup datastore" 
+mkdir /vmfs/volumes/HDD2-backup/backup-vm-$date 
+# TO CHANGE --- permit to create a folder date backup per day :  backup-vm-20-06-2020/
+PATHBACKUP="/vmfs/volumes/HDD2-backup/backup-vm-$date"
+# TO CHANGE --- permit to store the path of the current backup
 echo -e "-------> SINGLE BACKUP process start : `date`\n" >> $PATHLOG
 for VM in $1 
 do
     PWR=`vim-cmd vmsvc/power.getstate $VM | grep -v "Retrieved runtime info"`
     name=`vim-cmd vmsvc/get.config $VM | grep -i "name =" | awk '{print $3}' | head -1 | awk -F'"' '{print $2}'` 
     backupVM
-    # free to you for ad some VM...
 done
 echo -e "List of present backup folder and old backup folders : " >> $PATHLOG 
-# TO CHANGE :         --------------------------------------------------------
-echo -e "`ls -dt /vmfs/volumes/HDD2-backup/backup*`\n" >> $PATHLOG 
-# TO CHANGE : -----------------------------------------------------------------------------
-find /vmfs/volumes/HDD2-backup/backup* -mtime +60 -exec rm -rf {} \; # permit to delete all backup* folder > 30 Days
+echo -e "`ls -dt /vmfs/volumes/HDD2-backup/backup*`\n" >> $PATHLOG
+# TO CHANGE : --- Allow you to ls the backup "(root)" folder
+find /vmfs/volumes/HDD2-backup/backup* -mtime +60 -exec rm -rf {} \;
+# TO CHANGE : --- Permit to delete all backup* folder > 60 Days
 echo -e "<-------- SINGLE BACKUP process end : `date`\n" >> $PATHLOG
