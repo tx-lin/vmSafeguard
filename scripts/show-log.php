@@ -32,7 +32,7 @@ include('scripts-menu-header-top-left.php');
                   <h4 class="card-title">Log Section (display the 500 last lines) </h4>
                   <button class="btn btn-primary mt-2 mt-xl-0"><a style="color:white;"href="#footer" >Latest logs</a></button>
                   <p class="card-description">
-                      <?php echo "<pre>".shell_exec("sudo ssh -p $PORT root@$HOST 'cat $LOG | tail -500 '")."</pre>";?>
+                      <?php echo "<pre>".shell_exec("sudo ssh -p $PORT root@$HOST 'cat $LOG | tail -1000 '")."</pre>";?>
                       <button class="btn btn-primary mt-2 mt-xl-0"><a style="color:white;"href="#head" >Oldest logs</a></button>
                   </p>
                 </div>

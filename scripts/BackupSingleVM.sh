@@ -3,8 +3,10 @@ backupVM() {
       if [ "$PWR" == "Powered off" ] ; then
           echo -e "   --> $name is already shutdown (`date`)\n" >> $PATHLOG
           echo -e "   - $name is currently under backuping (`date`)\n" >> $PATHLOG
-          path=`find / -name "$name.vmx"`
+          path=`find / -maxdepth 5 -name "$name.vmx"`
+          # echo $path >> $PATHLOG
           cutedpath="${path%"${path#/*/*/*/*/}"}"
+          # echo $cutedpath >> $PATHLOG
           cp -r $cutedpath $PATHBACKUP
           echo -e "   - $name has been backed up (`date`)\n" >> $PATHLOG 
           vim-cmd vmsvc/power.on $VM
@@ -19,7 +21,7 @@ backupVM() {
             sleep 15
           done
           echo -e "   - $name is currently under backuping (`date`)\n" >> $PATHLOG
-          path=`find / -name "$name.vmx"`
+          path=`find / -maxdepth 5 -name "$name.vmx"`
           cutedpath="${path%"${path#/*/*/*/*/}"}"
           cp -r $cutedpath $PATHBACKUP
           echo -e "   - $name has been backed up (`date`)\n" >> $PATHLOG 
@@ -27,11 +29,10 @@ backupVM() {
           echo -e "   --> $name has been started again (`date`)\n" >> $PATHLOG
       fi
 }
-key=`randomSeed | cut -c0-3` # generate a radom key number, if you want to perform more than one backup a day 
-date=`date +%d-%m-%Y`
-PATHLOG="/vmfs/volumes/lun-backup/logbackup.txt" # TO CHANGE --- create the file logbackup.txt to store logs info (one time)
-mkdir /vmfs/volumes/lun-backup/backup-vm-$date-$key # TO CHANGE --- permit to use a incremental backup
-PATHBACKUP="/vmfs/volumes/lun-backup/backup-vm-$date-$key" # TO CHANGE --- change data store "backup" area for your ESXI configuration 
+date=`date +%d-%m-%Y-%H-%M`
+PATHLOG="/vmfs/volumes/HDD2-backup/logbackup.txt" # TO CHANGE --- create the file logbackup.txt to store logs info (one time)
+mkdir /vmfs/volumes/HDD2-backup/backup-vm-$date # TO CHANGE --- permit to use a incremental backup
+PATHBACKUP="/vmfs/volumes/HDD2-backup/backup-vm-$date" # TO CHANGE --- change data store "backup" area for your ESXI configuration 
 echo -e "-------> SINGLE BACKUP process start on `hostname` : `date`\n" >> $PATHLOG
 for VM in $1 
 do
@@ -42,7 +43,7 @@ do
 done
 echo -e "List of present backup folder and old backup folders : " >> $PATHLOG 
 # TO CHANGE :         --------------------------------------------------------
-echo -e "`ls -dt /vmfs/volumes/lun-backup/backup*`\n" >> $PATHLOG 
+echo -e "`ls -dt /vmfs/volumes/HDD2-backup/backup*`\n" >> $PATHLOG 
 # TO CHANGE : -----------------------------------------------------------------------------
-find /vmfs/volumes/lun-backup/backup* -mtime +60 -exec rm -rf {} \; # permit to delete all backup* folder > 30 Days
+find /vmfs/volumes/HDD2-backup/backup* -mtime +60 -exec rm -rf {} \; # permit to delete all backup* folder > 30 Days
 echo -e "<-------- SINGLE BACKUP process end on `hostname` : `date`\n" >> $PATHLOG

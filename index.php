@@ -297,6 +297,9 @@ require('controller.php');
                     <li class="nav-item">
                       <a class="nav-link active" id="overview-tab" data-toggle="tab" href="#overview" role="tab" aria-controls="overview" aria-selected="true">Overview</a>
                     </li>
+                    <li class="nav-item">
+                      <a class="nav-link" id="sales-tab" data-toggle="tab" href="#sales" role="tab" aria-controls="sales" aria-selected="false">VM's Summary</a>
+                    </li>
                   </ul>
                   <div class="tab-content py-0 px-0">
                     <div class="tab-pane fade show active" id="overview" role="tabpanel" aria-labelledby="overview-tab">
@@ -327,6 +330,24 @@ require('controller.php');
                         </div>
                       </div>
                     </div>
+                    <div class="tab-pane fade" id="sales" role="tabpanel" aria-labelledby="sales-tab">
+                      <div class="d-flex flex-wrap justify-content-xl-between">
+                        <div class="d-none d-xl-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
+                          <form class="form-inline" target="_blank" action="scripts/summarySingleVM.php" method="post">                  
+                            <label class="sr-only" for="inlineFormInputGroupUsername2"></label>
+                            <div class="input-group mb-2 mr-sm-2">
+                              <div class="input-group-prepend">
+                                <div class="input-group-text"></div>
+                              </div>
+                              <input type="text" class="form-control" required name="vmid" id="inlineFormInputGroupUsername2" placeholder="Enter a VM name">
+                            </div>
+                            <div class="form-check mx-sm-2">
+                            </div>
+                            <button type="submit" class="btn btn-warning mb-2"><a style="color:white">Get info</a></button>
+                          </form>                       
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -352,21 +373,9 @@ require('controller.php');
 	                <div id="total-sales-chart-legend"></div>                  
 	                	<button type="button" class="btn btn-success btn-rounded btn-fw" style="width:165px;height:40px;margin:0 auto;display:block;"><a style="color:white;"href="scripts/startAll.php">Start all VM</a></button> <br>
                     <button type="button" class="btn btn-danger btn-rounded btn-fw" style="width:165px;height:40px;margin:0 auto;display:block;"><a style="color:white;"href="scripts/shutdownAll.php">Shutdown all VM</a></button> <br>
-	                    <button type="button" class="btn btn-primary btn-rounded btn-fw" style="width:165px;height:40px;margin:0 auto;display:block;"><a style="color:white;"href="scripts/summaryAll.php">Summary all VM</a></button> <br>
-	                    <!--<button type="button" class="btn btn-primary btn-rounded btn-fw" style="width:165px;height:40px;margin:0 auto;display:block;"><a style="color:white;"href="scripts/shutdownAll.php">Shutdown all VM</a></button> </br>
-	                    <button type="button" class="btn btn-primary btn-rounded btn-fw" style="width:165px;height:40px;margin:0 auto;display:block;"><a style="color:white;"href="scripts/shutdownAll.php">Shutdown all VM</a></button> </br>-->
-                    <form class="form-inline" target="_blank" action="scripts/summarySingleVM.php" method="post">                  
-                    <label class="sr-only" for="inlineFormInputGroupUsername2"></label>
-                    <div class="input-group mb-2 mr-sm-2">
-                      <div class="input-group-prepend">
-                        <div class="input-group-text"></div>
-                      </div>
-                      <input type="text" class="form-control" required name="vmid" id="inlineFormInputGroupUsername2" placeholder="Enter a VM name">
-                    </div>
-                    <div class="form-check mx-sm-2">
-                    </div>
-                    <button type="submit" class="btn btn-warning mb-2"><a style="color:white">Get info</a></button>
-                </form>       
+                    <button type="button" class="btn btn-warning btn-rounded btn-fw" style="width:165px;height:40px;margin:0 auto;display:block;"><a style="color:white;"href="scripts/suspendAll.php">Suspend all VM</a></button> </br>
+                    <button type="button" class="btn btn-primary btn-rounded btn-fw" style="width:165px;height:40px;margin:0 auto;display:block;"><a style="color:white;"href="scripts/summaryAll.php">Summary all VM</a></button> <br>
+	                    <!--<button type="button" class="btn btn-primary btn-rounded btn-fw" style="width:165px;height:40px;margin:0 auto;display:block;"><a style="color:white;"href="scripts/shutdownAll.php">Shutdown all VM</a></button> </br>-->     
                 </div>
             </div>
           </div>
@@ -381,11 +390,11 @@ require('controller.php');
                       <div class="input-group-prepend">
                         <div class="input-group-text">VMID</div>
                       </div>
-                      <input required type="Number" class="form-control" name="vmid" id="inlineFormInputGroupUsername2" placeholder="Enter the VM VMID's">
+                      <input required type="Number" class="form-control" name="vmid" id="inlineFormInputGroupUsername2" placeholder="Enter the VM's VMID">
                     </div>
                     <div class="form-check mx-sm-2">
                     </div>
-                    <button type="submit" class="btn btn-primary mb-2">Submit</button>
+                    <button type="submit" class="btn btn-primary mb-2">Start backup</button>
                   </form>
                 </div>
               </div>
@@ -405,7 +414,7 @@ require('controller.php');
                     </div>
                     <div class="form-check mx-sm-2">
                     </div>
-                    <button type="submit" class="btn btn-primary mb-2">Submit</button>
+                    <button type="submit" class="btn btn-primary mb-2">Start pool backup</button>
                 </form>               
             </div>
           </div>

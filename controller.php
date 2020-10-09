@@ -1,6 +1,6 @@
 <?php
-$PORT=22; // TO CHANGE 
-$HOST="192.168.128.151"; // TO CHANGE
-$CHECKBACKUPFOLDER="ls -dt /vmfs/volumes/lun-backup/backup*"; // TO CHANGE !
-$LOG="/vmfs/volumes/lun-backup/logbackup.txt"; // TO CHANGE !
+$PORT=2222; // TO CHANGE 
+$HOST="192.168.0.100"; // TO CHANGE
+$CHECKBACKUPFOLDER="ls -dt /vmfs/volumes/HDD2-backup/backup*"; // TO CHANGE !
+$LOG="/vmfs/volumes/HDD2-backup/logbackup.txt"; // TO CHANGE !
 ?>
