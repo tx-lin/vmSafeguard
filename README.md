@@ -1,23 +1,23 @@
 # ESXi Web Management Tool -  Project
-EWMT project has been created to facilitate the management and the VMs<b> backup </b> of an ESXi. With this tool, you will be able to backup a pool of VMs, Single Vm, Read the Backup logs etc.
+EWMT project has been created to facilitate the management and the VMs<b> backup </b> of an ESXi. With this tool, you will be able to backup a pool of VMs, Single Vm, Read the Backup logs etc. <u> Unfortunalty, EWMT is not compatible with Vsphere at this moment. Some Technical constraint prevent me to do it. </u>
 
 Enjoy :) 
 
 Table of contents
 =
    * [Prerequisite](#bookmark_tabs-prerequisite-)
-   * [Installation (Easyest way)](#pushpin-installation-easyest-12)
-   * [Installation (Hand installation)](#pushpin-installation-hand-installation-22)
-   * [configuration](#computer-configuration-12---on-your-server-who-host-ewmt-)
+   * [Installation (Easyest way)](#pushpin-installation-easyest)
+   * [Installation (Hand installation)](#pushpin-installation-hand-installation)
+   * [Configuration](#computer-configuration-12---on-your-server-who-host-ewmt-)
       * [Create your own ssh-key pair](##create-your-ssh-key-pair-as-root)
       * [Location for backup](#location-for-backup)
       * [Files to edit](#files-to-edit)
       * [Warning !](#warning-warning-)
    * [Web Panel](#access-to-the-web-panel)
-   * [ Automating the pool backup process](##automating-the-backup-process-with-cron-tasks)
-   * [Coming soon](#point_right-new-features)
+   * [ Automating the pool backup process](#automating-the-backup-process-with-cron-tasks)
    * [Common Questions](#questionspeech_balloon-notes--common-questions)
-   * [Errors Code](#errors-code)
+      * [Know issues](#know-issues)
+   * [Other](#Other)
 
 ## :bookmark_tabs: Prerequisite !
 
@@ -25,11 +25,19 @@ Table of contents
 - <b> <code> curl </code> and <code> sudo </code> command need to be install  ! </b>
 - An ESXi Server operational and available trought your local network.
 - All machines of your ESXi need to have the VMwareTools, without it, EWMT can't run correctly.
-- VMs need to have a
-nomenclature like this : Debian-10-64Bits or Debian_10_64bits not Debian 10 64bits (don't add space between each words)
-- VMs need to be stored at the root of a specific datastore
 - SSH service, and ESXI shell need to be activated at the ESXI startup
 - "SSH password less" -> ssh-key pair between the two hosts for the auth.
+
+### :heavy_exclamation_mark: Especially not to do
+- <strong> Don't add space between each word of a vm name. </strong> (VMs need to have a
+nomenclature like this : Debian-10-64Bits or Debian_10_64bits not Debian 10 64bits
+- <strong> don't store you VM in a subfolder of a datastore. </strong> (VMs need to be stored at the root of a specific datastore like that : 
+<br>
+/vmfs/volume/datatsore/MyDebian10Vm :white_check_mark:
+<br>
+And especially not like that
+<br>
+/vmfs/volume/datastore/VMsdebian/MyDebian10Vm :x:
 
 ## :pushpin: Installation (Easyest)
 
@@ -284,19 +292,34 @@ Once you have submited the form, you will see the crontask (If the cron syntax h
 1 - EWMT is available only for debian based OS family 
 
 ### Know Issues 
-1 - If the .htaccess / .htpasswd (not crutial for the project)auth does not work, please check the apache2.conf (/etc/apache2) and replace if you did not have the same result as the following picture : 
+1 - If the .htaccess / .htpasswd (not crutial for the project) auth does not work, please check the apache2.conf (/etc/apache2) and replace if you did not have the same result as the following picture : 
 
 <img src="https://i.imgur.com/qJnXFUs.png">
 
-2 - Don't add comment into the description of a vm (not multiple line, just one line. Otherwise the " number (total) of VMs will be false" )
+2 - Don't add comment into the description of a vm trought the official ESXI web panel (not multiple line, just one line. Otherwise the " number (total) of VMs will be false")
 
-3 - Don't turn off your server who host EWMT, when a backup is running. Otherwise it will be cancel the ssh connexion between EWMT and the ESXI
+3 - Don't turn off your server who host EWMT :blush: , when a backup is running. Otherwise it will be cancel the ssh connexion between EWMT and the ESXI
+
+4 - If you want to change the name of the repository project, please do the following action : 
+   - ``` mv ESXi-Web-Management-tool newName/ ``` 
+   - change the "AuthUserFile" path : ``` AuthUserFile "/var/www/html/newName/.htpasswd" ``` 
+   - change the PoolVMBackup.sh path in saveCronTask.php 
+
+Before : 
+``` 
+shell_exec("sudo echo \"".htmlspecialchars($_POST['min'])." ".htmlspecialchars($_POST['hour'])." ".htmlspecialchars($_POST['dayOfMonth'])." ".htmlspecialchars($_POST['month'])." ".htmlspecialchars($_POST['dayOfWeek'])." sudo ssh -p $PORT root@$HOST 'sh -s' < /var/www/html/ESXi-Web-Management-Tool/scripts/PoolVMBackup.sh &\" | crontab -")."</pre>"; 
+``` 
+
+After 
+
+```
+shell_exec("sudo echo \"".htmlspecialchars($_POST['min'])." ".htmlspecialchars($_POST['hour'])." ".htmlspecialchars($_POST['dayOfMonth'])." ".htmlspecialchars($_POST['month'])." ".htmlspecialchars($_POST['dayOfWeek'])." sudo ssh -p $PORT root@$HOST 'sh -s' < /var/www/html/newName/scripts/PoolVMBackup.sh &\" | crontab -")."</pre>";
+``` 
 
 
+## Other
 
-## Errors Code 
-
-If you detect an error in EWMT, please open a github issue,
+If you detect an error in EWMT, please open a github issue, or contact me mailto:brlndtech@gmail.com
 
 #### <center>Brlndtech &copy; 2020</center>
 
