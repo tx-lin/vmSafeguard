@@ -300,6 +300,9 @@ require('controller.php');
                     <li class="nav-item">
                       <a class="nav-link" id="sales-tab" data-toggle="tab" href="#sales" role="tab" aria-controls="sales" aria-selected="false">VM's Summary</a>
                     </li>
+                    <li class="nav-item">
+                      <a class="nav-link" id="" data-toggle="tab" href="#switch-to-an-other-esxi" role="tab" aria-controls="sales" aria-selected="false">Switch to a other ESXi</a>
+                    </li>
                   </ul>
                   <div class="tab-content py-0 px-0">
                     <div class="tab-pane fade show active" id="overview" role="tabpanel" aria-labelledby="overview-tab">
@@ -344,6 +347,25 @@ require('controller.php');
                             <div class="form-check mx-sm-2">
                             </div>
                             <button type="submit" class="btn btn-warning mb-2"><a style="color:white">Get info</a></button>
+                          </form>                       
+                        </div>
+                      </div>
+                    </div>
+                    <div class="tab-pane fade" id="switch-to-an-other-esxi" role="tabpanel" aria-labelledby="sales-tab">
+                      <div class="d-flex flex-wrap justify-content-xl-between">
+                        <div class="d-none d-xl-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
+                          <form class="form-inline" target="_blank" action="connect.php" method="post">                  
+                            <label class="sr-only" for="inlineFormInputGroupUsername2"></label>
+                            <div class="input-group mb-2 mr-sm-2">
+                              <div class="input-group-prepend">
+                                <div class="input-group-text"></div>
+                              </div>
+                              <input type="text" class="form-control" required name="ip" id="inlineFormInputGroupUsername2" placeholder="ESXi IP (ex:10.0.0.1)">
+                              <input type="text" class="form-control" required name="port" id="inlineFormInputGroupUsername2" placeholder="ESXi SSH Port (ex: 22)">
+                            </div>
+                            <div class="form-check mx-sm-2">
+                            </div>
+                            <button type="submit" class="btn btn-warning mb-2"><a style="color:white">Connect</a></button>
                           </form>                       
                         </div>
                       </div>

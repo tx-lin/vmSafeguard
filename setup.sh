@@ -1,7 +1,7 @@
 #!/bin/bash
 echo -e "\e[33m The installation process of EWMT will start in few seconds ... \e[39m"
 sleep 1
-sudo apt -y install git apache2 php htop wget sudo curl
+sudo apt -y install git apache2 php php-sqlite3 htop wget sudo curl
 sudo git clone https://github.com/brlndtech/ESXi-Web-Management-Tool
 sudo mv ESXi-Web-Management-Tool /var/www/html
 sudo chmod 700 -R /var/www/html/ESXi-Web-Management-Tool
