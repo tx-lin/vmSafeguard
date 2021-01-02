@@ -1,4 +1,6 @@
 # ESXi Web Management Tool -  Project
+:warning: <b> CURRENT STABLE RELEASE is 4.6 (It's not the master branch, you need to switch on 4.6 branch) </b>
+<br><br>
 EWMT project has been created to facilitate the management and the VMs<b> backup </b> of an ESXi. With this tool, you will be able to backup a pool of VMs, Single Vm, Read the Backup logs etc. <u> Unfortunalty, EWMT is not compatible with Vsphere at this moment. Some Technical constraint prevent me to do it. </u>
 
 Enjoy :) 
