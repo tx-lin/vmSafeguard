@@ -2,6 +2,8 @@
 
 $HOST;
 $PORT;
+$CHECKBACKUPFOLDER;
+$LOG;
 
 try {
 
@@ -19,6 +21,18 @@ try {
 			// echo $PORT;
 		
 	    } 
+
+	    $statement = $db->prepare("SELECT * FROM esxiPath ;"); // cette requête nous retourne un tableau à assiossatif ip=>
+		$rows = $statement->execute();
+		$rows = $statement->fetchAll();
+		// print_r($result);
+		foreach ($rows as $row) {
+			$CHECKBACKUPFOLDER = $row['CheckBackupFolder'];
+			$LOG = $row['LogsPath'];
+			// echo $HOST;
+			// echo $PORT;
+		
+	    } 
 }
 
 catch(PDOException $e) {
@@ -26,6 +40,4 @@ catch(PDOException $e) {
 	print 'Exception : ' .$e->getMessage();
 }
 
-$CHECKBACKUPFOLDER="ls -dt /vmfs/volumes/HDD2-backup/backup*"; // TO CHANGE !
-$LOG="/vmfs/volumes/datastore1/logbackup.txt"; // TO CHANGE !
 ?>
