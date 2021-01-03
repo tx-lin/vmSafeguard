@@ -13,7 +13,7 @@ try {
 	$db->exec("DELETE FROM esxi ;");
 	$db->exec("DELETE FROM esxiPath ;");
 	$db->exec("INSERT INTO esxi (ip,port) VALUES ('$ip','$port');");
-	$db->exec("INSERT INTO esxiPath (CheckBackupFolder,LogsPath) VALUES ($checkBackupFolder','$logsPath');");	
+	$db->exec("INSERT INTO esxiPath (CheckBackupFolder,LogsPath) VALUES ('$checkBackupFolder','$logsPath');");	
 	
 	$statement = $db->prepare("SELECT * FROM esxi ;"); // cette requête nous retourne un tableau à assiossatif ip=>
 	$rows = $statement->execute();
@@ -23,12 +23,8 @@ try {
 	foreach ($rows as $row) {
 		$HOST = $row['ip'];
 		$PORT = $row['port'];
-		$CHECKBACKUPFOLDER = $row['CheckBackupFolder'];
-		$LOG = $row['LogsPath'];
 
 		echo "You have added ESXI $ip port $port <br> ";
-		echo "index.php will check the latest backup with this absolute path $checkBackupFolder <br> ";
-		echo "scripts/show-log.php will check the latest backup with this absolute path $checkBackupFolder <br> ";
 	} 
 
 	$statement = $db->prepare("SELECT * FROM esxiPath ;"); // cette requête nous retourne un tableau à assiossatif ip=>
