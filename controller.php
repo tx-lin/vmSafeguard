@@ -7,7 +7,7 @@ $LOG;
 
 try {
 
-	    $db = new PDO('sqlite:' . __DIR__ . '/ewmt.db');
+	    $db = new PDO('sqlite:' . __DIR__ . '/scripts/ewmt.db');
 
 		$statement = $db->prepare("SELECT * FROM esxi ;"); // cette requête nous retourne un tableau à assiossatif ip=>
 		$rows = $statement->execute();
@@ -32,12 +32,13 @@ try {
 			// echo $HOST;
 			// echo $PORT;
 		
-	    } 
+		} 
+		
 }
 
 catch(PDOException $e) {
 
 	print 'Exception : ' .$e->getMessage();
 }
-
+echo "<br>".__DIR__."";
 ?>

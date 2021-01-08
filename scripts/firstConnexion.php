@@ -45,4 +45,4 @@ catch(PDOException $e) {
 
 }
 ?>
-<button type="button" class="btn btn-danger btn-rounded btn-fw"><a href="index.php">Back to the dashboard</a></button>
+<button type="button" class="btn btn-danger btn-rounded btn-fw"><a href="../index.php">Back to the dashboard</a></button>
