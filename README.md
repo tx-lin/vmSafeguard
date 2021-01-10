@@ -1,7 +1,7 @@
-# ESXi Web Management Tool -  Project
+# vmSafeguard -  Project
 :warning: <b> CURRENT STABLE RELEASE is 4.6 (It's not the master branch, you need to switch on 4.6 branch) </b>
 <br><br>
-EWMT project has been created to facilitate the management and the VMs<b> backup </b> of an ESXi. With this tool, you will be able to backup a pool of VMs, Single Vm, Read the Backup logs etc. <u> Unfortunalty, EWMT is not compatible with Vsphere at this moment. Some Technical constraint prevent me to do it. </u>
+vmSafeguard project has been created to facilitate the management and the VMs<b> backup </b> of an ESXi. With this tool, you will be able to backup a pool of VMs, Single Vm, Read the Backup logs etc. <u> Unfortunalty, vmSafeguard is not compatible with Vsphere at this moment. Some Technical constraint prevent me to do it. </u>
 
 Enjoy :) 
 
@@ -10,7 +10,7 @@ Table of contents
    * [Prerequisite](#bookmark_tabs-prerequisite-)
    * [Installation (Easyest way)](#pushpin-installation-easyest)
    * [Installation (Hand installation)](#pushpin-installation-hand-installation)
-   * [Configuration](#computer-configuration-12---on-your-server-who-host-ewmt-)
+   * [Configuration](#computer-configuration-12---on-your-server-who-host-vmSafeguard-)
       * [Create your own ssh-key pair](##create-your-ssh-key-pair-as-root)
       * [Location for backup](#location-for-backup)
       * [Files to edit](#files-to-edit)
@@ -23,10 +23,10 @@ Table of contents
 
 ## :bookmark_tabs: Prerequisite !
 
-- EWMT can be installed under "Debian Family". For the  devloppment of this project, I currently use Ubuntu 20.04, Php 7.4, Apache 2.4.X. To avoid unknow errors, I recommand you to use Ubuntu too.
+- vmSafeguard can be installed under "Debian Family". For the  devloppment of this project, I currently use Ubuntu 20.04, Php 7.4, Apache 2.4.X. To avoid unknow errors, I recommand you to use Ubuntu too.
 - <b> <code> curl </code> and <code> sudo </code> command need to be install  ! </b>
 - An ESXi Server operational and available trought your local network.
-- All machines of your ESXi need to have the VMwareTools, without it, EWMT can't run correctly.
+- All machines of your ESXi need to have the VMwareTools, without it, vmSafeguard can't run correctly.
 - SSH service, and ESXI shell need to be activated at the ESXI startup
 - "SSH password less" -> ssh-key pair between the two hosts for the auth.
 
@@ -50,7 +50,7 @@ And especially not like that
 Update your server before to start the installation. <code>apt update</code> 
 
 
-<i> EWMT need some dependencies to work, You need to install them before setuping EWMT. </i>
+<i> vmSafeguard need some dependencies to work, You need to install them before setuping vmSafeguard. </i>
 
 ```
 sudo curl -sL https://raw.githubusercontent.com/brlndtech/ESXi-Web-Management-Tool/master/setup.sh | sh
@@ -76,9 +76,9 @@ sudo systemctl restart apache2
 
 **WARNING** : <i>You need to be <b>root</b> or have sudo rights for executing these commands.</i>
 
-## :computer: Configuration 1/2 - On your server (Who host EWMT) : 
+## :computer: Configuration 1/2 - On your server (Who host vmSafeguard) : 
 
-Once you have finished the installation process, you will need to do some stuff before to edit few files of the project (previous to access to the EWMT trought http(s)). 
+Once you have finished the installation process, you will need to do some stuff before to edit few files of the project (previous to access to the vmSafeguard trought http(s)). 
 
 
 ### Create your ssh-key pair as root
@@ -224,13 +224,13 @@ Your VMs can be stored in any datastores of your ESXI, <b> BUT they need to be a
 if it's not the case, change the value of the variable <code>"cutedpath=" </code>in the function backupVM(), you will need to edit this variable 4 times, two times in each files.  BackupSingleVM.sh / PoolVMBackup.sh.
 
 
-#### That's it for the configuration of EWMT :white_check_mark: , you will be able to start EWMT trought the web
+#### That's it for the configuration of vmSafeguard :white_check_mark: , you will be able to start vmSafeguard trought the web
 
 ## Access to the web panel
 
 ### Authentification with .htaccess / .htpasswd
 
-When you access to EWMT, you need to provide IDs. 
+When you access to vmSafeguard, you need to provide IDs. 
 
 - ID : admin
 - Password : helloworld
@@ -242,7 +242,7 @@ If you want to disable the auth process, remove .htaccess / .htpasswd (location 
 Go to http(s)://ip/ESXi-Web-Management-Tool/ (the loading takes ~ 7/8 secs)
 
 <img src="https://i.imgur.com/raRj3uU.png">
-<i> This is the welcome page of EWMT. </i> <br> <br>
+<i> This is the welcome page of vmSafeguard. </i> <br> <br>
 
  - If you want to perfom a single backup, enter the machine's vmid, and then click to submit. <b> Once you have done that, wait 2/3 secs and then you can close the tab. </b>
 
@@ -291,7 +291,7 @@ Once you have submited the form, you will see the crontask (If the cron syntax h
 
 ## :question::speech_balloon: Notes / common questions
 
-1 - EWMT is available only for debian based OS family 
+1 - vmSafeguard is available only for debian based OS family 
 
 ### Know Issues 
 1 - If the .htaccess / .htpasswd (not crutial for the project) auth does not work, please check the apache2.conf (/etc/apache2) and replace if you did not have the same result as the following picture : 
@@ -300,7 +300,7 @@ Once you have submited the form, you will see the crontask (If the cron syntax h
 
 2 - Don't add comment into the description of a vm trought the official ESXI web panel (not multiple line, just one line. Otherwise the " number (total) of VMs will be false")
 
-3 - Don't turn off your server who host EWMT :blush: , when a backup is running. Otherwise it will be cancel the ssh connexion between EWMT and the ESXI
+3 - Don't turn off your server who host vmSafeguard :blush: , when a backup is running. Otherwise it will be cancel the ssh connexion between vmSafeguard and the ESXI
 
 4 - If you want to change the name of the repository project, please do the following action : 
    - ``` mv ESXi-Web-Management-tool newName/ ``` 
@@ -321,7 +321,7 @@ shell_exec("sudo echo \"".htmlspecialchars($_POST['min'])." ".htmlspecialchars($
 
 ## Other
 
-If you detect an error in EWMT, please open a github issue, or contact me mailto:brlndtech@gmail.com
+If you detect an error in vmSafeguard, please open a github issue, or contact me mailto:brlndtech@gmail.com
 
 #### <center>Brlndtech &copy; 2020</center>
 
