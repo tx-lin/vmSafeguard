@@ -1,7 +1,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>EWMT - ESXI WEB MANAGEMENT TOOL</title>
+  <title>vmSafeguard </title>
 </head>
 <form class="" action="firstConnexion.php" method="post">                  
   <input type="text" class="form-control" required name="ip" placeholder="ESXi IP (ex:10.0.0.1)">

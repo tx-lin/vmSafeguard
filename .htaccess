@@ -1,4 +1,4 @@
 AuthName "Access is restricted !"
 AuthType Basic
-AuthUserFile "/var/www/html/ESXi-Web-Management-Tool/.htpasswd"
+AuthUserFile "/var/www/html/vmSafeguard/.htpasswd"
 Require valid-user
