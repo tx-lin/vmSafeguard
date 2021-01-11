@@ -105,7 +105,7 @@ ssh -p 22 root@the-ip-of-your-esxi
 
 ## :computer: Configuration 2/2 - On the ESXi host
 
-### Location for backup 
+### Location for backup (Example)
 
 On the ESXi host, you will need a specific datastore for store the futur VMs backup. In my case, I will use the datastore : <b> datastore-backup </b> as an example.
 
@@ -131,73 +131,52 @@ or <br>
 You can use any of them, that's okay. But I suggest you use the second method for more visibility
 
 
-### The first .sh file (BackupSingleVM.sh)
-<br>
-<b>localize the following lines : </b>
-
-```
-PATHLOG="/vmfs/volumes/datastore-backup/logbackup.txt" 
-# TO CHANGE --- Change just the name of the datastore
-
-mkdir /vmfs/volumes/datastore-backup/backup-vm-$date 
-# TO CHANGE --- Change just the name of the datastore
-
-PATHBACKUP="/vmfs/volumes/datastore-backup/backup-vm-$date" 
-# TO CHANGE --- Change just the name of the datastore 
-
-echo -e "`ls -dt /vmfs/volumes/datastore-backup/backup*`\n" >> $PATHLOG 
-# TO CHANGE --- Change just the name of the datastore
-
-find /vmfs/volumes/datastore-backup/backup* -mtime +60 -exec rm -rf {} \; 
-# TO CHANGE --- Change just the name of the datastore
-# permit to delete all backup* folders > 60 Days
-```
-
-<img src="https://i.imgur.com/kscpv6r.png">
-
-
-### The second .sh file (PoolVMBackup.sh)
+### :pencil2: Edit the first .sh file (BackupSingleVM.sh) [1/2]
 <br>
 
 ```
+cd /var/www/html/vmSafeguard/scripts
+nano BackupSingleVM.sh
+```
+
+Localize the second line, and add your datastore into the ""
+```
+DATASTORE="datastore-backup"
+```
+
+
+### :pencil2: Edit the second .sh file (PoolVMBackup.sh) [2/2]
+
+<br>
+
+```
+cd /var/www/html/vmSafeguard/scripts
 nano PoolVMBackup.sh
 ```
-<b>localize the following lines : </b>
 
+Localize the second line, and add your datastore into the ""
 ```
-PATHLOG="/vmfs/volumes/datastore-backup/logbackup.txt" 
-# TO CHANGE --- Change just the name of the datastore
-
-mkdir /vmfs/volumes/datastore-backup/backup-vm-$date 
-# TO CHANGE --- Change just the name of the datastore
-
-PATHBACKUP="/vmfs/volumes/datastore-backup/backup-vm-$date" 
-# TO CHANGE --- Change just the name of the datastore 
-
-echo -e "`ls -dt /vmfs/volumes/datastore-backup/backup*`\n" >> $PATHLOG 
-# TO CHANGE --- Change just the name of the datastore 
-
-find /vmfs/volumes/datastore-backup/backup* -mtime +60 -exec rm -rf {} \; 
-# To CHANGE --- Change just the name of the datastore 
-# Permit to delete all backup* folders > 60 Days
+DATASTORE="datastore-backup"
 ```
 
-<img src="https://i.imgur.com/BQGJ9dv.png">
-<br>
-<br>
-<i> If you want to add some VMs in to the PoolVMBackup.sh check the following screenshot. 10 12 9 represent 3 VMID of 3 different VMs </i>
-<br>
-<br>
+To add virtual machines to the backup process, you must manually enter the VMIDs of the VM in the loop begining with for i in ...
 
-<img src="https://i.imgur.com/WqdBHov.png">
+```
+for VM in 10 12 13 
+do
+    PWR=`vim-cmd vmsvc/power.getstate $VM | grep -v "Retrieved runtime info"`
+    name=`vim-cmd vmsvc/get.config $VM | grep -i "name =" | awk '{print $3}' | head -1 | awk -F'"' '{print $2}'` 
+    backupVM
+done
+```
+The numbers in the first line match with 3 VMID of 3 VM
 
-<br>
 <br>
 
 
 ### :warning: Warning : 
 
-Your VMs can be stored in any datastores of your ESXI, <b> BUT they need to be at the root of the datastore like <code> /vmfs/volumes/mydatastore/myVirtualMachineDebianFolder </code> <br> </b>
+As I said previously your VMs can be stored in any datastores of your ESXI, <b> BUT they need to be at the root of the datastore like <code> /vmfs/volumes/mydatastore/myVirtualMachineDebianFolder </code> <br> </b>
 
 if it's not the case, change the value of the variable <code>"cutedpath=" </code>in the function backupVM(), you will need to edit this variable 4 times, two times in each files.  BackupSingleVM.sh / PoolVMBackup.sh.
 
@@ -243,27 +222,11 @@ All the information have been stored into the db, click to "reload the dashboard
 <i> Example of the summary section. Very useful part if you want to know the vmid of a VM(s) </i> <br> <br>
 
 <img src="https://i.imgur.com/boIPUnv.png">
-<i> ESXI stats </i> <br> <br>
-<i>Discover in graphical mode 
+<i> ESXi VM OS stats </i> <br> <br>
 
-## Automating the backup process with a cron task
+## :ferris_wheel: Automating the backup process with a cron task
 
-### With the terminal 
-
-On the host server, edit your crontab manually <b> as root or www-data </b>
-
-```
-crontab -e 
-```
-Example 
-
-```
-# Every day at 23H50, PoolVMBackup.sh will be executed !
-50 23 * * * /var/www/html/ESXi-Web-Management-Tool/scripts/PoolVMBackup.sh
-# Executed as root
-```
-
-### With the web panel : 
+### With the web panel (Easyest way): 
 
 You can schedule a crontask for the "PoolVMBackup.sh", with the Graphical Interface. it's more user friendly. (executed as www-data)
 
@@ -275,7 +238,20 @@ Once you have submited the form, you will see the crontask (If the cron syntax h
 
 <img src="https://i.imgur.com/8BU4JED.png">
 
+### With the terminal (Tedious)
 
+On the host server, edit your crontab manually <b> as root or www-data </b>
+
+```
+crontab -e 
+```
+Example 
+
+```
+# Every day at 23H50, PoolVMBackup.sh will be executed !
+50 23 * * * /var/www/html/vmSafeguard/scripts/PoolVMBackup.sh
+# Executed as root
+```
 
 
 ## :question::speech_balloon: Notes / common questions
@@ -308,6 +284,8 @@ chown www-data:www-data -R /var/www/html/vmSafeguard
 
 
 If you detect an error in vmSafeguard, please open a github issue, or contact me mailto:brlndtech@gmail.com
+
+Demo for backup a single virtual machine : https://www.youtube.com/watch?v=qpnd1YU8J1c
 
 #### <center>Brlndtech</center>
 

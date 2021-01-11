@@ -1,4 +1,5 @@
 #!/bin/sh
+DATASTORE="datastore1"
 backupVM() {
       if [ "$PWR" == "Powered off" ] ; then
           echo -e "   --> $name is already shutdown (`date`)\n" >> $PATHLOG
@@ -30,9 +31,9 @@ backupVM() {
       fi
 }
 date=`date +%d-%m-%Y-%H-%M`
-PATHLOG="/vmfs/volumes/HDD2-backup/logbackup.txt" # TO CHANGE --- create the file logbackup.txt to store logs info (one time)
-mkdir /vmfs/volumes/HDD2-backup/backup-vm-$date # TO CHANGE --- permit to use a incremental backup
-PATHBACKUP="/vmfs/volumes/HDD2-backup/backup-vm-$date" # TO CHANGE --- change data store "backup" area for your ESXI configuration 
+PATHLOG="/vmfs/volumes/$DATASTORE/logsbackup.txt" # TO CHANGE --- create the file logbackup.txt to store logs info (one time)
+mkdir /vmfs/volumes/$DATASTORE/backup-vm-$date # TO CHANGE --- permit to use a incremental backup
+PATHBACKUP="/vmfs/volumes/$DATASTORE/backup-vm-$date" # TO CHANGE --- change data store "backup" area for your ESXI configuration 
 echo -e "-------> SINGLE BACKUP process start on `hostname` : `date`\n" >> $PATHLOG
 for VM in $1 
 do
@@ -43,7 +44,7 @@ do
 done
 echo -e "List of present backup folder and old backup folders : " >> $PATHLOG 
 # TO CHANGE :         --------------------------------------------------------
-echo -e "`ls -dt /vmfs/volumes/HDD2-backup/backup*`\n" >> $PATHLOG 
+echo -e "`ls -dt /vmfs/volumes/$DATASTORE/backup*`\n" >> $PATHLOG 
 # TO CHANGE : -----------------------------------------------------------------------------
-find /vmfs/volumes/HDD2-backup/backup* -mtime +60 -exec rm -rf {} \; # permit to delete all backup* folder > 30 Days
+find /vmfs/volumes/$DATASTORE/backup* -mtime +60 -exec rm -rf {} \; # permit to delete all backup* folder > 30 Days
 echo -e "<-------- SINGLE BACKUP process end on `hostname` : `date`\n" >> $PATHLOG
