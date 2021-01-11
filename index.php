@@ -365,7 +365,7 @@ require('controller.php');
                             </div>
                             <div class="form-check mx-sm-2">
                             </div>
-                            <button type="submit" class="btn btn-warning mb-2"><a style="color:white">Connect</a></button>
+                            <button type="submit" name="submit" class="btn btn-warning mb-2"><a style="color:white">Connect</a></button>
                           </form>                       
                         </div>
                       </div>

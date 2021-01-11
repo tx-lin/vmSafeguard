@@ -11,9 +11,11 @@ sudo sed -i '/<Directory \/var\/www\/>/,/<\/Directory>/ s/AllowOverride None/All
 sudo a2enmod ssl
 sleep 2
 sudo systemctl restart apache2
-sleep 4
+sleep 2
 sudo a2enmod rewrite
-sleep 4
+sleep 2
 sudo a2ensite default-ssl.conf
 sudo systemctl restart apache2
-echo -e "\e[32m Done ! \e[39m"
+sleep 2
+sudo systemctl enable apache2
+echo -e "\e[32m Done !\e[39m"
