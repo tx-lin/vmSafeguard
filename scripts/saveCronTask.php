@@ -43,7 +43,6 @@ include('scripts-menu-header-top-left.php');
                       }
                   ?>
                   </p>
-                  </form>
                 </div>
               </div>
             </div>

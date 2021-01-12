@@ -185,18 +185,20 @@ if it's not the case, change the value of the variable <code>"cutedpath=" </code
 
 ## :fast_forward: Access to the web panel
 
-### Authentification with .htaccess / .htpasswd
+### Authentification with .htaccess / .htpasswd ()
 
 When you access to vmSafeguard, you need to provide an id and a password: . 
 
 - ID : admin
 - Password : helloworld
 
-Feel free to change them ASAP :)
+Feel free to change them ASAP via https://your-ip/vmSafeguard/scripts/settings.php :)
 
 If you want to disable the auth process, remove .htaccess / .htpasswd (location : root of the project)
 
-Go to the admin panel setup page https://your-ip/vmSafeguard/scripts/starter.php, to add a ESXi host to vmSafeguard. All of the informations will be stored into a sqlite db localized into scripts/ sub-folder.
+Go to the admin panel setup page to add a ESXi host to vmSafeguard https://your-ip/vmSafeguard/scripts/starter.php, or https://your-ip/vmSafeguard/scripts/settings.php if you have firstly updated your credentials. All of the informations about the ESXi(s) will be stored into a sqlite db localized into scripts/vmSafeguard.db.
+
+
 
 <img src="https://i.imgur.com/QjxGCc1.png">
 Fill all the fields and submit. <br><br><br>
@@ -252,7 +254,12 @@ Example
 50 23 * * * /var/www/html/vmSafeguard/scripts/PoolVMBackup.sh
 # Executed as root
 ```
+## Visual Demo 
 
+Demo for backup a single virtual machine : https://www.youtube.com/watch?v=qpnd1YU8J1c
+
+:bookmark_tabs: Note that, if your machine is powered on, the backup folder will take a few moment before it's creation. vmSafeguard shutdown a VM with a safety mode. 
+If the VM install some update, vmSafeguard, will wait until it's finished before to start the copy. (View the logs section for follow the backup process)
 
 ## :question::speech_balloon: Notes / common questions
 
@@ -285,7 +292,7 @@ chown www-data:www-data -R /var/www/html/vmSafeguard
 
 If you detect an error in vmSafeguard, please open a github issue, or contact me mailto:brlndtech@gmail.com
 
-Demo for backup a single virtual machine : https://www.youtube.com/watch?v=qpnd1YU8J1c
+Releases details : https://github.com/brlndtech/vmSafeguard/projects/1 (section "version" (english))
 
 #### <center>Brlndtech</center>
 

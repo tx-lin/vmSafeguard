@@ -1,6 +1,3 @@
-<?php 
-require('../controller.php');
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -70,8 +67,8 @@ include('scripts-menu-header-top-left.php');
 
 									$CHECKBACKUPFOLDER = $row['CheckBackupFolder'];
 									$LOG = $row['LogsPath'];
-									echo "index.php will check the latest backup with this absolute path <strong>$checkBackupFolder</strong> <br>";
-									echo "scripts/show-log.php will check the latest backup logs with this absolute path to the file <strong>$checkBackupFolder</strong> <br> </pre>";
+									echo "index.php will check the latest backup with this absolute path <strong>$CHECKBACKUPFOLDER</strong> <br>";
+									echo "scripts/show-log.php will check the latest backup logs with this absolute path to the file <strong>$LOG</strong> <br> </pre>";
 									echo "<button class=\"btn btn-primary mt-2 mt-xl-0\"><a style=\"color:white;\"href=\"../\" >Reload the dashboard</a></button>";
 								} 
 							}
@@ -83,7 +80,6 @@ include('scripts-menu-header-top-left.php');
 						}
 					?>
                   </p>
-                  </form>
                 </div>
               </div>
             </div>

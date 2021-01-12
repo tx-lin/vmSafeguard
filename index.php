@@ -20,7 +20,21 @@ require('controller.php');
   <link rel="stylesheet" href="css/style.css">
   <!-- endinject -->
   <link rel="shortcut icon" href="images/favicon.png" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <?php
+    exec("ping -c 1 " . $HOST, $output, $result);
+
+    // print_r ($result);
+    // print_r ($output);
+    
+    if ($result == 1) {
+        echo "<script>alert('Your ESXi ".$HOST." appears to be offline ')</script>";
+    }
+    /*
+    else {
+        echo "<script>alert('Your ESXi ".$HOST." is online')</script>";
+    }
+    */
+  ?>
 </head>
 <body>
   <div class="container-scroller">
@@ -146,13 +160,9 @@ require('controller.php');
               <span class="nav-profile-name">Admin</span>
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-              <a class="dropdown-item">
+              <a class="dropdown-item" href="scripts/settings.php">
                 <i class="mdi mdi-settings text-primary"></i>
                 Settings
-              </a>
-              <a class="dropdown-item">
-                <i class="mdi mdi-logout text-primary"></i>
-                Logout
               </a>
             </div>
           </li>
@@ -379,7 +389,7 @@ require('controller.php');
             <div class="col-md-7 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <p class="card-title">Last Backup : </p>
+                  <p class="card-title">Last Backup(s) : </p>
                   <i><p class="mb-4"> Note that every 60 days, the last backup folder will be deleted. </p></i>
                   <h5 class="mr-2 mb-0"><?php echo "<pre>".shell_exec("sudo ssh -p $PORT root@$HOST 'ls -dt $CHECKBACKUPFOLDER'")."</pre>";?></h5>
                 </div>
@@ -390,7 +400,7 @@ require('controller.php');
                 <div class="card-body">
 	                <!--<p class="card-title">Total sales</p>-->
 	                <!--<h1>$ 28</h1>-->
-	                <h4>Quick actions</h4>
+	                <p class="card-title">Quick actions : </p>
 	                <p class="text-muted"></p>
 	                <div id="total-sales-chart-legend"></div>                  
 	                	<button type="button" class="btn btn-success btn-rounded btn-fw" style="width:165px;height:40px;margin:0 auto;display:block;"><a style="color:white;"href="scripts/startAll.php">Start all VM</a></button> <br>
