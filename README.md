@@ -1,6 +1,5 @@
 # vmSafeguard -  Project
-:warning: <b> CURRENT STABLE RELEASE is 4.6 (It's not the master branch, you need to switch on 4.6 branch) </b>
-<br><br>
+
 vmSafeguard project has been created to facilitate the management and the VMs<b> backup </b> of an ESXi. With this tool, you will be able to backup a pool of VMs, Single Vm, Read the Backup logs etc. <u> vmSafeguard can manage and switch to a other ESXi since 5.0 version. </u>
 
 Enjoy :) 
@@ -20,8 +19,10 @@ Table of contents
    * [Common Questions](#questionspeech_balloon-notes--common-questions)
       * [Know issues](#know-issues)
    * [Other](#Other)
+<br>
+<br>
 
-## :bookmark_tabs: Prerequisite !
+# :bookmark_tabs: Prerequisite !
 
 - vmSafeguard can be installed under "Debian Family". For the  devloppment of this project, I currently use Ubuntu 20.04, Php 7.4, Apache 2.4.X. To avoid unknow errors, I recommand you to use Ubuntu too.
 - <b> <code> curl </code> and <code> sudo </code> command need to be install  ! </b>
@@ -41,7 +42,7 @@ And especially not like that
 <br>
 /vmfs/volume/datastore/VMsdebian/MyDebian10Vm :x:
 
-## :pushpin: Installation (Easyest)
+# :pushpin: Installation (Easyest)
 
 ### Easiest Way - Run setup.sh with curl, to automating the installation
 
@@ -53,7 +54,7 @@ Update your server before to start the installation. <code>apt update</code>
 sudo curl -sL https://raw.githubusercontent.com/brlndtech/vmSafeguard/master/setup.sh | bash
 ``` 
 
-## :pushpin: Installation (Hand installation)
+# :pushpin: Installation (Hand installation -> tedious)
 ```
 sudo apt update && apt upgrade
 sudo apt install git apache2 php htop wget sudo curl
@@ -74,23 +75,24 @@ sudo systemctl enable apache2
 
 **WARNING** : <i>You need to be <b>root</b> or have sudo rights for executing these commands.</i>
 
-## :computer: Configuration 1/2 - On your server (Who host vmSafeguard) : 
+# :computer: Configuration 1/2 - On your server (Who host vmSafeguard) : 
 
 Once you have finished the installation process, you will need to do some stuff before to edit few files of the project (previous to access to the vmSafeguard trought the web.
 
-### Create your ssh-key pair as root if you don't already have it 
+## :key: Create your ssh-key pair as root if you don't already have it 
 
 ```
 ssh-keygen -t rsa 
 ```
 
-### Upluad your public key to the ESXi server
+### :arrow_up: Upluad your public key on the ESXi server
+<br>
 
 Since, vmSafeguard 5.0 version, you can managed multiple ESXi. <b> For that, upluad your public key on each ESXi hypervisor. </b>
 
 <i> Remember ! You need to allow ssh on your ESXI, trought the <a href="https://www.tech2tech.fr/vmware-esxi-6-5-activer-lacces-ssh/">Official Web panel of ESXi Vmware</a>. </i>
 
-On your linux server : 
+On vmSafeguard host : 
 
 ```
 cd /root/.ssh/
@@ -103,9 +105,9 @@ ssh -p 22 root@the-ip-of-your-esxi
 ```
 <b> This step is crutial for the following step. </b>
 
-## :computer: Configuration 2/2 - On the ESXi host
+# :computer: Configuration 2/2 - Specific datastore path 
 
-### Location for backup (Example)
+### :information_source: Location for the backup (Example)
 
 On the ESXi host, you will need a specific datastore for store the futur VMs backup. In my case, I will use the datastore : <b> datastore-backup </b> as an example.
 
@@ -128,7 +130,9 @@ or <br>
 <code> /vmfs/volumes/datastore-backup/</code> <br>
 
 
-You can use any of them, that's okay. But I suggest you use the second method for more visibility
+You can use any of them, that's okay. But <b> I suggest you use the second method for more visibility </b>
+
+<br>
 
 
 ### :pencil2: Edit the first .sh file (BackupSingleVM.sh) [1/2]
@@ -144,6 +148,7 @@ Localize the second line, and add your datastore into the ""
 DATASTORE="datastore-backup"
 ```
 
+<br>
 
 ### :pencil2: Edit the second .sh file (PoolVMBackup.sh) [2/2]
 
@@ -174,18 +179,22 @@ The numbers in the first line match with 3 VMID of 3 VM
 <br>
 
 
-### :warning: Warning : 
+### :warning: Warning concerning the VMs storage path : 
 
-As I said previously your VMs can be stored in any datastores of your ESXI, <b> BUT they need to be at the root of the datastore like <code> /vmfs/volumes/mydatastore/myVirtualMachineDebianFolder </code> <br> </b>
+<br>
+
+As I said previously your VMs can be stored in any datastores of your ESXi, <b> BUT they need to be at the root of the datastore like <code> /vmfs/volumes/mydatastore/myVirtualMachineDebianFolder </code> <br> </b>
 
 if it's not the case, change the value of the variable <code>"cutedpath=" </code>in the function backupVM(), you will need to edit this variable 4 times, two times in each files.  BackupSingleVM.sh / PoolVMBackup.sh.
 
 
 #### That's it for the configuration of vmSafeguard :white_check_mark: , you will be able to start vmSafeguard trought the web
 
-## :fast_forward: Access to the web panel
+<br>
 
-### Authentification with .htaccess / .htpasswd ()
+# :fast_forward: Access to the web panel
+
+## Authentification with .htaccess / .htpasswd ()
 
 When you access to vmSafeguard, you need to provide an id and a password: . 
 
@@ -226,9 +235,9 @@ All the information have been stored into the db, click to "reload the dashboard
 <img src="https://i.imgur.com/boIPUnv.png">
 <i> ESXi VM OS stats </i> <br> <br>
 
-## :ferris_wheel: Automating the backup process with a cron task
+# :ferris_wheel: Automating the backup process with a cron task
 
-### With the web panel (Easyest way): 
+## With the web panel (Easyest way): 
 
 You can schedule a crontask for the "PoolVMBackup.sh", with the Graphical Interface. it's more user friendly. (executed as www-data)
 
@@ -240,7 +249,7 @@ Once you have submited the form, you will see the crontask (If the cron syntax h
 
 <img src="https://i.imgur.com/8BU4JED.png">
 
-### With the terminal (Tedious)
+## With the terminal (Tedious)
 
 On the host server, edit your crontab manually <b> as root or www-data </b>
 
@@ -254,18 +263,17 @@ Example
 50 23 * * * /var/www/html/vmSafeguard/scripts/PoolVMBackup.sh
 # Executed as root
 ```
-## Visual Demo 
+# Video Tutorial  
 
 Demo for backup a single virtual machine : https://www.youtube.com/watch?v=qpnd1YU8J1c
 
-:bookmark_tabs: Note that, if your machine is powered on, the backup folder will take a few moment before it's creation. vmSafeguard shutdown a VM with a safety mode. 
-If the VM install some update, vmSafeguard, will wait until it's finished before to start the copy. (View the logs section for follow the backup process)
+:bookmark_tabs: Note that, if your machine is powered on, the backup folder will take a few moment before it's creation. vmSafeguard shutdown a VM with a safety mode. If the VM install some update, vmSafeguard, will wait until it's finished before to start the copy. (View the logs section for follow the backup process)
 
-## :question::speech_balloon: Notes / common questions
+# :question::speech_balloon: Notes / common questions
 
 1 - vmSafeguard is available only for debian based OS family 
 
-### Know Issues 
+## Know Issues 
 1 - If the .htaccess / .htpasswd (not crutial for the project) auth does not work, please check the apache2.conf (/etc/apache2) and replace if you did not have the same result as the following picture : 
 
 <img src="https://i.imgur.com/qJnXFUs.png">
@@ -287,7 +295,7 @@ chown www-data:www-data -R /var/www/html/vmSafeguard
 ``` 
 
 
-## Other
+# Other
 
 
 If you detect an error in vmSafeguard, please open a github issue, or contact me mailto:brlndtech@gmail.com

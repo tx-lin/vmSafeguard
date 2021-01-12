@@ -72,13 +72,13 @@ include('scripts-menu-header-top-left.php');
                       </div>
                     </div>
                     <div class="form-group row">
-                      <label for="exampleInputPassword2" class="col-sm-3 col-form-label">Password</label>
+                      <label for="exampleInputPassword2" class="col-sm-3 col-form-label">New Password</label>
                       <div class="col-sm-9">
                         <input type="password" class="form-control" required id="exampleInputPassword2" name="password" placeholder="Password">
                       </div>
                     </div>
                     <div class="form-group row">
-                      <label for="exampleInputConfirmPassword2" class="col-sm-3 col-form-label">Password again</label>
+                      <label for="exampleInputConfirmPassword2" class="col-sm-3 col-form-label">New Password again</label>
                       <div class="col-sm-9">
                         <input type="password" class="form-control" required id="exampleInputConfirmPassword2" name="password2" placeholder="Password">
                       </div>
