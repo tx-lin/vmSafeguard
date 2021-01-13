@@ -4,7 +4,7 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>vmSafeguard | Cron Schedulled</title>
+  <title>vmSafeguard | Settings</title>
   <!-- plugins:css -->
   <link rel="stylesheet" href="../vendors/mdi/css/materialdesignicons.min.css">
   <link rel="stylesheet" href="../vendors/base/vendor.bundle.base.css">
@@ -89,8 +89,28 @@ include('scripts-menu-header-top-left.php');
                 </div>
               </div>
             </div>
-            </div>
           </div>
+          <div class="col-12 grid-margin stretch-card">
+            <div class="col-md-6 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                <h4 class="card-title">Refresh automatically your dashboard every x seconds (30-7200)</h4>
+                  <p class="card-description">
+                    Enter only a seconds value into the form 
+                  </p>
+                  <form class="forms-sample" action="refreshTime.php" method="post" >
+                    <div class="form-group">
+                      <div class="input-group">
+                        <input type="number" min="30" max="7200" name="refreshTime" class="form-control" required placeholder="30">
+                        <div class="input-group-append">
+                          <button name="submit" class="btn btn-sm btn-primary" type="submit">save</button>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
         </div>
         <!-- content-wrapper ends -->
         <!-- partial:partials/_footer.html -->

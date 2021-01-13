@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php require '../connexionpdo.php'?>
 <head>
   <!-- Required meta tags -->
   <meta charset="utf-8">
@@ -37,45 +38,37 @@ include('scripts-menu-header-top-left.php');
 							$port = $_POST['port'];
 							$checkBackupFolder = $_POST['CheckBackupFolder'] ;
 							$logsPath = $_POST['LogsPath'];
-
-							try {
-								//open the database
-								$db = new PDO('sqlite:' . __DIR__ . '/vmSafeguard.db');
-								// TRUNCATE Table 
-								$db->exec("DELETE FROM esxi ;");
-								$db->exec("DELETE FROM esxiPath ;");
-								$db->exec("INSERT INTO esxi (ip,port) VALUES ('$ip','$port');");
-								$db->exec("INSERT INTO esxiPath (CheckBackupFolder,LogsPath) VALUES ('$checkBackupFolder','$logsPath');");	
+							
+							//open the database
+							$db = new PDO('sqlite:' . __DIR__ . '/vmSafeguard.db');
+							// TRUNCATE Table 
+							$db->exec("DELETE FROM esxi ;");
+							$db->exec("DELETE FROM esxiPath ;");
+							$db->exec("INSERT INTO esxi (ip,port) VALUES ('$ip','$port');");
+							$db->exec("INSERT INTO esxiPath (CheckBackupFolder,LogsPath) VALUES ('$checkBackupFolder','$logsPath');");	
 								
-								$statement = $db->prepare("SELECT * FROM esxi ;"); // cette requête nous retourne un tableau à assiossatif ip=>
-								$rows = $statement->execute();
-								$rows = $statement->fetchAll();
-									// print_r($result);
+							$statement = $db->prepare("SELECT * FROM esxi ;"); // cette requête nous retourne un tableau à assiossatif ip=>
+							$rows = $statement->execute();
+							$rows = $statement->fetchAll();
+							// print_r($result);
 									
-								foreach ($rows as $row) {
-									$HOST = $row['ip'];
-									$PORT = $row['port'];
+							foreach ($rows as $row) {
+								$HOST = $row['ip'];
+								$PORT = $row['port'];
+								echo "<pre>You have added ESXI <strong>$HOST</strong> on ssh port <strong>$PORT</strong> <br>";
+							} 
 
-									echo "<pre>You have added ESXI <strong>$ip</strong> on ssh port <strong>$port</strong> <br>";
-								} 
+							$statement = $db->prepare("SELECT * FROM esxiPath ;"); // cette requête nous retourne un tableau à assiossatif ip=>
+							$rows = $statement->execute();
+							$rows = $statement->fetchAll();
 
-								$statement = $db->prepare("SELECT * FROM esxiPath ;"); // cette requête nous retourne un tableau à assiossatif ip=>
-								$rows = $statement->execute();
-								$rows = $statement->fetchAll();
+							foreach ($rows as $row) {
 
-								foreach ($rows as $row) {
-
-									$CHECKBACKUPFOLDER = $row['CheckBackupFolder'];
-									$LOG = $row['LogsPath'];
-									echo "index.php will check the latest backup with this absolute path <strong>$CHECKBACKUPFOLDER</strong> <br>";
-									echo "scripts/show-log.php will check the latest backup logs with this absolute path to the file <strong>$LOG</strong> <br> </pre>";
-									echo "<button class=\"btn btn-primary mt-2 mt-xl-0\"><a style=\"color:white;\"href=\"../\" >Reload the dashboard</a></button>";
-								} 
-							}
-							catch(PDOException $e) {
-
-								print 'Exception : ' .$e->getMessage();
-
+								$CHECKBACKUPFOLDER = $row['CheckBackupFolder'];
+								$LOG = $row['LogsPath'];
+								echo "index.php will check the latest backup with this absolute path <strong>$CHECKBACKUPFOLDER</strong> <br>";
+								echo "scripts/show-log.php will check the latest backup logs with this absolute path to the file <strong>$LOG</strong> <br> </pre>";
+								echo "<button class=\"btn btn-primary mt-2 mt-xl-0\"><a style=\"color:white;\"href=\"../\" >Reload the dashboard</a></button>"; 
 							}
 						}
 					?>

@@ -33,7 +33,6 @@ include('scripts-menu-header-top-left.php');
                   <p class="card-description">
                       <?php echo "<pre>".shell_exec("sudo ssh -p $PORT root@$HOST 'sh -s' < shutdownAll.sh")."</pre>";?>
                   </p>
-                  </form>
                 </div>
               </div>
             </div>

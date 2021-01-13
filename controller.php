@@ -1,13 +1,12 @@
 <?php
 
+require 'connexionpdo.php';
+
 $HOST;
 $PORT;
 $CHECKBACKUPFOLDER;
 $LOG;
-
-try {
-
-	$db = new PDO('sqlite:' . __DIR__ . '/scripts/vmSafeguard.db');
+$REFRESHTIME;
 
 	$statement = $db->prepare("SELECT * FROM esxi ;"); // cette requête nous retourne un tableau à assiossatif ip=>
 	$rows = $statement->execute();
@@ -27,13 +26,16 @@ try {
 		$CHECKBACKUPFOLDER = $row['CheckBackupFolder'];
 		$LOG = $row['LogsPath'];
 		
+	}
+	
+	$statement = $db->prepare("SELECT RefreshTime FROM webPanel ;"); // cette requête nous retourne un tableau à assiossatif ip=>
+	$rows = $statement->execute();
+	$rows = $statement->fetchAll();
+	
+	foreach ($rows as $row) {
+		$REFRESHTIME = $row['RefreshTime'];	
+		// echo $REFRESHTIME;	
 	} 
 		
-}
 
-catch(PDOException $e) {
-
-	print 'Exception : ' .$e->getMessage();
-
-}
 ?>

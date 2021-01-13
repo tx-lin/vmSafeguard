@@ -32,31 +32,26 @@ include('scripts-menu-header-top-left.php');
                   <h4 class="card-title">vmSafeguard | Connect to an other ESXi</h4>
                   <p class="card-description">
                   <?php
-                    // if (isset($_POST['ip']) && isset($_POST['port'])) {
                     if (isset($_POST['submit'])) {
                       
-                      $ip = $_POST['ip'] ;
-                      $port = $_POST['port'];
-          
-                        // open the database
-                        // $db = new PDO('sqlite:' . __DIR__ . '/vmSafeguard.db');
+                        $refreshTime = $_POST['refreshTime'] ;
+                        //open the database
+                        $db = new PDO('sqlite:' . __DIR__ . '/vmSafeguard.db');
                         // TRUNCATE Table 
-                        $db->exec("DELETE FROM esxi ;");
-                        $db->exec("INSERT INTO esxi (ip,port) VALUES ('$ip','$port');");
+                        $db->exec("DELETE FROM webPanel ;");
+                        $db->exec("INSERT INTO webPanel (RefreshTime) VALUES ('$refreshTime');");
 
-                        $statement = $db->prepare("SELECT * FROM esxi ;"); // cette requête nous retourne un tableau à assiossatif ip=>
+                        $statement = $db->prepare("SELECT RefreshTime FROM webPanel ;"); // cette requête nous retourne un tableau à assiossatif ip=>
                         $rows = $statement->execute();
                         $rows = $statement->fetchAll();
                         
                         foreach ($rows as $row) {
-                            $ip_esxi_from_db = $row['ip'];
-                            $port_esxi_from_db = $row['port'];
-                            echo "<pre>You have added ESXI $ip_esxi_from_db port $port_esxi_from_db </pre>";
+                            $valueFromTheDB = $row['RefreshTime'];
+                            echo "<pre>You dashboard will reload itself every $valueFromTheDB seconds</pre>";
                             echo "<button class=\"btn btn-primary mt-2 mt-xl-0\"><a style=\"color:white;\"href=\"../\" >Reload the dashboard</a></button>";
-    
                             
                         } 
-                    }  
+                    }		  
                 
                   ?>
                   </p>
