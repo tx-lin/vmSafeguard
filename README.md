@@ -1,6 +1,6 @@
 # vmSafeguard -  Project
 
-vmSafeguard project has been created to facilitate the management and the VMs<b> backup </b> of an ESXi. With this tool, you will be able to backup a pool of VMs, Single Vm, Read the Backup logs etc. <u> vmSafeguard can manage and switch to a other ESXi since 5.0 version. </u>
+vmSafeguard project has been created to facilitate the management and the VMs<b> backup </b> of an ESXi. With this tool, you will be able to backup a pool of VMs, Single Vm, Read the Backup logs etc. <u> <b> vmSafeguard can manage multiple ESXi since 5.0 version. </u> </b>
 
 Enjoy :) 
 
