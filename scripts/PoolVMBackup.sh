@@ -34,8 +34,8 @@ date=`date +%d-%m-%Y-%H-%M`
 PATHLOG="/vmfs/volumes/$DATASTORE/logsbackup.txt" # TO CHANGE --- create the file logbackup.txt to store logs info (one time)
 mkdir /vmfs/volumes/$DATASTORE/backup-vm-$date # TO CHANGE --- permit to use a incremental backup
 PATHBACKUP="/vmfs/volumes/$DATASTORE/backup-vm-$date" # TO CHANGE --- change data store "backup" area for your ESXI configuration 
-echo -e "-------> SINGLE BACKUP process start on `hostname` : `date`\n" >> $PATHLOG
-for VM in 10 12 13 
+echo -e "-------> Pool VMs BACKUP process start on `hostname` : `date`\n" >> $PATHLOG
+for VM in $@
 do
     PWR=`vim-cmd vmsvc/power.getstate $VM | grep -v "Retrieved runtime info"`
     name=`vim-cmd vmsvc/get.config $VM | grep -i "name =" | awk '{print $3}' | head -1 | awk -F'"' '{print $2}'` 
@@ -47,4 +47,4 @@ echo -e "List of present backup folder and old backup folders : " >> $PATHLOG
 echo -e "`ls -dt /vmfs/volumes/$DATASTORE/backup*`\n" >> $PATHLOG 
 # TO CHANGE : -----------------------------------------------------------------------------
 find /vmfs/volumes/$DATASTORE/backup* -mtime +60 -exec rm -rf {} \; # permit to delete all backup* folder > 30 Days
-echo -e "<-------- SINGLE BACKUP process end on `hostname` : `date`\n" >> $PATHLOG
+echo -e "<-------- POOL VMs BACKUP process end on `hostname` : `date`\n" >> $PATHLOG

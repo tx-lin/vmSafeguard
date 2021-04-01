@@ -33,17 +33,9 @@ include('scripts-menu-header-top-left.php');
                   <h4 class="card-title">Backup Single VM</h4>
                   <p class="card-description">
                     <?php
-          			if (isset($_POST['answer'])) {
-                        if ($_POST['answer'] == "yes" OR ($_POST['answer'] == "YES")) {
-                        echo "<pre>".shell_exec("sudo ssh -p $PORT root@$HOST 'sh -s' < PoolVMBackup.sh &")."</pre>";
-                        }
-                        else {
-                          echo "<pre> Error, answer \"yes\" to valide the backup pool process ! </pre>";
-                        }
-          			}
-          			else {
-          				echo "<pre> Error, answer \"yes\" to valide the backup pool process from index.php ! /<pre>";
-          			}	
+                    if (isset($_POST['vmid'])) {
+                            echo "<pre>".shell_exec("sudo ssh -p $PORT root@$HOST 'sh -s' < PoolVMBackup.sh ".$_POST['vmid']." &")."</pre>";
+                    }	
                     ?>
                   </p>
                   </form>

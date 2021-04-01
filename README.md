@@ -160,21 +160,10 @@ nano PoolVMBackup.sh
 ```
 
 Localize the second line, and add your datastore into the ""
+
 ```
 DATASTORE="datastore-backup"
 ```
-
-To add virtual machines to the backup process, you must manually enter the VMIDs of the VM in the loop begining with for i in ...
-
-```
-for VM in 10 12 13 
-do
-    PWR=`vim-cmd vmsvc/power.getstate $VM | grep -v "Retrieved runtime info"`
-    name=`vim-cmd vmsvc/get.config $VM | grep -i "name =" | awk '{print $3}' | head -1 | awk -F'"' '{print $2}'` 
-    backupVM
-done
-```
-The numbers in the first line match with 3 VMID of 3 VM
 
 <br>
 
@@ -220,20 +209,39 @@ All the information have been stored into the db, click to "reload the dashboard
 <img src="https://i.imgur.com/raRj3uU.png">
 <i> This is the welcome page of vmSafeguard. </i> <br> <br>
 
+### Execute Backup(s) from the Web interface 
+
  - If you want to perfom a single backup, enter the machine's vmid, and then click to submit. <b> Once you have done that, wait 2/3 secs and then you can close the tab. </b>
 
-- Same thing for the Pool backup, but add manuelly the vmid in PoolVMBackup.sh before to answer <u>yes</u> and click to submit. <b> Once you have done that, wait 2/3 secs and then you can close the tab. </b>
+ <img src="https://i.imgur.com/8t5nyYN.png">
 
+- Same thing for the Pool backup, but add each vmid separed with a space and submit the form. <b> Once you have done that, wait 2/3 secs and then you can close the tab. </b>
 
+<img src="https://imgur.com/KLtX4zn.png">
+
+<br> 
+<br>
+
+## Other interesting features 
+
+<i> Example of the shutdown, suspend and start section (Action will be applied to <strong>all the VMs of your ESXi</strong>). </i> <br> <br>
+
+<img src="https://i.imgur.com/xSNOnmI.png">
+
+For exemple, when I press "Shutdown all VM", this is what will be displayed on your browser. 
 
 <img src="https://i.imgur.com/Iza3VUk.png">
-<i> Example of the shutdown section (For poweroff all the VMs of your ESXi). </i> <br> <br>
+
+<br> <br>
+Example of the summary section. Very useful part if you want to know the vmid of a VM(s) and other information like the ip adress, the os type etc.  <br> 
 
 <img src="https://i.imgur.com/ATbuaQe.png">
-<i> Example of the summary section. Very useful part if you want to know the vmid of a VM(s) </i> <br> <br>
+
+<br> <br>
+
+<i> ESXi VM OS stats </i> <br> <br>
 
 <img src="https://i.imgur.com/boIPUnv.png">
-<i> ESXi VM OS stats </i> <br> <br>
 
 # :ferris_wheel: Automating the backup process with a cron task
 
@@ -266,6 +274,8 @@ Example
 # Video Tutorial  
 
 Demo for backup a single virtual machine : https://www.youtube.com/watch?v=qpnd1YU8J1c
+
+Demo for backup a pool of virtual machines : COMING SOON
 
 :bookmark_tabs: Note that, if your machine is powered on, the backup folder will take a few moment before it's creation. vmSafeguard shutdown a VM with a safety mode. If the VM install some update, vmSafeguard, will wait until it's finished before to start the copy. (View the logs section for follow the backup process)
 

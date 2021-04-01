@@ -436,14 +436,15 @@ require('controller.php');
               <div class="card">
                 <div class="card-body">
                 <h4 class="card-title">Pool Backup</h4>
-                <p class="card-description"><i>When you have submitted the form, you can close the new tab after 2/3 secs</i></p>
+                <p class="card-description"><i><strong>Enter the VM VMIDs separate with a space. When you submitted the form, you can close the new tab after 2/3 secs</strong></i></p>
+                <p class="card-description"><i><strong></strong></i></p>
                 <form class="form-inline" target="_blank" action="scripts/PoolVMBackup.php" method="post">                  
                     <label class="sr-only" for="inlineFormInputGroupUsername2"></label>
                     <div class="input-group mb-2 mr-sm-2">
                       <div class="input-group-prepend">
                         <div class="input-group-text"></div>
                       </div>
-                      <input type="text" required class="form-control" name="answer" id="inlineFormInputGroupUsername2" placeholder="Enter yes to start">
+                      <input type="text" required class="form-control" name="vmid" id="inlineFormInputGroupUsername2" placeholder="Ex : 12 13 14">
                     </div>
                     <div class="form-check mx-sm-2">
                     </div>

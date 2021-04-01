@@ -35,11 +35,18 @@ include('scripts-menu-header-top-left.php');
                   <p class="card-description">
                     Verify that your task has been corretly written ! Otherwise, check again the crontask syntax.
                     <?php
-                      if (isset($_POST['submit'])) {
-                        shell_exec("sudo echo \"".htmlspecialchars($_POST['min'])." ".htmlspecialchars($_POST['hour'])." ".htmlspecialchars($_POST['dayOfMonth'])." ".htmlspecialchars($_POST['month'])." ".htmlspecialchars($_POST['dayOfWeek'])." sudo ssh -p $PORT root@$HOST 'sh -s' < /var/www/html/vmSafeguard/scripts/PoolVMBackup.sh &\" | crontab -")."</pre>";
-                        // echo $_POST['min']." ".$_POST['hour']." ".$_POST['dayOfMonth']." ".$_POST['month']." ".$_POST['dayOfWeek']." sudo ssh -p $PORT root@$HOST 'sh -s' < /var/www/html/ESXi-Web-Management-Tool/scripts/\" | crontab -";
+                      if (isset($_POST['Pool'])) {
+                        shell_exec("sudo echo \"".htmlspecialchars($_POST['min'])." ".htmlspecialchars($_POST['hour'])." ".htmlspecialchars($_POST['dayOfMonth'])." ".htmlspecialchars($_POST['month'])." ".htmlspecialchars($_POST['dayOfWeek'])." sudo ssh -p $PORT root@$HOST 'sh -s' < /var/www/html/vmSafeguard/scripts/PoolVMBackup.sh ".$_POST['vmid']." &\" | crontab -")."</pre>";
                         echo "<pre>".shell_exec("sudo cat /var/spool/cron/crontabs/www-data")."</pre>";
                         // cron task will be stored in /var/spool/cron/crontabs/www-data
+                      }
+                      else if (isset($_POST['Single'])) {
+                        shell_exec("sudo echo \"".htmlspecialchars($_POST['min'])." ".htmlspecialchars($_POST['hour'])." ".htmlspecialchars($_POST['dayOfMonth'])." ".htmlspecialchars($_POST['month'])." ".htmlspecialchars($_POST['dayOfWeek'])." sudo ssh -p $PORT root@$HOST 'sh -s' < /var/www/html/vmSafeguard/scripts/BackupSingleVM.sh ".$_POST['vmid']." &\" | crontab -")."</pre>";
+                        echo "<pre>".shell_exec("sudo cat /var/spool/cron/crontabs/www-data")."</pre>";
+                        // cron task will be stored in /var/spool/cron/crontabs/www-data
+                      }
+                      else {
+                        echo "Wrong Crontask, try again.";
                       }
                   ?>
                   </p>
