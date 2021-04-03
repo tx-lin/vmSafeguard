@@ -6,19 +6,12 @@ Enjoy :)
 
 Table of contents
 =
-   * [Prerequisite](#bookmark_tabs-prerequisite-)
-   * [Installation (Easyest way)](#pushpin-installation-easyest)
-   * [Installation (Hand installation)](#pushpin-installation-hand-installation)
-   * [Configuration](#computer-configuration-12---on-your-server-who-host-vmSafeguard-)
-      * [Create your own ssh-key pair](##create-your-ssh-key-pair-as-root)
-      * [Location for backup](#location-for-backup)
-      * [Files to edit](#files-to-edit)
-      * [Warning !](#warning-warning-)
-   * [Web Panel](#access-to-the-web-panel)
-   * [ Automating the pool backup process](#automating-the-backup-process-with-cron-tasks)
-   * [Common Questions](#questionspeech_balloon-notes--common-questions)
-      * [Know issues](#know-issues)
-   * [Other](#Other)
+
+Check the readme (auto generate) table of contents, by clicking on the icon underlined in yellow : 
+
+<img src="https://i.imgur.com/r9K4wjp.png">
+
+
 <br>
 <br>
 
