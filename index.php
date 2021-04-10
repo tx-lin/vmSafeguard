@@ -240,7 +240,7 @@ require('controller.php');
           <li class="nav-item">
             <a class="nav-link" href="scripts/crontask.php">
               <i class="mdi mdi-calendar-clock menu-icon"></i>
-              <span class="menu-title">Schedule a pool backup</span>
+              <span class="menu-title">Schedule a backup</span>
             </a>
           </li>
           <li class="nav-item">

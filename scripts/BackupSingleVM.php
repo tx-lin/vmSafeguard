@@ -35,10 +35,12 @@ include('scripts-menu-header-top-left.php');
                   <p class="card-description">
                   <?php
       						if (isset($_POST['vmid'])) {
-                    echo "<pre>".shell_exec("sudo ssh -p $PORT root@$HOST 'sh -s' < BackupSingleVM.sh ".$_POST['vmid']." &")."</pre>";
+                    echo "<pre>".shell_exec("sudo ssh -p $PORT root@$HOST 'sh -s' < BackupSingleVM.sh ".$_POST['vmid']." > /dev/null 2>/dev/null &")."";
+                    echo "The backup has been started !</pre>";
+                    echo "<button class=\"btn btn-primary mt-2 mt-xl-0\"><a style=\"color:white;\"href=\"show-log.php#footer\" >Latest logs</a></button>";
       						}
       						else {
-      							echo "WARNING = The VMID that you have entered is not attached to any VM. ";
+      							echo "<pre> WARNING = The VMID that you have entered is not attached to any VM. </pre>";
       						}
       						?>
                   </p>

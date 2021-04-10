@@ -204,11 +204,12 @@ All the information have been stored into the db, click to "reload the dashboard
 
 ### Execute Backup(s) from the Web interface 
 
- - If you want to perfom a single backup, enter the machine's vmid, and then click to submit. <b> Once you have done that, wait 2/3 secs and then you can close the tab. </b>
+ - If you want to perfom a <b> single backup </b>, enter the machine's vmid, and then click to submit. (If your VM is started, the backup proccess will securely shutdown the VM before to continue. - it may take few minutes -)
+
 
  <img src="https://i.imgur.com/8t5nyYN.png">
 
-- Same thing for the Pool backup, but add each vmid separed with a space and submit the form. <b> Once you have done that, wait 2/3 secs and then you can close the tab. </b>
+- Same thing for the <b> pool VMs backup </b>, but add each vmid separed with a space and submit the form. (If your VMs are started, the backup proccess will securely shutdown these VMs before to continue. - it may take few minutes - )
 
 <img src="https://imgur.com/KLtX4zn.png">
 
@@ -266,9 +267,9 @@ Example
 ```
 # Video Tutorial  
 
-Demo for backup a single virtual machine : https://www.youtube.com/watch?v=qpnd1YU8J1c
+Demo for backup a single virtual machine : https://www.youtube.com/watch?v=J-1uHs3L4Go
 
-Demo for backup a pool of virtual machines : COMING SOON
+Demo for backup a pool of virtual machines : https://www.youtube.com/watch?v=4wjztK1N38U
 
 :bookmark_tabs: Note that, if your machine is powered on, the backup folder will take a few moment before it's creation. vmSafeguard shutdown a VM with a safety mode. If the VM install some update, vmSafeguard, will wait until it's finished before to start the copy. (View the logs section for follow the backup process)
 
