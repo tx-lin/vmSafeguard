@@ -1,5 +1,6 @@
 <?php 
 require('../controller.php');
+$crontaskID = random_int (100,1000 ) ;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -36,19 +37,26 @@ include('scripts-menu-header-top-left.php');
                     Verify that your task has been corretly written ! Otherwise, check again the crontask syntax.
                     <?php
                       if (isset($_POST['Pool'])) {
-                        shell_exec("sudo echo \"".htmlspecialchars($_POST['min'])." ".htmlspecialchars($_POST['hour'])." ".htmlspecialchars($_POST['dayOfMonth'])." ".htmlspecialchars($_POST['month'])." ".htmlspecialchars($_POST['dayOfWeek'])." sudo ssh -p $PORT root@$HOST 'sh -s' < /var/www/html/vmSafeguard/scripts/PoolVMBackup.sh ".$_POST['vmid']." &\" | crontab -")."</pre>";
+                        shell_exec("sudo echo -e \"$(sudo crontab -u www-data -l)\n".htmlspecialchars($_POST['min'])." ".htmlspecialchars($_POST['hour'])." ".htmlspecialchars($_POST['dayOfMonth'])." ".htmlspecialchars($_POST['month'])." ".htmlspecialchars($_POST['dayOfWeek'])." sudo ssh -p $PORT root@$HOST 'sh -s' < /var/www/html/vmSafeguard/scripts/PoolVMBackup.sh ".$_POST['vmid']." & # ".$crontaskID."\" | sudo crontab -u www-data -")."</pre>";
                         echo "<pre>".shell_exec("sudo cat /var/spool/cron/crontabs/www-data")."</pre>";
                         // cron task will be stored in /var/spool/cron/crontabs/www-data
                       }
                       else if (isset($_POST['Single'])) {
-                        shell_exec("sudo echo \"".htmlspecialchars($_POST['min'])." ".htmlspecialchars($_POST['hour'])." ".htmlspecialchars($_POST['dayOfMonth'])." ".htmlspecialchars($_POST['month'])." ".htmlspecialchars($_POST['dayOfWeek'])." sudo ssh -p $PORT root@$HOST 'sh -s' < /var/www/html/vmSafeguard/scripts/BackupSingleVM.sh ".$_POST['vmid']." &\" | crontab -")."</pre>";
+                        shell_exec("sudo echo -e \"$(sudo crontab -u www-data -l)\n".htmlspecialchars($_POST['min'])." ".htmlspecialchars($_POST['hour'])." ".htmlspecialchars($_POST['dayOfMonth'])." ".htmlspecialchars($_POST['month'])." ".htmlspecialchars($_POST['dayOfWeek'])." sudo ssh -p $PORT root@$HOST 'sh -s' < /var/www/html/vmSafeguard/scripts/BackupSingleVM.sh ".$_POST['vmid']." & # ".$crontaskID."\" | sudo crontab -u www-data -")."</pre>";
                         echo "<pre>".shell_exec("sudo cat /var/spool/cron/crontabs/www-data")."</pre>";
                         // cron task will be stored in /var/spool/cron/crontabs/www-data
+                      }
+                      else if (isset($_POST['crontaskID'])) {
+                        if ($_POST['crontaskID'] == "000") {
+                          shell_exec("sudo rm /var/spool/cron/crontabs/www-data");
+                        }
+                        shell_exec("sudo sed -i '/".$_POST['crontaskID']."/d' /var/spool/cron/crontabs/www-data");
+                        echo "<pre>".shell_exec("sudo cat /var/spool/cron/crontabs/www-data")."</pre>";
                       }
                       else {
                         echo "Wrong Crontask, try again.";
                       }
-                  ?>
+                    ?>
                   </p>
                 </div>
               </div>

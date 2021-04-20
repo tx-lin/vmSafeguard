@@ -27,6 +27,33 @@ include('scripts-menu-header-top-left.php');
       <div class="main-panel">        
         <div class="content-wrapper">
           <div class="row">
+          <div class="col-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Current Crontab of www-data :</h4>
+                  <p class="card-description">
+                    <?php echo "<pre>".shell_exec("sudo cat /var/spool/cron/crontabs/www-data")."</pre>"; ?>
+                    <i> Enter the ID of the crontask that you want to delete, or fill up the form with "000", to delete the whole crontab. </i>
+                  </p>
+                  <form class="form-inline" action="saveCronTask.php" method="post">   
+                    <label class="sr-only" for="crontaskID">Crontask ID</label>
+                    <div class="input-group mb-2 mr-sm-2">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text">Crontask ID</div>
+                      </div>
+                      <input type="number" class="form-control" name="crontaskID" id="crontaskID" placeholder="Ex : 952">
+                    </div>
+                    <!--<div class="form-check mx-sm-2">
+                      <label class="form-check-label">
+                        <input type="checkbox" class="form-check-input" checked>
+                        Remember me
+                      </label>
+                    </div>-->
+                    <button type="submit" class="btn btn-primary mb-2">Submit</button>
+                  </form>
+                </div>
+              </div>
+            </div>
             <div class="col-md-6 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
@@ -89,9 +116,11 @@ include('scripts-menu-header-top-left.php');
                   </form>
                 </div>
               </div>
+            </div>
+          <div class="col-md-6 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <h4 class="card-title">Crontask (as www-data) - Scheduller, for a single VM backup</h4>
+                <h4 class="card-title">Crontask (as www-data) - Scheduller, for a single VM backup</h4>
                   <p class="card-description">
                     Warning : You need to respect the <a href="https://crontab.guru/" target="_blank"> crontab </a> syntax. Otherwise, the crontask will not be written to /var/spool/crontab/www-data. 
                   </p>
@@ -149,8 +178,8 @@ include('scripts-menu-header-top-left.php');
                     <button class="btn btn-light">Cancel</button>
                   </form>
                 </div>
-            </div>
-          </div>
+              </div>
+            </div> 
 <?php
 include('scripts-footer.php');
 ?> 
