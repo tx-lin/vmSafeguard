@@ -241,30 +241,22 @@ Example of the summary section. Very useful part if you want to know the vmid of
 
 ## With the web panel (Easyest way): 
 
-You can schedule a crontask for the "PoolVMBackup.sh", with the Graphical Interface. it's more user friendly. (executed as www-data)
+You can schedule a crontask for create a "Pool Backup", or just for one VM, with the Graphical Interface. Also, if you want in the futur to remove one crontask or all of them, you can use the "inline form" at the top of the screen. 
 
-<img src="https://i.imgur.com/YttVGdx.png">
+<img src="https://i.imgur.com/yj4qTQF.png">
 
 
 Once you have submited the form, you will see the crontask (If the cron syntax has been respected)
 
+<img src="https://i.imgur.com/os4cFp9.png">
 
-<img src="https://i.imgur.com/8BU4JED.png">
+### Remove a crontask ore the whole crontab (www-data's crontab)
 
-## With the terminal (Tedious)
+- In case of you want to remove one crontask or more, enter the id of the task cron and then press "submit". 
+- In case of you want to remove THE WHOLE CRONTAB, enter the code 000, and press "submit". 
 
-On the host server, edit your crontab manually <b> as root or www-data </b>
+<img src="https://i.imgur.com/BdfFH1F.png">
 
-```
-crontab -e 
-```
-Example 
-
-```
-# Every day at 23H50, PoolVMBackup.sh will be executed !
-50 23 * * * /var/www/html/vmSafeguard/scripts/PoolVMBackup.sh
-# Executed as root
-```
 # Video Tutorial  
 
 Demo for backup a single virtual machine : https://www.youtube.com/watch?v=J-1uHs3L4Go
