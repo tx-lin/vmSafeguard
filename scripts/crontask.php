@@ -62,7 +62,6 @@ include('scripts-menu-header-top-left.php');
                     Warning : You need to respect the <a href="https://crontab.guru/" target="_blank"> crontab </a> syntax. Otherwise, the crontask will not be written to /var/spool/crontab/www-data. 
                   </p>
                   <p class="card-description">
-                    <i> The crontask will be execute the following script : <strong> PoolVMBackup.sh </strong> </i>
                   </p>
                   <form class="forms-sample" action="saveCronTask.php" method="post">
                     <input type="hidden" name="Pool" value="Pool">
@@ -125,7 +124,6 @@ include('scripts-menu-header-top-left.php');
                     Warning : You need to respect the <a href="https://crontab.guru/" target="_blank"> crontab </a> syntax. Otherwise, the crontask will not be written to /var/spool/crontab/www-data. 
                   </p>
                   <p class="card-description">
-                    <i> The crontask will be execute the following script : <strong> BackupSingleVM </strong> </i>
                   </p>
                   <form class="forms-sample" action="saveCronTask.php" method="post">
                   <input type="hidden" name="Single" value="Single">

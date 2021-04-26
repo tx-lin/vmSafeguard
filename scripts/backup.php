@@ -23,8 +23,7 @@ require('../controller.php');
 <body>
 <?php
 include('scripts-menu-header-top-left.php');
-?>
-    <!-- partial -->
+?>     <!-- partial -->
       <div class="main-panel">        
         <div class="content-wrapper">
           <div class="row">
@@ -33,16 +32,16 @@ include('scripts-menu-header-top-left.php');
                 <div class="card-body">
                   <h4 class="card-title">Backup Single VM</h4>
                   <p class="card-description">
-                  <?php
-      						if (isset($_POST['vmid'])) {
-                    echo "<pre>".shell_exec("sudo ssh -p $PORT root@$HOST 'sh -s' < BackupSingleVM.sh ".$_POST['vmid']." > /dev/null 2>/dev/null &")."";
-                    echo "The backup has been started !</pre>";
-                    echo "<button class=\"btn btn-primary mt-2 mt-xl-0\"><a style=\"color:white;\"href=\"show-log.php#footer\" >Latest logs</a></button>";
-      						}
-      						else {
-      							echo "<pre> WARNING = The VMID that you have entered is not attached to any VM. </pre>";
-      						}
-      						?>
+                    <?php
+                    if (isset($_POST['vmid'])) {
+                        echo "<pre>".shell_exec("sudo ssh -p $PORT root@$HOST 'sh -s' < backup.sh ".$_POST['vmid']." > /dev/null 2>/dev/null &")."";
+                        echo "The backup has been started !</pre>";
+                        echo "<button class=\"btn btn-primary mt-2 mt-xl-0\"><a style=\"color:white;\"href=\"show-log.php#footer\" >Latest logs</a></button>";
+                    }
+                    else {
+                      echo "<pre> WARNING = One or more VMIDs that you have entered is not attached to any VM. </pre>";
+                    }
+                    ?>
                   </p>
                   </form>
                 </div>
@@ -50,4 +49,6 @@ include('scripts-menu-header-top-left.php');
             </div>
           </div>
         </div>
+        <!-- content-wrapper ends -->
+        <!-- partial:partials/_footer.html -->
 <?php include('scripts-footer.php') ?>

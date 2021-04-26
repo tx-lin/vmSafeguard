@@ -347,7 +347,7 @@ require('controller.php');
                     <div class="tab-pane fade" id="sales" role="tabpanel" aria-labelledby="sales-tab">
                       <div class="d-flex flex-wrap justify-content-xl-between">
                         <div class="d-none d-xl-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
-                          <form class="form-inline" target="_blank" action="scripts/summarySingleVM.php" method="post">                  
+                          <form class="form-inline" target="_blank" action="scripts/backup.php" method="post">                  
                             <label class="sr-only" for="inlineFormInputGroupUsername2"></label>
                             <div class="input-group mb-2 mr-sm-2">
                               <div class="input-group-prepend">
@@ -391,8 +391,8 @@ require('controller.php');
               <div class="card">
                 <div class="card-body">
                   <p class="card-title">Last Backup(s) : </p>
-                  <i><p class="mb-4"> Note that every 60 days, the last backup folder will be deleted. </p></i>
-                  <h5 class="mr-2 mb-0"><?php echo "<pre>".shell_exec("sudo ssh -p $PORT root@$HOST 'ls -dt $CHECKBACKUPFOLDER'")."</pre>";?></h5>
+                  <i><p class="mb-4">Content of your "Backup datastore" : <?php echo $CHECKBACKUPFOLDER ?></p></i>
+                  <h5 class="mr-2 mb-0"><?php echo "<pre>".shell_exec("sudo ssh -p $PORT root@$HOST 'ls -tl $CHECKBACKUPFOLDER'")."</pre>";?></h5>
                 </div>
               </div>
             </div>
@@ -417,7 +417,7 @@ require('controller.php');
                 <div class="card-body">
                   <h4 class="card-title">Single Backup</h4>
                   <p class="card-description"><i>When you have submitted the form, you can close the new tab after 2/3 secs</i></p>
-                  <form class="form-inline" target="_blank" action="scripts/BackupSingleVM.php" method="post">                  
+                  <form class="form-inline" target="_blank" action="scripts/backup.php" method="post">                  
                     <label class="sr-only" for="inlineFormInputGroupUsername2"></label>
                     <div class="input-group mb-2 mr-sm-2">
                       <div class="input-group-prepend">
@@ -438,7 +438,7 @@ require('controller.php');
                 <h4 class="card-title">Pool Backup</h4>
                 <p class="card-description"><i><strong>Enter the VM VMIDs separate with a space. When you submitted the form, you can close the new tab after 2/3 secs</strong></i></p>
                 <p class="card-description"><i><strong></strong></i></p>
-                <form class="form-inline" target="_blank" action="scripts/PoolVMBackup.php" method="post">                  
+                <form class="form-inline" target="_blank" action="scripts/backup.php" method="post">                  
                     <label class="sr-only" for="inlineFormInputGroupUsername2"></label>
                     <div class="input-group mb-2 mr-sm-2">
                       <div class="input-group-prepend">

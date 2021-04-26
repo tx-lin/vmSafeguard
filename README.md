@@ -128,46 +128,27 @@ You can use any of them, that's okay. But <b> I suggest you use the second metho
 <br>
 
 
-### :pencil2: Edit the first .sh file (BackupSingleVM.sh) [1/2]
+### :pencil2: Edit the first .sh backup script (scripts/backup.sh) [1/2]
 <br>
 
 ```
 cd /var/www/html/vmSafeguard/scripts
-nano BackupSingleVM.sh
+nano backup.sh
 ```
 
 Localize the second line, and add your datastore into the ""
 ```
 DATASTORE="datastore-backup"
 ```
-
-<br>
-
-### :pencil2: Edit the second .sh file (PoolVMBackup.sh) [2/2]
-
-<br>
-
-```
-cd /var/www/html/vmSafeguard/scripts
-nano PoolVMBackup.sh
-```
-
-Localize the second line, and add your datastore into the ""
-
-```
-DATASTORE="datastore-backup"
-```
-
-<br>
 
 
 ### :warning: Warning concerning the VMs storage path : 
 
 <br>
 
-As I said previously your VMs can be stored in any datastores of your ESXi, <b> BUT they need to be at the root of the datastore like <code> /vmfs/volumes/mydatastore/myVirtualMachineDebianFolder </code> <br> </b>
+As I said previously your VMs can be stored in any datastores of your ESXi, <b> BUT they need to be at the root of the datastore like <code> /vmfs/volumes/datastore-backup/VMDebianFolder </code> <br> </b>
 
-if it's not the case, change the value of the variable <code>"cutedpath=" </code>in the function backupVM(), you will need to edit this variable 4 times, two times in each files.  BackupSingleVM.sh / PoolVMBackup.sh.
+if it's not the case, change the value of the variable <code>"cutedpath=" </code>in the function backupVM() (backup.sh)
 
 
 #### That's it for the configuration of vmSafeguard :white_check_mark: , you will be able to start vmSafeguard trought the web
@@ -278,12 +259,7 @@ Demo for backup a pool of virtual machines : https://www.youtube.com/watch?v=4wj
 
 3 - Don't turn off your server who host vmSafeguard :blush: , when a backup is running. Otherwise it will be cancel the ssh connexion between vmSafeguard and the ESXI
 
-4 - If you want to change the name of the repository project, please do the following action : 
-   - ``` mv vmSafeguard newName/ ``` 
-   - change the "AuthUserFile" path : ``` AuthUserFile "/var/www/html/newName/.htpasswd" ``` 
-   - change the PoolVMBackup.sh path in saveCronTask.php 
-
-5 - If you want to reinstall vmSafeGuard, just git clone the projet into /var/www/html, and put the correct rights and owner to the project folder. 
+4 - If you want to reinstall vmSafeGuard, just git clone the projet into /var/www/html, and put the correct rights and owner to the project folder. 
 
 ``` 
 chmod 700 -R /var/www/html/vmSafeguard
