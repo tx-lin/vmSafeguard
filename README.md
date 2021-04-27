@@ -270,7 +270,7 @@ chown www-data:www-data -R /var/www/html/vmSafeguard
 # Other
 
 
-If you detect an error in vmSafeguard, please open a github issue, or contact me mailto:brlndtech@gmail.com
+If you detect an error in vmSafeguard, please open a github issue.
 
 Releases details : https://github.com/brlndtech/vmSafeguard/projects/1 (section "version" (english))
 
