@@ -107,7 +107,7 @@ include('scripts-menu-header-top-left.php');
                     <div class="form-group row">
                       <label for="exampleInputPassword2" class="col-sm-3 col-form-label">Vmids of the VMs</label>
                       <div class="col-sm-9">
-                        <input type="text" name="vmid" class="form-control" id="vmid" placeholder=" ex : 12 13 14 15">
+                        <input type="text" pattern="[0-9 ]+" name="vmid" class="form-control" id="vmid" placeholder=" ex : 12 13 14 15">
                       </div>
                     </div>
                     <button type="submit" name="submit" target="_blank" class="btn btn-primary mr-2">Submit</button>

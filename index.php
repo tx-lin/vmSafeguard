@@ -347,7 +347,7 @@ require('controller.php');
                     <div class="tab-pane fade" id="sales" role="tabpanel" aria-labelledby="sales-tab">
                       <div class="d-flex flex-wrap justify-content-xl-between">
                         <div class="d-none d-xl-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
-                          <form class="form-inline" target="_blank" action="scripts/backup.php" method="post">                  
+                          <form class="form-inline" target="_blank" action="scripts/summarySingleVM.php" method="post">                  
                             <label class="sr-only" for="inlineFormInputGroupUsername2"></label>
                             <div class="input-group mb-2 mr-sm-2">
                               <div class="input-group-prepend">
@@ -444,7 +444,7 @@ require('controller.php');
                       <div class="input-group-prepend">
                         <div class="input-group-text"></div>
                       </div>
-                      <input type="text" required class="form-control" name="vmid" id="inlineFormInputGroupUsername2" placeholder="Ex : 12 13 14">
+                      <input type="text" pattern="[0-9 ]+" required class="form-control" name="vmid" id="inlineFormInputGroupUsername2" placeholder="Ex : 12 13 14">
                     </div>
                     <div class="form-check mx-sm-2">
                     </div>

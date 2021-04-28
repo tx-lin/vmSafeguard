@@ -31,7 +31,7 @@ include('scripts-menu-header-top-left.php');
             <div class="col-12 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <h4 class="card-title">Summary of <?php echo $_POST['vmid'];?> </h4>
+                  <h4 class="card-title">Summary of <?php echo htmlspecialchars($_POST['vmid']);?> </h4>
                   <p class="card-description">
                   <?php
       						if (isset($_POST['vmid'])) {
