@@ -43,10 +43,11 @@ And especially not like that
 
 Update your server before to start the installation. <code>apt update</code> 
 
+if you used debian, please execute this command as root <code> su - </code>  before to run the next command. :) 
+
 ```
 sudo curl -sL https://raw.githubusercontent.com/brlndtech/vmSafeguard/master/setup.sh | bash
-``` 
-
+```
 # :pushpin: Installation (Hand installation -> tedious)
 ```
 sudo apt update && apt upgrade
