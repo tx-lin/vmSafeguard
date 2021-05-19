@@ -46,7 +46,7 @@ include('scripts-menu-header-top-left.php');
                       </div>
                       <label for="exampleInputUsername2" class="col-sm-3 col-form-label">Backup folder</label>
                       <div class="col-sm-9">
-                        <input type="text" name="CheckBackupFolder"class="form-control" id="CheckBackupFolder" required placeholder="ex : /vfms/volumes/datastore1/backup*">
+                        <input type="text" name="CheckBackupFolder"class="form-control" id="CheckBackupFolder" required placeholder="ex : /vfms/volumes/datastore1/">
                       </div>
                       <label for="exampleInputUsername2" class="col-sm-3 col-form-label">Logs Path</label>
                       <div class="col-sm-9">

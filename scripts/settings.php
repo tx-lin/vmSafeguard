@@ -45,7 +45,7 @@ include('scripts-menu-header-top-left.php');
                       </div>
                       <label for="exampleInputUsername2" class="col-sm-3 col-form-label">Backup folder</label>
                       <div class="col-sm-9">
-                        <input type="text" name="CheckBackupFolder"class="form-control" id="CheckBackupFolder" required placeholder="ex : /vfms/volumes/datastore1/backup*">
+                        <input type="text" name="CheckBackupFolder"class="form-control" id="CheckBackupFolder" required placeholder="ex : /vfms/volumes/datastore1/">
                       </div>
                       <label for="exampleInputUsername2" class="col-sm-3 col-form-label">Logs Path</label>
                       <div class="col-sm-9">
@@ -111,7 +111,29 @@ include('scripts-menu-header-top-left.php');
                 </div>
               </div>
             </div>
+            <div class="col-md-6 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                <h4 class="card-title">Time for update the percent % progression of the backup </h4>
+                  <p class="card-description">
+                    Tthis form will be update the babackup.sh file. 
+                  </p>
+                  <form class="forms-sample" action="timeForSyncPercentProgressionBackup.php" method="post" >
+                    <div class="form-group">
+                      <div class="input-group">
+                        <input type="number" min="1" max="3600" name="timeRefreshPercent" class="form-control" required placeholder="Value between 10 - 3600">
+                        <div class="input-group-append">
+                          <button name="submit" class="btn btn-sm btn-primary" type="submit">save</button>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
         <!-- content-wrapper ends -->
         <!-- partial:partials/_footer.html -->
 <?php include('scripts-footer.php') ?>

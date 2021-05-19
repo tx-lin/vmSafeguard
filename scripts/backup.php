@@ -1,6 +1,4 @@
-<?php 
-require('../controller.php');
-?>
+<?php require('../controller.php');?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,9 +19,8 @@ require('../controller.php');
 </head>
 
 <body>
-<?php
-include('scripts-menu-header-top-left.php');
-?>     <!-- partial -->
+<?php include('scripts-menu-header-top-left.php');?>     
+  <!-- partial -->
       <div class="main-panel">        
         <div class="content-wrapper">
           <div class="row">
@@ -34,8 +31,11 @@ include('scripts-menu-header-top-left.php');
                   <p class="card-description">
                     <?php
                     if (isset($_POST['vmid'])) {
-                        echo "<pre>".shell_exec("sudo ssh -p $PORT root@$HOST 'sh -s' < backup.sh ".$_POST['vmid']." > /dev/null 2>/dev/null &")."";
-                        echo "The backup has been started !</pre>";
+                        echo "<pre>".shell_exec("sudo ssh -p $PORT root@$HOST 'sh -s' < checkIfVMExist.sh ".$_POST['vmid']."")."";
+                        shell_exec("sudo ssh -p $PORT root@$HOST 'sh -s' < backup.sh ".$_POST['vmid']." > /dev/null 2>/dev/null &");
+                        sleep (1);
+                        $CHECKBACKUPFOLDER="".$CHECKBACKUPFOLDER."backup*";
+                        echo "New root backup folder has been created to welcome VM(s) backup : ".shell_exec("sudo ssh -p $PORT root@$HOST 'ls -dt1 $CHECKBACKUPFOLDER | head -n 1 '")."</pre>";
                         echo "<button class=\"btn btn-primary mt-2 mt-xl-0\"><a style=\"color:white;\"href=\"show-log.php#footer\" >Latest logs</a></button>";
                     }
                     else {

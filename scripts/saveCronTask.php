@@ -1,7 +1,8 @@
 <?php 
 require('../controller.php');
 $crontaskID = random_int (100,1000 ) ;
-$scriptPath = "/var/www/html/vmSafeguard/scripts/backup.sh" ; 
+$scriptPath = "".__DIR__."/backup.sh" ; 
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
