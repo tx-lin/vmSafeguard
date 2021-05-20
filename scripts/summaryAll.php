@@ -1,6 +1,4 @@
-<?php 
-require('../controller.php');
-?>
+<?php require('../controller.php'); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,9 +19,7 @@ require('../controller.php');
 </head>
 
 <body>
-<?php
-include('scripts-menu-header-top-left.php');
-?>
+<?php include('scripts-menu-header-top-left.php'); ?>
       <!-- partial -->
       <div class="main-panel">        
         <div class="content-wrapper">

@@ -2,7 +2,6 @@
 require('../controller.php');
 $crontaskID = random_int (100,1000 ) ;
 $scriptPath = "".__DIR__."/backup.sh" ; 
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -24,9 +23,7 @@ $scriptPath = "".__DIR__."/backup.sh" ;
 </head>
 
 <body>
-<?php
-include('scripts-menu-header-top-left.php');
-?>
+<?php include('scripts-menu-header-top-left.php'); ?>
       <!-- partial -->
       <div class="main-panel">        
         <div class="content-wrapper">

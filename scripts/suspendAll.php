@@ -1,6 +1,4 @@
-<?php 
-require('../controller.php');
-?>
+<?php require('../controller.php'); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,9 +17,7 @@ require('../controller.php');
   <!-- endinject -->
   <link rel="shortcut icon" href="../images/favicon.png" />
 </head>
-<?php
-include('scripts-menu-header-top-left.php');
-?>
+<?php include('scripts-menu-header-top-left.php'); ?>
       <!-- partial -->
       <div class="main-panel">        
         <div class="content-wrapper">

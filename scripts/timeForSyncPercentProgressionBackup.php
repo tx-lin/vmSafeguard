@@ -15,13 +15,10 @@
   <!-- inject:css -->
   <link rel="stylesheet" href="../css/style.css">
   <!-- endinject -->
-  <link rel="shortcut icon" href="../images/favicon.png" />
 </head>
 
 <body>
-<?php
-include('scripts-menu-header-top-left.php');
-?>
+<?php include('scripts-menu-header-top-left.php');?>
       <!-- partial -->
       <div class="main-panel">        
         <div class="content-wrapper">

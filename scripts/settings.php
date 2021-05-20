@@ -18,9 +18,7 @@
 </head>
 
 <body>
-<?php
-include('scripts-menu-header-top-left.php');
-?>
+<?php include('scripts-menu-header-top-left.php'); ?>
       <!-- partial -->
       <div class="main-panel">        
         <div class="content-wrapper">

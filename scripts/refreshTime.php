@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php require '../connexionpdo.php'?>
+<?php require ('../connexionpdo.php')?>
 <head>
   <!-- Required meta tags -->
   <meta charset="utf-8">
@@ -19,9 +19,7 @@
 </head>
 
 <body>
-<?php
-include('scripts-menu-header-top-left.php');
-?>
+<?php include('scripts-menu-header-top-left.php'); ?>
       <!-- partial -->
       <div class="main-panel">        
         <div class="content-wrapper">
