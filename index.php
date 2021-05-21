@@ -22,19 +22,13 @@ require('controller.php');
   <!-- endinject -->
   <link rel="shortcut icon" href="other/favicon-32x32.png" />
   <?php
+
     exec("ping -c 1 " . $HOST, $output, $result);
 
-    // print_r ($result);
-    // print_r ($output);
-    
     if ($result == 1) {
         echo "<script>alert('Your ESXi ".$HOST." appears to be offline ')</script>";
     }
-    /*
-    else {
-        echo "<script>alert('Your ESXi ".$HOST." is online')</script>";
-    }
-    */
+    
   ?>
 </head>
 <body>
@@ -87,59 +81,6 @@ require('controller.php');
               <span class="menu-title">Dashboard</span>
             </a>
           </li>
-          <!--<li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
-              <i class="mdi mdi-circle-outline menu-icon"></i>
-              <span class="menu-title">UI Elements</span>
-              <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="ui-basic">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">Buttons</a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Typography</a></li>
-              </ul>
-            </div>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="pages/forms/basic_elements.html">
-              <i class="mdi mdi-view-headline menu-icon"></i>
-              <span class="menu-title">Form elements</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="pages/charts/chartjs.html">
-              <i class="mdi mdi-chart-pie menu-icon"></i>
-              <span class="menu-title">Charts</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="pages/tables/basic-table.html">
-              <i class="mdi mdi-grid-large menu-icon"></i>
-              <span class="menu-title">Tables</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="pages/icons/mdi.html">
-              <i class="mdi mdi-emoticon menu-icon"></i>
-              <span class="menu-title">Icons</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
-              <i class="mdi mdi-account menu-icon"></i>
-              <span class="menu-title">User Pages</span>
-              <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="auth">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/login.html"> Login </a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/login-2.html"> Login 2 </a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/register.html"> Register </a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/register-2.html"> Register 2 </a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/lock-screen.html"> Lockscreen </a></li>
-              </ul>
-            </div>
-          </li>-->
           <li class="nav-item">
             <a class="nav-link" href="scripts/crontask.php">
               <i class="mdi mdi-calendar-clock menu-icon"></i>
@@ -179,19 +120,9 @@ require('controller.php');
                   <div class="d-flex">
                     <i class="mdi mdi-home text-muted hover-cursor"></i>
                     <p class="text-muted mb-0 hover-cursor">&nbsp;/&nbsp;Dashboard&nbsp;/&nbsp;</p>
-                    <!--<p class="text-primary mb-0 hover-cursor">Analytics</p>-->
                   </div>
                 </div>
                 <div class="d-flex justify-content-between align-items-end flex-wrap">
-                  <!--<button type="button" class="btn btn-light bg-white btn-icon mr-3 d-none d-md-block ">
-                    <i class="mdi mdi-download text-muted"></i>
-                  </button>
-                  <button type="button" class="btn btn-light bg-white btn-icon mr-3 mt-2 mt-xl-0">
-                    <i class="mdi mdi-clock-outline text-muted"></i>
-                  </button>
-                  <button type="button" class="btn btn-light bg-white btn-icon mr-3 mt-2 mt-xl-0">
-                    <i class="mdi mdi-plus text-muted"></i>
-                  </button>-->
                   <button class="btn btn-primary mt-2 mt-xl-0"><a style="color:white;"href="scripts/esxiStats.php" >ESXI Stats</a></button>
                 </div>
               </div>
@@ -393,98 +324,4 @@ require('controller.php');
 </body>
 
 </html>
-
-          <!--<div class="row">
-            <div class="col-md-12 stretch-card">
-              <div class="card">
-                <div class="card-body">
-                  <p class="card-title">Recent Purchases</p>
-                  <div class="table-responsive">
-                    <table id="recent-purchases-listing" class="table">
-                      <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Status report</th>
-                            <th>Office</th>
-                            <th>Price</th>
-                            <th>Date</th>
-                            <th>Gross amount</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                            <td>Jeremy Ortega</td>
-                            <td>Levelled up</td>
-                            <td>Catalinaborough</td>
-                            <td>$790</td>
-                            <td>06 Jan 2018</td>
-                            <td>$2274253</td>
-                        </tr>
-                        <tr>
-                            <td>Alvin Fisher</td>
-                            <td>Ui design completed</td>
-                            <td>East Mayra</td>
-                            <td>$23230</td>
-                            <td>18 Jul 2018</td>
-                            <td>$83127</td>
-                        </tr>
-                        <tr>
-                            <td>Emily Cunningham</td>
-                            <td>support</td>
-                            <td>Makennaton</td>
-                            <td>$939</td>
-                            <td>16 Jul 2018</td>
-                            <td>$29177</td>
-                        </tr>
-                        <tr>
-                            <td>Minnie Farmer</td>
-                            <td>support</td>
-                            <td>Agustinaborough</td>
-                            <td>$30</td>
-                            <td>30 Apr 2018</td>
-                            <td>$44617</td>
-                        </tr>
-                        <tr>
-                            <td>Betty Hunt</td>
-                            <td>Ui design not completed</td>
-                            <td>Lake Sandrafort</td>
-                            <td>$571</td>
-                            <td>25 Jun 2018</td>
-                            <td>$78952</td>
-                        </tr>
-                        <tr>
-                            <td>Myrtie Lambert</td>
-                            <td>Ui design completed</td>
-                            <td>Cassinbury</td>
-                            <td>$36</td>
-                            <td>05 Nov 2018</td>
-                            <td>$36422</td>
-                        </tr>
-                        <tr>
-                            <td>Jacob Kennedy</td>
-                            <td>New project</td>
-                            <td>Cletaborough</td>
-                            <td>$314</td>
-                            <td>12 Jul 2018</td>
-                            <td>$34167</td>
-                        </tr>
-                        <tr>
-                            <td>Ernest Wade</td>
-                            <td>Levelled up</td>
-                            <td>West Fidelmouth</td>
-                            <td>$484</td>
-                            <td>08 Sep 2018</td>
-                            <td>$50862</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>-->
-        <!-- content-wrapper ends -->
-        <!-- partial:partials/_footer.html -->
-
 

@@ -1,5 +1,5 @@
 #!/bin/bash
-echo -e "\e[33m The installation process of EWMT will start in few seconds ... \e[39m"
+echo -e "\e[33mThe installation process of EWMT will start in few seconds ... \e[39m"
 if [ "$1" == "docker" ]; then
     echo -e "\e[32m-----> Setup customization for docker container is starting ...\e[39m"
     sleep 2
@@ -13,7 +13,7 @@ if [ "$1" == "docker" ]; then
     sudo a2enmod ssl
     sudo a2enmod rewrite
     sudo a2ensite default-ssl.conf
-    echo -e "\e[32m Done !\e[39m"
+    echo -e "\e[32mDone !\e[39m"
 else
     echo -e "\e[32m-----> Normal installation is starting ...\e[39m"
     sleep 2
@@ -34,5 +34,5 @@ else
     sudo systemctl restart apache2
     sleep 2
     sudo systemctl enable apache2
-    echo -e "\e[32m Done !\e[39m"
+    echo -e "\e[32mDone !\e[39m"
 fi

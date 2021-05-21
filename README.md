@@ -17,23 +17,23 @@ Check the readme (auto generate) table of contents, by clicking on the icon unde
 
 # :bookmark_tabs: Prerequisite !
 
-- vmSafeguard can be installed under "Debian Family". For the  devloppment of this project, I currently use Ubuntu 20.04, Php 7.4, Apache 2.4.X. To avoid unknow errors, I recommand you to use Ubuntu too.
-- <b> <code> curl </code> and <code> sudo </code> command need to be install  ! </b>
-- An ESXi Server operational and available trought your local network. (1 or more)
-- All machines of your ESXi need to have the VMwareTools. Without it, vmSafeguard can't run correctly.
+- vmSafeguard can be installed under "Debian Family". For the  devloppment of this project, I currently use Ubuntu 20.04, Php 7.4, Apache 2.4.X. To avoid unknow errors, I recommand you to use Ubuntu, Debian or Kali linux.
+
+- <strong> <code> curl </code> and <code> sudo </code> command need to be install  ! </strong>
+- An ESXi Server operational that can communicate with the machine that will host vmSafeguard (pinguable) 
 - SSH service, and ESXi shell need to be activated ! (at the startup)
-- "SSH key Authentification" between Hypervisor(s) and the host. 
+- Administrator privileges on ESXi and your Linux host
 
 ### :heavy_exclamation_mark: Especially not to do
 - <strong> Don't add space between each word of a vm name. </strong> (VMs need to have a
-nomenclature like this : Debian-10-64Bits or Debian_10_64bits but not like that : Debian 10 64bits
+nomenclature like this : Debian-10-64Bits or Debian_10_64bits but not like that : Debian 10 64bits, <strong> otherwise vmSafeguard will crash </strong>
 - <strong> don't store you VM in a subfolder of a datastore. </strong> (VMs need to be stored at the root of a specific datastore like that : 
 <br>
-/vmfs/volume/datatsore/MyDebian10Vm :white_check_mark:
+/vmfs/volume/datatsore1/MyDebian10Vm/ :white_check_mark:
 <br>
 And especially not like that
 <br>
-/vmfs/volume/datastore/VMsdebian/MyDebian10Vm :x:
+/vmfs/volume/datastore1/VMsdebian/MyDebian10Vm/ :x:
 
 # :pushpin: Installation (Easyest)
 
@@ -48,6 +48,12 @@ if you used debian, please execute this command as root <code> su - </code>  bef
 ```
 sudo curl -sL https://raw.githubusercontent.com/brlndtech/vmSafeguard/master/setup.sh | bash
 ```
+## Do you want to run vmSafeguard as a contaiener with docker (beta) ? 
+
+It's now possible ! But I don't recommanded this alternative for a production environnement !
+
+Navigate to other/READMEDocker.md, to see a quick tutorial for setup vmSafeguard as a docker container.
+
 # :pushpin: Installation (Hand installation -> tedious)
 ```
 sudo apt update && apt upgrade
@@ -158,28 +164,35 @@ if it's not the case, change the value of the variable <code>"cutedpath=" </code
 
 # :fast_forward: Access to the web panel
 
-## Authentification with .htaccess / .htpasswd ()
+## Authentification .htaccess / .htpasswd and first connexion
 
-When you access to vmSafeguard, you need to provide an id and a password: . 
+Setup your first connexion : http(s)://your-ip/vmSafeguard/scripts/starter.php
+
+When you access to vmSafeguard, you need to provide an id and a password : 
+
+Default credential : 
 
 - ID : admin
 - Password : helloworld
 
-Feel free to change them ASAP via https://your-ip/vmSafeguard/scripts/settings.php :)
+Feel free to change them ASAP via the settings menu
 
 If you want to disable the auth process, remove .htaccess / .htpasswd (location : root of the project)
 
-Go to the admin panel setup page to add a ESXi host to vmSafeguard https://your-ip/vmSafeguard/scripts/starter.php, or https://your-ip/vmSafeguard/scripts/settings.php if you have firstly updated your credentials. All of the informations about the ESXi(s) will be stored into a sqlite db localized into scripts/vmSafeguard.db.
-
-
-
 <img src="https://i.imgur.com/QjxGCc1.png">
-Fill all the fields and submit. <br><br><br>
+
+Backup folder : /vmfs/volumes/datastore-backup/
+- place that will welcome the futur backup 
+
+Logs Path : /vmfs/volumes/datastore-backup/logsbackup.txt
+- vmSafeguard logs are stored on the datastore.
+
+Fill all the fields and submit. <br><br>
 <img src="https://i.imgur.com/z3pL20V.png">
 
 All the information have been stored into the db, click to "reload the dashboard", to access to the main menu of vmSafeguard.  <br><br><br>
 
-## :anchor: vmGuard's Dashboard
+## :anchor: vmSafeguard's Dashboard
 
 <img src="https://i.imgur.com/raRj3uU.png">
 <i> This is the welcome page of vmSafeguard. </i> <br> <br>

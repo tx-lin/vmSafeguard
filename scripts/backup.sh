@@ -27,7 +27,7 @@ backupVM() {
       	  vim-cmd vmsvc/power.shutdown $VM
           result=$?
           if [ $result -ne 0 ]; then
-             echo -e "   Warning, $name does not have vmware tools, so she has been poweroff (it's not a securely shutdown !)\n" >> $PATHLOG
+             echo -e "   Warning, $name does not have vmware tools, so she has been powered off (it's not a securely shutdown !)\n" >> $PATHLOG
              vim-cmd vmsvc/power.off $VM
           fi
       	  sleep 15

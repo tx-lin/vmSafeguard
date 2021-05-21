@@ -9,7 +9,7 @@ for VM in $VMS ; do
      if [ "$PWR" == "Powered off" ] ; then
           RUNNING=1
           vim-cmd vmsvc/power.on $VM > /dev/null &
-          echo "$name (VMID : $VM)  has been start"
+          echo "$name (VMID : $VM)  has been started"
      else
           echo "WARNING : $name (VMID : $VM)  is already started !"
      fi
