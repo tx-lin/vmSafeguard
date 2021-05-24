@@ -7,8 +7,8 @@
 As root, execute the following command : 
 
 ```
-docker run -d -p 8080:80 brlndtech/vmSafeguard
-# docker run -d -p 8080:443 brlndtech/vmSafeguard if you wan to use https protocol
+docker run -d -p 8080:80 brlndtech/vmsafeguard
+# docker run -d -p 8080:443 brlndtech/vmsafeguard if you wan to use https protocol
 docker ps 
 docker exec -it <id of the container vmSafeguard> bash
 -----------------
