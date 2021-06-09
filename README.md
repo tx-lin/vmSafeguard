@@ -211,27 +211,6 @@ All the information have been stored into the db, click to "reload the dashboard
 <br> 
 <br>
 
-## Other interesting features 
-
-<i> Example of the shutdown, suspend and start section (Action will be applied to <strong>all the VMs of your ESXi</strong>). </i> <br> <br>
-
-<img src="https://i.imgur.com/xSNOnmI.png">
-
-For exemple, when I press "Shutdown all VM", this is what will be displayed on your browser. 
-
-<img src="https://i.imgur.com/Iza3VUk.png">
-
-<br> <br>
-Example of the summary section. Very useful part if you want to know the vmid of a VM(s) and other information like the ip adress, the os type etc.  <br> 
-
-<img src="https://i.imgur.com/ATbuaQe.png">
-
-<br> <br>
-
-<i> ESXi VM OS stats </i> <br> <br>
-
-<img src="https://i.imgur.com/boIPUnv.png">
-
 # :ferris_wheel: Automating the backup process with a cron task
 
 ## With the web panel (Easyest way): 
@@ -251,6 +230,45 @@ Once you have submited the form, you will see the crontask (If the cron syntax h
 - In case of you want to remove THE WHOLE CRONTAB, enter the code 000, and press "submit". 
 
 <img src="https://i.imgur.com/BdfFH1F.png">
+
+
+# Other interesting features 
+
+## Shutdown/Suspend/Start/Summary* vms
+
+<i> Example of the shutdown, suspend and start section (Action will be applied to <strong>all the VMs of your ESXi</strong>). </i> <br> <br>
+
+<img src="https://i.imgur.com/xSNOnmI.png">
+
+For exemple, when I press "Shutdown all VM", this is what will be displayed on your browser. 
+
+<img src="https://i.imgur.com/Iza3VUk.png">
+
+<br> <br>
+Example of the summary section. Very useful part if you want to know the vmid of a VM(s) and other information like the ip adress, the os type etc.  <br> 
+
+<img src="https://i.imgur.com/ATbuaQe.png">
+
+<br> <br>
+
+## ESXi VM OS stats 
+
+This page show you the percent of windows / linux VMs of your ESXi, and how many VMs are started/powered off etc. 
+
+<img src="https://i.imgur.com/boIPUnv.png">
+
+
+##  Settings Menu 
+
+This menu allow you to do a lot of different things like : 
+- change your password 
+- add an other ESXi to the database 
+- convert a thick disk to thin and vice versa 
+- etc.
+
+(Maybe in the futur other features will be implemented. If you have any ideas, submit it to me)
+
+<img src="https://i.imgur.com/gdNr6bx.png">
 
 # Video Tutorial  
 
