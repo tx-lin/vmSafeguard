@@ -1,7 +1,7 @@
         <footer id="footer" class="footer">
           <div class="d-sm-flex justify-content-center justify-content-sm-between">
             <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">vmSafeguard © <script>new Date().getFullYear()>2010&&document.write(" - "+new Date().getFullYear());</script> <a href="https://www.bootstrapdash.com/" target="_blank">Thank's to Bootstrapdash</a>. All rights reserved.</span>
-            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Brlndtech Edit</span>
+            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Archidote Edit</span>
           </div>
         </footer>
         <!-- partial -->

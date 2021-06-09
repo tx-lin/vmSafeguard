@@ -38,7 +38,7 @@
                             if ($_POST["password"] == $_POST["password2"]) {
 
                                 exec("htpasswd -nbB ".$_POST['username']." ".$_POST['password']." > ../.htpasswd"); // B = pour bcrypt, nouvel fonction de hashage sécurisé ++ <=> sha1, md5 crypt : Cette commande est exec par www:data
-                                echo "<pre>Credentials has been updated ".$_POST['username']." <br>!</pre>";
+                                echo "<pre>Credentials has been updated ".$_POST['username']." ! <br></pre>";
                                 echo "<button class=\"btn btn-primary mt-2 mt-xl-0\"><a style=\"color:white;\"href=\"../\" >Reload the dashboard</a></button>";
                             }
                             else {

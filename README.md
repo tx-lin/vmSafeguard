@@ -46,7 +46,7 @@ Update your server before to start the installation. <code>apt update</code>
 if you used debian, please execute this command as root <code> su - </code>  before to run the next command. :) 
 
 ```
-sudo curl -sL https://raw.githubusercontent.com/brlndtech/vmSafeguard/master/setup.sh | bash
+sudo curl -sL https://raw.githubusercontent.com/archidote/vmSafeguard/master/setup.sh | bash
 ```
 ## Do you want to run vmSafeguard as a contaiener with docker (beta) ? 
 
@@ -58,7 +58,7 @@ Navigate to other/READMEDocker.md, to see a quick tutorial for setup vmSafeguard
 ```
 sudo apt update && apt upgrade
 sudo apt install git apache2 php htop wget sudo curl
-sudo git clone https://github.com/brlndtech/vmSafeguard
+sudo git clone https://github.com/archidote/vmSafeguard
 sudo mv vmSafeguard /var/www/html
 sudo chmod 700 -R /var/www/html/vmSafeguard
 sudo chown -R www-data:www-data /var/www/html/vmSafeguard
@@ -286,7 +286,7 @@ chown www-data:www-data -R /var/www/html/vmSafeguard
 
 If you detect an error in vmSafeguard, please open a github issue.
 
-Releases details : https://github.com/brlndtech/vmSafeguard/projects/1 (section "version" (english))
+Releases details : https://github.com/archidote/vmSafeguard/projects/1 (section "version" (english))
 
-#### <center>Brlndtech</center>
+#### Archidote
 

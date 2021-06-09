@@ -1,4 +1,3 @@
-<link rel="shortcut icon" href="../other/favicon-32x32.png" />
   <div id="head" class="container-scroller">
     <!-- partial:partials/_navbar.html -->
     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
@@ -72,7 +71,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" target="_blank "href="https://github.com/brlndtech/ESXi-Web-Management-Tool/blob/master/README.md">
+            <a class="nav-link" target="_blank "href="https://github.com/archidote/vmSafeguard/blob/master/README.md">
               <i class="mdi mdi-file-document-box-outline menu-icon"></i>
               <span class="menu-title">Documentation</span>
             </a>

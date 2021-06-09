@@ -27,7 +27,7 @@
             <div class="col-12 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <h4 class="card-title">vmSafeguard | Connect to an other ESXi</h4>
+                  <h4 class="card-title">vmSafeguard | REFRESH AUTOMATICALLY YOUR DASHBOARD EVERY X SECONDS </h4>
                   <p class="card-description">
                   <?php
                     if (isset($_POST['submit'])) {

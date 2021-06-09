@@ -28,7 +28,7 @@
                 <div class="card-body">
                   <h4 class="card-title">Add an ESXi to vmSafeguard database.</h4>
                   <p class="card-description">
-                  Before to complete the form, don't forget to add your public ssh key to the ESXi. follow the <a href="https://github.com/brlndtech/vmSafeguard/blob/master/README.md" target="_blank">documentation</a>, if you don't know how to do that. 
+                  Before to complete the form, don't forget to add your public ssh key to the ESXi. follow the <a href="https://github.com/archidote/vmSafeguard/blob/master/README.md" target="_blank">documentation</a>, if you don't know how to do that. 
                   </p>
                   <form class="forms-sample" action="firstConnexion.php" method="post">
                     <div class="form-group row">
@@ -57,7 +57,7 @@
             <div class="col-md-6 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <h4 class="card-title">User's settings</h4>
+                  <h4 class="card-title">User settings</h4>
                   <p class="card-description">
                     Update your credentials
                   </p>
@@ -111,9 +111,9 @@
             <div class="col-md-6 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                <h4 class="card-title">Time for update the percent % progression of the backup </h4>
+                <h4 class="card-title">Time for update the percent % progression during a backup </h4>
                   <p class="card-description">
-                    Tthis form will be update the babackup.sh file. 
+                    This form will be update the backup.sh file. 
                   </p>
                   <form class="forms-sample" action="timeForSyncPercentProgressionBackup.php" method="post" >
                     <div class="form-group">
@@ -129,6 +129,43 @@
               </div>
             </div>
           </div>
+          <div class="col-12 grid-margin stretch-card">
+            <div class="col-md-6 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                <h4 class="card-title">Delete old backups > x day (performed when a backup is executed)</h4>
+                  <p class="card-description">
+                    Win datastore space and delete old backups > x days. 
+                  </p>
+                  <form class="forms-sample" action="changeValueForDeleteOldBackup.php" method="post" >
+                    <div class="form-group">
+                      <div class="input-group">
+                        <input type="number" min="2" max="3650" name="valueInDays" class="form-control" required placeholder="60">
+                        <div class="input-group-append">
+                          <button name="submit" class="btn btn-sm btn-primary" type="submit">save</button>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          <div class="col-md-6 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Convert a virtual disk from Thick to Thin and vice versa</h4>
+                  <p class="card-description">
+                    First input : VMID VM Second Input : enter 0 if you want convert Thin -> thick. 1 for the reverse 
+                  </p>
+                  <form class="form-inline" action="changeDiskFormat.php" method="post">
+                    <label class="sr-only" for="inlineFormInputName2">Name</label>
+                    <input type="text" name="vmid" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2" placeholder="VMID">
+                    <input type="text" name="changeDiskFormat" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2" placeholder="0 = Thin 1 = thick">
+                    <button type="submit" class="btn btn-primary mb-2">Submit</button>
+                  </form>
+                </div>
+              </div>
+            </div>
         </div>
       </div>
         <!-- content-wrapper ends -->

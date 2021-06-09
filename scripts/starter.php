@@ -31,7 +31,7 @@
                     <i> Add an ESXi to vmSafeguard database.</i>
                   </p>
                   <p class="card-description">
-                    Before to complete the form, don't forget to add your public ssh key to the ESXi. follow the <a href="https://github.com/brlndtech/vmSafeguard/blob/master/README.md" target="_blank">documentation</a>, if you don't know how to do that. 
+                    Before to complete the form, don't forget to add your public ssh key to the ESXi. follow the <a href="https://github.com/archidote/vmSafeguard/blob/master/README.md" target="_blank">documentation</a>, if you don't know how to do that. 
                   </p>
                   <form class="forms-sample" action="firstConnexion.php" method="post">
                     <div class="form-group row">

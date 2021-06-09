@@ -28,7 +28,13 @@ require('controller.php');
     if ($result == 1) {
         echo "<script>alert('Your ESXi ".$HOST." appears to be offline ')</script>";
     }
-    
+
+    $checkDatastoresSpaceLeft=shell_exec('sudo ssh -p '.$PORT.' root@'.$HOST.' \'sh -s\' < scripts/checkDatastoreSpaceLeft.sh');
+
+    if (!empty($checkDatastoresSpaceLeft)) {
+      echo "<script>alert('".preg_replace('/[^\p{L}[:print:]]/u', ' ', $checkDatastoresSpaceLeft)."')</script>";
+      // this regex allow all special chars, number and Aa
+    }
   ?>
 </head>
 <body>
@@ -94,7 +100,7 @@ require('controller.php');
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="https://github.com/brlndtech/ESXi-Web-Management-Tool/blob/master/README.md" target="_blank">
+            <a class="nav-link" href="https://github.com/archidote/vmSafeguard/blob/master/README.md" target="_blank">
               <i class="mdi mdi-file-document-box-outline menu-icon"></i>
               <span class="menu-title">Documentation</span>
             </a>
@@ -250,7 +256,7 @@ require('controller.php');
               <div class="card">
                 <div class="card-body">
                   <h4 class="card-title">Single Backup</h4>
-                  <p class="card-description"><i>When you have submitted the form, you can close the new tab after 2/3 secs</i></p>
+                  <p class="card-description"><i>When you have submitted the form, you can check the logs</i></p>
                   <form class="form-inline" target="_blank" action="scripts/backup.php" method="post">                  
                     <label class="sr-only" for="inlineFormInputGroupUsername2"></label>
                     <div class="input-group mb-2 mr-sm-2">
@@ -270,7 +276,7 @@ require('controller.php');
               <div class="card">
                 <div class="card-body">
                 <h4 class="card-title">Pool Backup</h4>
-                <p class="card-description"><i><strong>Enter the VM VMIDs separate with a space. When you submitted the form, you can close the new tab after 2/3 secs</strong></i></p>
+                <p class="card-description"><i><strong>Enter the VM VMIDs separate with a space.</strong> When you submitted the form, you can check the logs</i></p>
                 <p class="card-description"><i><strong></strong></i></p>
                 <form class="form-inline" target="_blank" action="scripts/backup.php" method="post">                  
                     <label class="sr-only" for="inlineFormInputGroupUsername2"></label>
@@ -291,7 +297,7 @@ require('controller.php');
 <footer class="footer">
           <div class="d-sm-flex justify-content-center justify-content-sm-between">
             <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">vmSafeguard © <script>new Date().getFullYear()>2010&&document.write(" - "+new Date().getFullYear());</script> <a href="https://www.bootstrapdash.com/" target="_blank">Thank's to Bootstrapdash</a>. All rights reserved.</span>
-            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Brlndtech Edit</span>
+            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Archidote Edit</span>
           </div>
         </footer>
         <!-- partial -->
