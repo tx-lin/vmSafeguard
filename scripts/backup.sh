@@ -77,5 +77,5 @@ do
 done
 echo -e "List of present backup folder and old backup folders : " >> $PATHLOG 
 echo -e "$(ls -dt /vmfs/volumes/$DATASTORE/backup*)\n" >> $PATHLOG 
-find /vmfs/volumes/$DATASTORE/backup* -mtime +20 -exec rm -rf {} \; 
+find /vmfs/volumes/$DATASTORE/backup* -mtime +300 -exec rm -rf {} \; 
 echo -e "<-------- VM(s) BACKUP process end on $(hostname) : $(date)\n" >> $PATHLOG

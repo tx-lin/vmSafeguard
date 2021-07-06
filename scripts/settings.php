@@ -59,7 +59,7 @@
                 <div class="card-body">
                   <h4 class="card-title">User settings</h4>
                   <p class="card-description">
-                    Update your credentials
+                    Update your credentials.
                   </p>
                   <form class="forms-sample" action="updateCredentials.php" method="post" >
                     <div class="form-group row">
@@ -93,14 +93,14 @@
                 <div class="card-body">
                 <h4 class="card-title">Refresh automatically your dashboard every x seconds (30-7200)</h4>
                   <p class="card-description">
-                    Enter only a seconds value into the form 
+                    Enter only seconds value into the form. 
                   </p>
                   <form class="forms-sample" action="refreshTime.php" method="post" >
                     <div class="form-group">
                       <div class="input-group">
                         <input type="number" min="30" max="7200" name="refreshTime" class="form-control" required placeholder="30">
                         <div class="input-group-append">
-                          <button name="submit" class="btn btn-sm btn-primary" type="submit">save</button>
+                          <button name="submit" class="btn btn-sm btn-primary" type="submit">Save</button>
                         </div>
                       </div>
                     </div>
@@ -120,7 +120,7 @@
                       <div class="input-group">
                         <input type="number" min="1" max="3600" name="timeRefreshPercent" class="form-control" required placeholder="Value between 10 - 3600">
                         <div class="input-group-append">
-                          <button name="submit" class="btn btn-sm btn-primary" type="submit">save</button>
+                          <button name="submit" class="btn btn-sm btn-primary" type="submit">Save</button>
                         </div>
                       </div>
                     </div>
@@ -155,7 +155,7 @@
                 <div class="card-body">
                   <h4 class="card-title">Convert a virtual disk from Thick to Thin and vice versa</h4>
                   <p class="card-description">
-                    First input : VMID VM Second Input : enter 0 if you want convert Thin -> thick. 1 for the reverse 
+                    First input : VMID. Second Input : enter 0 if you want to convert Thin -> Thick. 1 for the reverse 
                   </p>
                   <form class="form-inline" action="changeDiskFormat.php" method="post">
                     <label class="sr-only" for="inlineFormInputName2">Name</label>
