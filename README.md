@@ -17,7 +17,7 @@ Check the readme (auto generate) table of contents, by clicking on the icon unde
 
 # :bookmark_tabs: Prerequisite !
 
-- vmSafeguard can be installed under "Debian Family". For the  devloppment of this project, I currently use Ubuntu 20.04, Php 7.4, Apache 2.4.X. To avoid unknow errors, I recommand you to use Ubuntu, Debian or Kali linux.
+- vmSafeguard can be installed under "Debian Family". For the  devloppment of this project, I currently use Kali linux 2021.x, Php 7.4, Apache 2.4.X. To avoid unknow errors, I recommand you to use Ubuntu, Debian or Kali linux.
 
 - <strong> <code> curl </code> and <code> sudo </code> command need to be install  ! </strong>
 - An ESXi Server operational that can communicate with the machine that will host vmSafeguard (pinguable) 
@@ -199,7 +199,7 @@ All the information have been stored into the db, click to "reload the dashboard
 
 ### Execute Backup(s) from the Web interface 
 
- - If you want to perfom a <b> single backup </b>, enter the machine's vmid, and then click to submit. (If your VM is started, the backup proccess will securely shutdown the VM before to continue. - it may take few minutes -)
+ - If you want to perfom a <b> single backup </b>, enter the machine's vmid, and then click to submit. (If your VM is started, the backup proccess will securely shutdown the VM before to continue. (<b><u>if she has vmware tools on it system, otherwise the vmSafeguard will force powered off her. same process for a "pool backup" below</b></u>) - it may take few minutes -)
 
 
  <img src="https://i.imgur.com/8t5nyYN.png">
@@ -281,7 +281,8 @@ Demo for backup a pool of virtual machines : https://www.youtube.com/watch?v=4wj
 # :question::speech_balloon: Notes / common questions
 
 1 - vmSafeguard is available only for debian based OS family 
-
+2 - web panel logs are stored into the following file : /var/log/vmSafeguard-server.log
+3 - Backups process logs are stored into the <b> backup datastore (at it's root)</b> with the following name : logsbackup.txt
 ## Know Issues 
 1 - If the .htaccess / .htpasswd (not crutial for the project) auth does not work, please check the apache2.conf (/etc/apache2) and replace if you did not have the same result as the following picture : 
 

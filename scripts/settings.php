@@ -153,7 +153,7 @@
           <div class="col-md-6 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <h4 class="card-title">Convert a virtual disk from Thick to Thin and vice versa</h4>
+                  <h4 class="card-title"> <u> Beta feature </u> : Convert a virtual disk from Thick to Thin and vice versa</h4>
                   <p class="card-description">
                     First input : VMID. Second Input : enter 0 if you want to convert Thin -> Thick. 1 for the reverse 
                   </p>
