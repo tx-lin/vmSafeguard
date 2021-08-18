@@ -47,9 +47,9 @@
                       <div class="col-sm-9">
                         <input type="text" name="CheckBackupFolder"class="form-control" id="CheckBackupFolder" required placeholder="ex : /vfms/volumes/datastore1/">
                       </div>
-                      <label for="exampleInputUsername2" class="col-sm-3 col-form-label">Logs Path</label>
+                      <label for="exampleInputUsername2" class="col-sm-3 col-form-label">Admin Email</label>
                       <div class="col-sm-9">
-                        <input type="text" name="LogsPath"class="form-control" id="LogsPath" required placeholder="ex : /vfms/volumes/datastore1/logsbackup.txt">
+                        <input type="email" name="email"class="form-control" id="adminEmail" required placeholder="">
                       </div>
                     </div>
                     <button type="submit" name="submit" target="_blank" class="btn btn-primary mr-2">Submit</button>

@@ -44,10 +44,6 @@
                       <div class="col-sm-9">
                         <input type="text" name="CheckBackupFolder"class="form-control" id="CheckBackupFolder" required placeholder="ex : /vfms/volumes/datastore1/">
                       </div>
-                      <label for="exampleInputUsername2" class="col-sm-3 col-form-label">Logs Path</label>
-                      <div class="col-sm-9">
-                        <input type="text" name="LogsPath"class="form-control" id="LogsPath" required placeholder="ex : /vfms/volumes/datastore1/logsbackup.txt">
-                      </div>
                     </div>
                     <button type="submit" name="submit" target="_blank" class="btn btn-primary mr-2">Submit</button>
                   </form>
@@ -65,19 +61,25 @@
                     <div class="form-group row">
                       <label for="exampleInputUsername2" class="col-sm-3 col-form-label">ID</label>
                       <div class="col-sm-9">
-                        <input type="text" class="form-control" required id="exampleInputUsername2" name="username" placeholder="Username">
+                        <input type="text" class="form-control" id="username" name="username" placeholder="Username">
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="exampleInputUsername2" class="col-sm-3 col-form-label">Email</label>
+                      <div class="col-sm-9">
+                        <input type="email" class="form-control" id="email" name="email" placeholder="email">
                       </div>
                     </div>
                     <div class="form-group row">
                       <label for="exampleInputPassword2" class="col-sm-3 col-form-label">New Password</label>
                       <div class="col-sm-9">
-                        <input type="password" class="form-control" required id="exampleInputPassword2" name="password" placeholder="Password">
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Password">
                       </div>
                     </div>
                     <div class="form-group row">
                       <label for="exampleInputConfirmPassword2" class="col-sm-3 col-form-label">New Password again</label>
                       <div class="col-sm-9">
-                        <input type="password" class="form-control" required id="exampleInputConfirmPassword2" name="password2" placeholder="Password">
+                        <input type="password" class="form-control" id="password2" name="password2" placeholder="Password">
                       </div>
                     </div>
                     <button name="submit" type="submit" class="btn btn-primary mr-2">Save</button>
@@ -140,7 +142,7 @@
                   <form class="forms-sample" action="changeValueForDeleteOldBackup.php" method="post" >
                     <div class="form-group">
                       <div class="input-group">
-                        <input type="number" min="2" max="3650" name="valueInDays" class="form-control" required placeholder="60">
+                        <input type="number" min="2" max="3650" name="valueInDays" class="form-control" required placeholder="Default Value : 365">
                         <div class="input-group-append">
                           <button name="submit" class="btn btn-sm btn-primary" type="submit">save</button>
                         </div>

@@ -22,6 +22,14 @@ $starttime = microtime(true); // Top of page
   <link rel="stylesheet" href="css/style.css">
   <!-- endinject -->
   <link rel="shortcut icon" href="other/favicon-32x32.png" />
+  <script>
+      if (performance.navigation.type == 1) {
+        <?php shell_exec('sudo sh -c \'echo "$(date) - Web panel has reloaded" >> /var/log/vmSafeguard-server.log\''); ?>
+        console.info( "This page is reloaded" );
+      } else {
+        console.info( "This page is not reloaded");
+      }
+  </script>
   <?php
 
     exec("ping -c 1 " . $HOST, $output, $result);
@@ -107,7 +115,7 @@ $starttime = microtime(true); // Top of page
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="scripts/show-log.php">
+            <a class="nav-link" href="scripts/show-log.php#footer">
               <i class="mdi mdi-note-text menu-icon"></i>
               <span class="menu-title">Logs</span>
             </a>

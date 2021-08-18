@@ -30,7 +30,11 @@ require('../controller.php');
                   <h4 class="card-title">Log Section (display the 500 last lines) </h4>
                   <button class="btn btn-primary mt-2 mt-xl-0"><a style="color:white;"href="#footer" >Latest logs</a></button>
                   <p class="card-description">
-                      <?php echo "<pre>".shell_exec("sudo ssh -p $PORT root@$HOST 'cat $LOG | tail -1000 '")."</pre>";?>
+                      <?php echo "<pre>".shell_exec("sudo sh -c 'cat /var/log/vmSafeguard-server.log | tail -1000 '")."</pre>";
+                      // Nous devons préfixer notre commande avec sudo sh -c '<final cmd>', car nous avons besoin de nous élever en privilège, 
+                      //pour lire le contenu du fichier de log de vmSafeguard, qui de base est seulement lisible par root (sauf si on est un 
+                      // membre qui dispose de droit sudoers comme notre utilisateur www-data dans le cas de vmSafeguard.)
+                      ?>
                       <button class="btn btn-primary mt-2 mt-xl-0"><a style="color:white;"href="#head" >Oldest logs</a></button>
                   </p>
                 </div>

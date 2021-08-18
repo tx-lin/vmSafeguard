@@ -143,9 +143,13 @@ cd /var/www/html/vmSafeguard/scripts
 nano backup.sh
 ```
 
-Localize the second line, and add your datastore into the ""
+at the top of the file these lines : 
 ```
-DATASTORE="datastore-backup"
+#!/bin/sh
+# --- Global Variables ---
+DATASTORE="datastore-backup" # Your specific datastore for the futur backup 
+vmSafeguardHost="192.168.130.128" # Ip of vmSafeguard host 
+<...>
 ```
 
 
@@ -269,6 +273,22 @@ This menu allow you to do a lot of different things like :
 (Maybe in the futur other features will be implemented. If you have any ideas, submit it to me)
 
 <img src="https://i.imgur.com/gdNr6bx.png">
+
+# Revive a VM from a backup 
+
+Following the next steps : 
+
+<styrong> Warning, you can't revive an VM from a ESXi 7 to a 6.7 if the vmx file if your vmx file is upper than the the current esxi support. <strong> // à modifier 
+
+<img src="https://i.imgur.com/gBMcAyv.png">
+<img src="https://i.imgur.com/7zLJORP.png">
+<img src="https://i.imgur.com/fdFVkch.png">
+<img src="https://i.imgur.com/TLmQ0WN.png">
+<img src="https://i.imgur.com/1HaCxLe.png">
+<img src="https://i.imgur.com/In1Qhmm.png">
+<img src="https://i.imgur.com/qaNVjhS.png">
+
+
 
 # Video Tutorial  
 

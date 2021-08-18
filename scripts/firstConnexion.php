@@ -30,45 +30,62 @@
                   <h4 class="card-title">vmSafeguard | First Connexion</h4>
                   <p class="card-description">
 					<?php
-						if (isset($_POST['submit'])) {
-							
-							$ip = $_POST['ip'] ;
-							$port = $_POST['port'];
-							$checkBackupFolder = $_POST['CheckBackupFolder'] ;
-							$logsPath = $_POST['LogsPath'];
-							
-							//open the database
-							$db = new PDO('sqlite:' . __DIR__ . '/vmSafeguard.db');
-							// TRUNCATE Table 
-							$db->exec("DELETE FROM esxi ;");
-							$db->exec("DELETE FROM esxiPath ;");
-							$db->exec("INSERT INTO esxi (ip,port) VALUES ('$ip','$port');");
-							$db->exec("INSERT INTO esxiPath (CheckBackupFolder,LogsPath) VALUES ('$checkBackupFolder','$logsPath');");	
-								
-							$statement = $db->prepare("SELECT * FROM esxi ;"); // cette requête nous retourne un tableau à assiossatif ip=>
-							$rows = $statement->execute();
-							$rows = $statement->fetchAll();
-							// print_r($result);
-									
-							foreach ($rows as $row) {
-								$HOST = $row['ip'];
-								$PORT = $row['port'];
-								echo "<pre>You have added ESXI <strong>$HOST</strong> on ssh port <strong>$PORT</strong> <br>";
-							} 
+              if (isset($_POST['submit'])) {
+                
+                  $HOST = $_POST['ip'] ;
+                  $PORT = $_POST['port'];
+                  $CHECKBACKUPFOLDER = $_POST['CheckBackupFolder'] ;
+                  $ADMINEMAIL = $_POST["email"]; 
+                  
+                  
+                  // TRUNCATE Table 
+                  $db->exec("DELETE FROM esxi ;");
+                  $db->exec("DELETE FROM esxiPath ;");
+                  $db->exec("INSERT INTO esxi (ip,port) VALUES ('$HOST','$PORT');");
+                  $db->exec("INSERT INTO esxiPath (CheckBackupFolder) VALUES ('$CHECKBACKUPFOLDER');");	
+                    
+                  $statement = $db->prepare("SELECT * FROM esxi ;"); 
+                  $rows = $statement->execute();
+                  $rows = $statement->fetchAll();
+                  // print_r($result);
+                      
+                  foreach ($rows as $row) {
+                      $HOST = $row['ip'];
+                      $PORT = $row['port'];
+                      echo "<pre>ESXI <strong>$HOST</strong> on ssh port <strong>$PORT</strong> has been added.<br>";
+                  } 
 
-							$statement = $db->prepare("SELECT * FROM esxiPath ;"); // cette requête nous retourne un tableau à assiossatif ip=>
-							$rows = $statement->execute();
-							$rows = $statement->fetchAll();
+                  $statement = $db->prepare("SELECT CheckBackupFolder FROM esxiPath ;"); 
+                  $rows = $statement->execute();
+                  $rows = $statement->fetchAll();
 
-							foreach ($rows as $row) {
+                  foreach ($rows as $row) {
+                      $CHECKBACKUPFOLDER = $row['CheckBackupFolder'];
+                      echo "index.php will check the latest backups with this absolute path <strong>$CHECKBACKUPFOLDER</strong> </pre><br>";
+                  }
 
-								$CHECKBACKUPFOLDER = $row['CheckBackupFolder'];
-								$LOG = $row['LogsPath'];
-								echo "index.php will check the latest backup with this absolute path <strong>$CHECKBACKUPFOLDER</strong> <br>";
-								echo "scripts/show-log.php will check the latest backup logs with this absolute path to the file <strong>$LOG</strong> <br> </pre>";
-								echo "<button class=\"btn btn-primary mt-2 mt-xl-0\"><a style=\"color:white;\"href=\"../\" >Reload the dashboard</a></button>"; 
-							}
-						}
+                  if  ((!empty($_POST["email"]))) {
+
+                    $statement = $db->prepare("UPDATE users SET Email = '$ADMINEMAIL';"); 
+                    $rows = $statement->execute();
+                    $rows = $statement->fetchAll();
+                       
+                    $statement = $db->prepare("SELECT Email FROM users WHERE Username = 'admin' ;"); // SQLite n'est pas senssible à la casse depuis le terminal, mais depuis php si WTF !!!!! "40 minutes later..." 
+                    $rows = $statement->execute();
+                    $rows = $statement->fetchAll();
+                    
+                    foreach ($rows as $row) {
+                      $ADMINEMAIL= $row['Email'];
+                      echo "<pre>You have added the following admin email : <strong>$ADMINEMAIL</strong><br></pre>";
+
+                    } 
+                }
+              echo "<button class=\"btn btn-primary mt-2 mt-xl-0\"><a style=\"color:white;\"href=\"../\" >Reload the dashboard</a></button>"; 
+              shell_exec('sudo sh -c \'echo "$(date) - you have added a new ESXi to vmSafeguard IP :'.$HOST.' PORT : '.$PORT.' ! " >> /var/log/vmSafeguard-server.log\'');
+              shell_exec('sudo sh -c \'echo "$(date) - you have added the following admin email :'.$ADMINEMAIL.' !" >> /var/log/vmSafeguard-server.log\'');
+              shell_exec('sudo sh -c \'echo "$(date) - The dashboard will check '.$CHECKBACKUPFOLDER.'for the latest backup. " >> /var/log/vmSafeguard-server.log\'');
+             
+              }
 					?>
                   </p>
                 </div>

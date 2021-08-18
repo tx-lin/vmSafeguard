@@ -1,10 +1,14 @@
 #!/bin/sh
+# --- Global Variables ---
 DATASTORE="datastore1"
-timeRefreshPercentBackup="sleep 15"
+vmSafeguardHost="192.168.130.128"
+timeRefreshPercentBackup="sleep 5"
+hostname=$(hostname)
+# --- End of global variables --- 
 backupVM() {
       if [ "$PWR" == "Powered off" ] ; then
-          echo -e "   --> $name is already shutdown (`date`)\n" >> $PATHLOG
-          echo -e "     - $name is currently under backuping (`date`)" >> $PATHLOG
+          wget --spider --post-data "test=vmAlreadyShutdown&vmName=$name" http://$vmSafeguardHost/vmSafeguard/api/logsFetcher.php
+          wget --spider --post-data "test=vmIsCurrentlyUnderBackuping&vmName=$name" http://$vmSafeguardHost/vmSafeguard/api/logsFetcher.php
           path=`find / -maxdepth 5 -name "$name.vmx"`
           cutedpath="${path%"${path#/*/*/*/*/}"}"
           PATHBACKUPa="$PATHBACKUP$name/"
@@ -16,28 +20,28 @@ backupVM() {
               dest_size=$(ls -l $PATHBACKUPa | awk '{s+=$5} END {printf "%.0f\n", s}')
               dest_size_in_gb=$(du -h $PATHBACKUPa | awk '{print $1}')
               percent=$(( $dest_size*100/$origin_size ))
-              date=$(date +%d-%m-%Y-%H-%M)
-              echo -e "          $percent % ($date) - Orig. folder size : $origin_size_in_gb - Dest. Folder size : $dest_size_in_gb" >> $PATHLOG
+              wget --spider --post-data "test=PercentDuringCopy&percent=$percent&date=$date&originSizeInGB=$origin_size_in_gb&destSizeInGB=$dest_size_in_gb" http://$vmSafeguardHost/vmSafeguard/api/logsFetcher.php
               eval "$timeRefreshPercentBackup"
           done
-          echo -e "     - $name has been backed up (`date`)\n" >> $PATHLOG 
+          wget --spider --post-data "test=vmHasBeenBackedUp&vmName=$name" http://$vmSafeguardHost/vmSafeguard/api/logsFetcher.php
           vim-cmd vmsvc/power.on $VM
-          echo -e "   --> $name has been started again (`date`)\n" >> $PATHLOG
+          wget --spider --post-data "test=vmHasBeenStartedAgain&vmName=$name" http://$vmSafeguardHost/vmSafeguard/api/logsFetcher.php
+          wget --spider --post-data "test=mailAfterBackupProcess&vmName=$name" http://$vmSafeguardHost/vmSafeguard/api/localMailRelay.php
       else
       	  vim-cmd vmsvc/power.shutdown $VM
           result=$?
           if [ $result -ne 0 ]; then
-             echo -e "   Warning, $name does not have vmware tools, so she has been powered off (it's not a securely shutdown !)\n" >> $PATHLOG
+             wget --spider --post-data "test=noVMwareTools&vmName=$name" http://$vmSafeguardHost/vmSafeguard/api/logsFetcher.php
              vim-cmd vmsvc/power.off $VM
           fi
       	  sleep 15
           while [ "$PWR" == "Powered on" ] # Allow to the VM to shutdown securly (Especially if her want to update her os, before shutdown)
           do
             PWR=`vim-cmd vmsvc/power.getstate $VM | grep -v "Retrieved runtime info"`
-            echo -e "   --> $name is dying out, waiting before next step (`date`)\n" >> $PATHLOG
+            wget --spider --post-data "test=vmIsDyingOut&vmName=$name" http://$vmSafeguardHost/vmSafeguard/api/logsFetcher.php
             sleep 15
           done
-          echo -e "     - $name is currently under backuping (`date`)" >> $PATHLOG
+          wget --spider --post-data "test=vmIsCurrentlyUnderBackuping&vmName=$name" http://$vmSafeguardHost/vmSafeguard/api/logsFetcher.php
           path=`find / -maxdepth 5 -name "$name.vmx"`
           cutedpath="${path%"${path#/*/*/*/*/}"}"
           PATHBACKUPa="$PATHBACKUP$name/"
@@ -49,33 +53,34 @@ backupVM() {
               dest_size=$(ls -l $PATHBACKUPa | awk '{s+=$5} END {printf "%.0f\n", s}')
               dest_size_in_gb=$(du -h $PATHBACKUPa | awk '{print $1}')
               percent=$(( $dest_size*100/$origin_size ))
-              date=$(date +%d-%m-%Y-%H-%M)
-              echo -e "          $percent % ($date) - Orig. folder size : $origin_size_in_gb - Dest. Folder size : $dest_size_in_gb" >> $PATHLOG
+              wget --spider --post-data "test=PercentDuringCopy&percent=$percent&originSizeInGB=$origin_size_in_gb&destSizeInGB=$dest_size_in_gb" http://$vmSafeguardHost/vmSafeguard/api/logsFetcher.php
               eval "$timeRefreshPercentBackup"
           done
-          echo -e "     - $name has been backed up (`date`)\n" >> $PATHLOG 
+          wget --spider --post-data "test=vmHasBeenBackedUp&vmName=$name" http://$vmSafeguardHost/vmSafeguard/api/logsFetcher.php
           vim-cmd vmsvc/power.on $VM
-          echo -e "   --> $name has been started again (`date`)\n" >> $PATHLOG
+          wget --spider --post-data "test=vmHasBeenStartedAgain&vmName=$name" http://$vmSafeguardHost/vmSafeguard/api/logsFetcher.php
+          wget --spider --post-data "test=mailAfterBackupProcess&vmName=$name" http://$vmSafeguardHost/vmSafeguard/api/localMailRelay.php
       fi
 }
 date=`date +%d-%m-%Y-%H-%M`
 PATHLOG="/vmfs/volumes/$DATASTORE/logsbackup.txt" 
 mkdir /vmfs/volumes/$DATASTORE/backup-vm-$date
 PATHBACKUP="/vmfs/volumes/$DATASTORE/backup-vm-$date/" 
-echo -e "-------> VM(s) BACKUP process start on `hostname` : `date`\n" >> $PATHLOG
+wget --spider --post-data "test=backupProcessStart&hostname=$hostname" http://$vmSafeguardHost/vmSafeguard/api/logsFetcher.php
 for VM in $@
 do
     vim-cmd vmsvc/getallvms | awk '{print$1}' | grep $VM > /dev/null
     result=$?
     if [ $result -ne 0 ]; then
-        echo -e "   !!! VMID $VM is NOT attached to any VM on this ESXi, -> It backup has been deprogrammed !!!\n " >> $PATHLOG
+        wget --spider --post-data "test=wrongVMID&VM=$VM" http://$vmSafeguardHost/vmSafeguard/api/logsFetcher.php
     else
         PWR=$(vim-cmd vmsvc/power.getstate $VM | grep -v "Retrieved runtime info")
         name=$(vim-cmd vmsvc/get.config $VM | grep -i "name =" | awk '{print $3}' | head -1 | awk -F'"' '{print $2}')
         backupVM
     fi
 done
-echo -e "List of present backup folder and old backup folders : " >> $PATHLOG 
-echo -e "$(ls -dt /vmfs/volumes/$DATASTORE/backup*)\n" >> $PATHLOG 
-find /vmfs/volumes/$DATASTORE/backup* -mtime +300 -exec rm -rf {} \; 
-echo -e "<-------- VM(s) BACKUP process end on $(hostname) : $(date)\n" >> $PATHLOG
+wget --spider --post-data "test=listOfBackupFoldersTwoPoints" http://$vmSafeguardHost/vmSafeguard/api/logsFetcher.php
+lsOfBackupFolders=$(ls -dt /vmfs/volumes/$DATASTORE/backup*)
+wget --spider --post-data "test=listOfBackupFolders&list=$lsOfBackupFolders" http://$vmSafeguardHost/vmSafeguard/api/logsFetcher.php
+find /vmfs/volumes/$DATASTORE/backup* -mtime +360 -exec rm -rf {} \; 
+wget --spider --post-data "test=endOfBackupProcess&hostname=$hostname" http://$vmSafeguardHost/vmSafeguard/api/logsFetcher.php
