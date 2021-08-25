@@ -3,8 +3,6 @@
 <em> This little guid will show you how to setup vmSafeguard app as a docker container (not for a production environnement) </em> <b>
 <strong> Some feature are not available fore the moment like backup scheduling </strong>
 
-youtube video (same content as bellow): https://youtu.be/UtxZ28hAzQ4
-
 <strong> I suppose that you have read the root readme (until installation part) </strong>
 
 ## I. Pull (run) vmSafeguard's image from docker hub 
@@ -20,8 +18,6 @@ docker ps
 docker exec -it <id of the container vmSafeguard> bash
 -----------------
 # You are into the container with a bash shell
-# Disable the ESXi firewall  to allow API req to an pother port than 80 (if use 8080 like above, from your docker host)
-esxcli network firewall set --enabled false
 cd /root/.ssh/
 ```
 <img src="https://i.imgur.com/X9tX4RW.png"> <br> <br>
@@ -45,6 +41,8 @@ cat id_rsa.pub | ssh -p 22 root@the-ip-of-your-esxi \ 'cat >> /etc/ssh/keys-root
 <enter the password of esxi user (root) (just one time)>
 exit
 ssh -p 22 root@the-ip-of-your-esxi # try to connect to the esxi trought ssh (now, you don't need to provide a password)
+# Disable the ESXi firewall  to allow API req to an pother port than 80 (if use 8080 like above, from your docker host)
+esxcli network firewall set --enabled false
 exit
 -----------------
 ```
