@@ -38,24 +38,26 @@ $starttime = microtime(true); // Top of page
 
         echo "<script>alert('Your ESXi ".$HOST." appears to be offline ')</script>";
         shell_exec('sudo sh -c \'echo "$(date) - WARNING vmSafeguard has detected that your ESXi '.$HOST.' appears to be offline" >> /var/log/vmSafeguard-server.log\'');
-    
+        shell_exec('curl -d "test=ESXiAppearsToBeOffline&esxiHost='.$HOST.'&adminEmail='.$ADMINEMAIL.'" -X POST http://localhost/vmSafeguard/api/localMailRelay.php');
+
     } else {
       
-      shell_exec('sudo sh -c \'echo "$(date) - your ESXi '.$HOST.' is reachable" >> /var/log/vmSafeguard-server.log\'');     
+      shell_exec('sudo sh -c \'echo "$(date) - your ESXi '.$HOST.' is reachable" >> /var/log/vmSafeguard-server.log\'');   
+      
+      $checkDatastoresSpaceLeft=shell_exec('sudo ssh -p '.$PORT.' root@'.$HOST.' \'sh -s\' < scripts/checkDatastoreSpaceLeft.sh');
+
+      if (!empty($checkDatastoresSpaceLeft)) {
+  
+        echo "<script>alert('".preg_replace('/[^\p{L}[:print:]]/u', ' ', $checkDatastoresSpaceLeft)."')</script>";
+        shell_exec('sudo sh -c \'echo "$(date) - WARNING vmSafeguard has detected that '.preg_replace('/[^\p{L}[:print:]]/u', ' ', $checkDatastoresSpaceLeft).'" >> /var/log/vmSafeguard-server.log\'');
+        // this regex allow all special chars, number and Aa, trought a non-php string (come from a output of the following shell script : checkDatastoreSpaceLeft.sh)
+      
+      } else {
+  
+        shell_exec('sudo sh -c \'echo "$(date) - Storage capacity left of your datastores appears to be convenable" >> /var/log/vmSafeguard-server.log\'');     
+      }
     }
 
-    $checkDatastoresSpaceLeft=shell_exec('sudo ssh -p '.$PORT.' root@'.$HOST.' \'sh -s\' < scripts/checkDatastoreSpaceLeft.sh');
-
-    if (!empty($checkDatastoresSpaceLeft)) {
-
-      echo "<script>alert('".preg_replace('/[^\p{L}[:print:]]/u', ' ', $checkDatastoresSpaceLeft)."')</script>";
-      shell_exec('sudo sh -c \'echo "$(date) - WARNING vmSafeguard has detected that '.preg_replace('/[^\p{L}[:print:]]/u', ' ', $checkDatastoresSpaceLeft).'" >> /var/log/vmSafeguard-server.log\'');
-      // this regex allow all special chars, number and Aa, trought a non-php string (come from a output of the following shell script : checkDatastoreSpaceLeft.sh)
-    
-    } else {
-
-      shell_exec('sudo sh -c \'echo "$(date) - Storage capacity left of your datastores appears to be convenable" >> /var/log/vmSafeguard-server.log\'');     
-    }
   ?>
 </head>
 <body>
@@ -252,7 +254,7 @@ $starttime = microtime(true); // Top of page
               <div class="card">
                 <div class="card-body">
                   <p class="card-title">Last Backup(s) : </p>
-                  <i><p class="mb-4">Content of your "Backup datastore" : <?php echo $CHECKBACKUPFOLDER ?></p></i>
+                  <i><p class="mb-4">Content of your "Backup datastore" <?php echo ''.$CHECKBACKUPFOLDER.'backup*' ?></p></i>
                   <h5 class="mr-2 mb-0">
                     <?php
                       $CHECKBACKUPFOLDER = "$CHECKBACKUPFOLDER/backup*";

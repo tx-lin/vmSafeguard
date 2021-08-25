@@ -36,12 +36,12 @@ $scriptPath = "".__DIR__."/backup.sh" ;
                     Verify that your task has been corretly written ! Otherwise, check again the crontask syntax.
                     <?php
                       if (isset($_POST['Pool'])) {
-                        shell_exec("sudo echo -e \"$(crontab -u www-data -l)\n".$_POST['min']." ".$_POST['hour']." ".$_POST['dayOfMonth']." ".$_POST['month']." ".$_POST['dayOfWeek']." sudo ssh -p $PORT root@$HOST 'sh -s' < ".$scriptPath." ".$_POST['vmid']." & # ".$crontaskID."\" | crontab -u www-data -")."</pre>";
+                        shell_exec("sudo echo -e \"$(crontab -u www-data -l)\n".$_POST['min']." ".$_POST['hour']." ".$_POST['dayOfMonth']." ".$_POST['month']." ".$_POST['dayOfWeek']." sudo ssh -p $PORT root@$HOST 'sh -s' < ".$scriptPath." ".$VMSAFEGUARD_IP." ".$_POST['vmid']." & # ".$crontaskID."\" | crontab -u www-data -")."</pre>";
                         echo "<pre>".shell_exec("sudo cat /var/spool/cron/crontabs/www-data")."</pre>";
                         // cron task will be stored in /var/spool/cron/crontabs/www-data
                       }
                       else if (isset($_POST['Single'])) {
-                        shell_exec("sudo echo -e \"$(crontab -u www-data -l)\n".$_POST['min']." ".$_POST['hour']." ".$_POST['dayOfMonth']." ".$_POST['month']." ".$_POST['dayOfWeek']." sudo ssh -p $PORT root@$HOST 'sh -s' < ".$scriptPath." ".$_POST['vmid']." & # ".$crontaskID."\" | crontab -u www-data -")."</pre>";
+                        shell_exec("sudo echo -e \"$(crontab -u www-data -l)\n".$_POST['min']." ".$_POST['hour']." ".$_POST['dayOfMonth']." ".$_POST['month']." ".$_POST['dayOfWeek']." sudo ssh -p $PORT root@$HOST 'sh -s' < ".$scriptPath." ".$VMSAFEGUARD_IP." ".$_POST['vmid']." & # ".$crontaskID."\" | crontab -u www-data -")."</pre>";
                         echo "<pre>".shell_exec("sudo cat /var/spool/cron/crontabs/www-data")."</pre>";
                         // cron task will be stored in /var/spool/cron/crontabs/www-data
                       }

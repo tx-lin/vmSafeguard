@@ -34,15 +34,23 @@
                     <div class="form-group row">
                       <label for="exampleInputUsername2" class="col-sm-3 col-form-label">ESXi IP</label>
                       <div class="col-sm-9">
-                        <input type="text" name="ip"class="form-control" id="ip" required placeholder="ESXi IP (ex:10.0.0.1)">
+                        <input type="text" name="ip"class="form-control" id="ip" placeholder="ESXi IP (ex:10.0.0.1)">
                       </div>
                       <label for="exampleInputUsername2" class="col-sm-3 col-form-label">SSH Port</label>
                       <div class="col-sm-9">
-                        <input type="number" name="port"class="form-control" id="port" required placeholder="ESXi SSH Port (ex: 22)">
+                        <input type="number" name="port"class="form-control" id="port" placeholder="ESXi SSH Port (ex: 22)">
+                      </div>
+                      <label for="exampleInputUsername2" class="col-sm-3 col-form-label">vmSafeguard IP</label>
+                      <div class="col-sm-9">
+                        <input type="text" name="vmSafeguardIP" class="form-control" id="vmSafeguardIP" placeholder="ex : 10.0.0.10">
+                      </div>
+                      <label for="exampleInputUsername2" class="col-sm-3 col-form-label">Admin Email</label>
+                      <div class="col-sm-9">
+                        <input type="email" name="email"class="form-control" id="adminEmail" placeholder="example@gmail.com">
                       </div>
                       <label for="exampleInputUsername2" class="col-sm-3 col-form-label">Backup folder</label>
                       <div class="col-sm-9">
-                        <input type="text" name="CheckBackupFolder"class="form-control" id="CheckBackupFolder" required placeholder="ex : /vfms/volumes/datastore1/">
+                        <input type="text" name="CheckBackupFolder" class="form-control" id="CheckBackupFolder" placeholder="ex : /vfms/volumes/datastore1/">
                       </div>
                     </div>
                     <button type="submit" name="submit" target="_blank" class="btn btn-primary mr-2">Submit</button>
@@ -59,15 +67,9 @@
                   </p>
                   <form class="forms-sample" action="updateCredentials.php" method="post" >
                     <div class="form-group row">
-                      <label for="exampleInputUsername2" class="col-sm-3 col-form-label">ID</label>
+                      <label for="exampleInputUsername2" class="col-sm-3 col-form-label">Admin Username</label>
                       <div class="col-sm-9">
                         <input type="text" class="form-control" id="username" name="username" placeholder="Username">
-                      </div>
-                    </div>
-                    <div class="form-group row">
-                      <label for="exampleInputUsername2" class="col-sm-3 col-form-label">Email</label>
-                      <div class="col-sm-9">
-                        <input type="email" class="form-control" id="email" name="email" placeholder="email">
                       </div>
                     </div>
                     <div class="form-group row">
@@ -93,56 +95,36 @@
             <div class="col-md-6 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                <h4 class="card-title">Refresh automatically your dashboard every x seconds (30-7200)</h4>
-                  <p class="card-description">
-                    Enter only seconds value into the form. 
-                  </p>
-                  <form class="forms-sample" action="refreshTime.php" method="post" >
+                <h4 class="card-title">Change Backup datastore (that store the backups)</h4>
+                  <form class="forms-sample" action="editBackupShScriptFromGUI.php" method="post" >
                     <div class="form-group">
                       <div class="input-group">
-                        <input type="number" min="30" max="7200" name="refreshTime" class="form-control" required placeholder="30">
+                        <input type="text" name="ChangeBackupDatastore" class="form-control" required placeholder="ex : datastore1 ">
                         <div class="input-group-append">
-                          <button name="submit" class="btn btn-sm btn-primary" type="submit">Save</button>
+                          <button name="submit" class="btn btn-sm btn-primary" type="submit">save</button>
                         </div>
                       </div>
                     </div>
                   </form>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6 grid-margin stretch-card">
-              <div class="card">
-                <div class="card-body">
-                <h4 class="card-title">Time for update the percent % progression during a backup </h4>
-                  <p class="card-description">
-                    This form will be update the backup.sh file. 
-                  </p>
-                  <form class="forms-sample" action="timeForSyncPercentProgressionBackup.php" method="post" >
+                <h4 class="card-title">Refresh automatically your copy percentage (logs section) </h4>
+                  <form class="forms-sample" action="editBackupShScriptFromGUI.php" method="post" >
                     <div class="form-group">
                       <div class="input-group">
-                        <input type="number" min="1" max="3600" name="timeRefreshPercent" class="form-control" required placeholder="Value between 10 - 3600">
+                        <input type="number" min="5" max="3600" name="timeRefreshPercent" class="form-control" required placeholder="ex : 5">
                         <div class="input-group-append">
-                          <button name="submit" class="btn btn-sm btn-primary" type="submit">Save</button>
+                          <button name="submit" class="btn btn-sm btn-primary" type="submit">save</button>
                         </div>
                       </div>
                     </div>
                   </form>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-12 grid-margin stretch-card">
-            <div class="col-md-6 grid-margin stretch-card">
-              <div class="card">
-                <div class="card-body">
                 <h4 class="card-title">Delete old backups > x day (performed when a backup is executed)</h4>
                   <p class="card-description">
                     Win datastore space and delete old backups > x days. 
                   </p>
-                  <form class="forms-sample" action="changeValueForDeleteOldBackup.php" method="post" >
+                  <form class="forms-sample" action="editBackupShScriptFromGUI.php" method="post" >
                     <div class="form-group">
                       <div class="input-group">
-                        <input type="number" min="2" max="3650" name="valueInDays" class="form-control" required placeholder="Default Value : 365">
+                        <input type="number" min="2" max="3650" name="valueInDays" class="form-control" required placeholder="ex : 365">
                         <div class="input-group-append">
                           <button name="submit" class="btn btn-sm btn-primary" type="submit">save</button>
                         </div>
@@ -152,12 +134,26 @@
                 </div>
               </div>
             </div>
-          <div class="col-md-6 grid-margin stretch-card">
+            <div class="col-md-6 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
+                <h4 class="card-title">Refresh automatically your dashboard every x seconds (30-7200)</h4>
+                  <p class="card-description">
+                    Enter only seconds value into the form. 
+                  </p>
+                  <form class="forms-sample" action="refreshTime.php" method="post" >
+                    <div class="form-group">
+                      <div class="input-group">
+                        <input type="number" min="1800" name="refreshTime" class="form-control" required placeholder="30">
+                        <div class="input-group-append">
+                          <button name="submit" class="btn btn-sm btn-primary" type="submit">Save</button>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
                   <h4 class="card-title"> <u> Beta feature </u> : Convert a virtual disk from Thick to Thin and vice versa</h4>
                   <p class="card-description">
-                    First input : VMID. Second Input : enter 0 if you want to convert Thin -> Thick. 1 for the reverse 
+                    First input : VMID. <br> Second Input : enter 0 if you want to convert Thin -> Thick. 1 for the reverse 
                   </p>
                   <form class="form-inline" action="changeDiskFormat.php" method="post">
                     <label class="sr-only" for="inlineFormInputName2">Name</label>
@@ -168,6 +164,7 @@
                 </div>
               </div>
             </div>
+          </div>
         </div>
       </div>
         <!-- content-wrapper ends -->

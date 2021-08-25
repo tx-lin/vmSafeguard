@@ -16,17 +16,17 @@ switch($_POST['test']) {
        shell_exec('sudo sh -c \'echo "     - '.$_POST['vmName'].' has been backed up ($(date))" >> /var/log/vmSafeguard-server.log\'');
        break;
    case "vmHasBeenStartedAgain": // common to powered off and started VMs
-       shell_exec('sudo sh -c \'echo "   --> '.$_POST['vmName'].' has been started again ($(date))" >> /var/log/vmSafeguard-server.log\'');
-       break; 
-   
-          // powered on vm 
-   case "noVMwareTools":
-         shell_exec('sudo sh -c \'echo "   Warning, '.$_POST['vmName'].' does not have vmware tools, so she has been powered off (it\'s not a securely shutdown !)" >> /var/log/vmSafeguard-server.log\'');
-         break;
+      shell_exec('sudo sh -c \'echo "   --> '.$_POST['vmName'].' has been started again ($(date))" >> /var/log/vmSafeguard-server.log\'');
+      break; 
+
+        // powered on vm 
+   case "noVMTools":
+      shell_exec('sudo sh -c \'echo "   --> '.$_POST['vmName'].' does not have vmware tools, so she has been powered off (no recommanded for a vm)" >> /var/log/vmSafeguard-server.log\'');
+      break;
    case "vmIsDyingOut":
-         shell_exec('sudo sh -c \'echo "   --> '.$_POST['vmName'].' is dying out, waiting before next step ($(date))" >> /var/log/vmSafeguard-server.log\'');
-         break;
-   
+      shell_exec('sudo sh -c \'echo "   --> '.$_POST['vmName'].' is dying out, waiting before next step ($(date))" >> /var/log/vmSafeguard-server.log\'');
+      break;
+
          // main program 
    case "backupProcessStart":
          shell_exec('sudo sh -c \'echo "-------> VM(s) BACKUP process start on '.$_POST['hostname'].' : ($(date))" >> /var/log/vmSafeguard-server.log\'');

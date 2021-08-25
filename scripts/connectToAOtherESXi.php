@@ -49,7 +49,7 @@
                         foreach ($rows as $row) {
                             $ip_esxi_from_db = $row['ip'];
                             $port_esxi_from_db = $row['port'];
-                            echo "<pre>You have added ESXI $ip_esxi_from_db port $port_esxi_from_db </pre>";
+                            echo "<pre>You have switched to an other ESXI : $ip_esxi_from_db port $port_esxi_from_db </pre>";
                             echo "<button class=\"btn btn-primary mt-2 mt-xl-0\"><a style=\"color:white;\"href=\"../\" >Reload the dashboard</a></button>";
     
                             

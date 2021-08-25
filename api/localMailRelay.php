@@ -11,6 +11,10 @@ switch($_POST['test']) {
       shell_exec('curl -d "test=mailAfterBackupProcess&vmName='.$vmName.'&adminEmail='.$ADMINEMAIL.'" -X POST https://le-guide-du-sysops.fr/vmsafeguard-mail-api/mail.php');
       shell_exec('sudo sh -c \'echo "   --> $(date) - vmSafeguard has sent a Backup report email from https://le-guide-du-sysops.fr/vmsafeguard-mail-api/mail.php" >> /var/log/vmSafeguard-server.log\'');
       break;
+   case "ESXiAppearsToBeOffline":
+      $esxiHost = $_POST['esxiHost'] ;
+      shell_exec('curl -d "test=ESXiAppearsToBeOffline&esxiHost='.$esxiHost.'&adminEmail='.$ADMINEMAIL.'" -X POST https://le-guide-du-sysops.fr/vmsafeguard-mail-api/mail.php');
+      break;
    default:
       echo "Wrong local mail api call";
       shell_exec('sudo sh -c \'echo "WARNING : Wrong mail api call (HTTP POST) $(date)" >> /var/log/vmSafeguard-server.log\'');

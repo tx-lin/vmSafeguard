@@ -8,6 +8,7 @@ $CHECKBACKUPFOLDER;
 $LOG;
 $REFRESHTIME;
 $ADMINEMAIL;
+$VMSAFEGUARD_IP;
 
 	$statement = $db->prepare("SELECT * FROM esxi ;"); // select ip and port for the current esxi 
 	$rows = $statement->execute();
@@ -25,7 +26,7 @@ $ADMINEMAIL;
 	
 	foreach ($rows as $row) {
 		$CHECKBACKUPFOLDER = $row['CheckBackupFolder'];
-		// $LOG = $row['LogsPath']; Since 08/2021, vmSafeguard store logs into the vmSafeguard server instance.
+		// $LOG = $row['LogsPath']; Since 18/08/2021, vmSafeguard store logs into the vmSafeguard server instance.
 		
 	}
 	
@@ -43,6 +44,14 @@ $ADMINEMAIL;
 	
 	foreach ($rows as $row) {
 	  $ADMINEMAIL= $row['Email'];
+	} 
+
+	$statement = $db->prepare("SELECT Ip,Port FROM vmSafeguardHost WHERE Id = '1' ;"); // selecting the email for mailing after the backup process 
+	$rows = $statement->execute();
+	$rows = $statement->fetchAll();
+	
+	foreach ($rows as $row) {
+		$VMSAFEGUARD_IP = $row['Ip'];
 	} 
 
 ?>

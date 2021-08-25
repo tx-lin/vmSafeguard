@@ -37,7 +37,7 @@
                     <div class="form-group row">
                       <label for="exampleInputUsername2" class="col-sm-3 col-form-label">ESXi IP</label>
                       <div class="col-sm-9">
-                        <input type="text" name="ip"class="form-control" id="ip" required placeholder="ESXi IP (ex:10.0.0.1)">
+                        <input type="text" name="ip"class="form-control" id="ip" required placeholder="ex : 10.0.0.1">
                       </div>
                       <label for="exampleInputUsername2" class="col-sm-3 col-form-label">SSH Port</label>
                       <div class="col-sm-9">
@@ -50,6 +50,10 @@
                       <label for="exampleInputUsername2" class="col-sm-3 col-form-label">Admin Email</label>
                       <div class="col-sm-9">
                         <input type="email" name="email"class="form-control" id="adminEmail" required placeholder="">
+                      </div>
+                      <label for="exampleInputUsername2" class="col-sm-3 col-form-label">vmSafeguard IP</label>
+                      <div class="col-sm-9">
+                        <input type="text" name="vmSafeguardIP" class="form-control" id="vmSafeguardIP" required placeholder="ex : 10.0.0.10">
                       </div>
                     </div>
                     <button type="submit" name="submit" target="_blank" class="btn btn-primary mr-2">Submit</button>

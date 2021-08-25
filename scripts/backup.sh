@@ -1,7 +1,8 @@
 #!/bin/sh
 # --- Global Variables ---
 DATASTORE="datastore1"
-vmSafeguardHost="192.168.130.128"
+vmSafeguardHost="$1"
+shift
 timeRefreshPercentBackup="sleep 5"
 hostname=$(hostname)
 # --- End of global variables --- 
@@ -9,7 +10,7 @@ backupVM() {
       if [ "$PWR" == "Powered off" ] ; then
           wget --spider --post-data "test=vmAlreadyShutdown&vmName=$name" http://$vmSafeguardHost/vmSafeguard/api/logsFetcher.php
           wget --spider --post-data "test=vmIsCurrentlyUnderBackuping&vmName=$name" http://$vmSafeguardHost/vmSafeguard/api/logsFetcher.php
-          path=`find / -maxdepth 5 -name "$name.vmx"`
+          path=$(find / -maxdepth 5 -name "$name.vmx")
           cutedpath="${path%"${path#/*/*/*/*/}"}"
           PATHBACKUPa="$PATHBACKUP$name/"
           cp -r $cutedpath $PATHBACKUP &
@@ -31,18 +32,18 @@ backupVM() {
       	  vim-cmd vmsvc/power.shutdown $VM
           result=$?
           if [ $result -ne 0 ]; then
-             wget --spider --post-data "test=noVMwareTools&vmName=$name" http://$vmSafeguardHost/vmSafeguard/api/logsFetcher.php
+             wget --spider --post-data "test=noVMTools&vmName=$name" http://$vmSafeguardHost/vmSafeguard/api/logsFetcher.php
              vim-cmd vmsvc/power.off $VM
           fi
       	  sleep 15
           while [ "$PWR" == "Powered on" ] # Allow to the VM to shutdown securly (Especially if her want to update her os, before shutdown)
           do
-            PWR=`vim-cmd vmsvc/power.getstate $VM | grep -v "Retrieved runtime info"`
+            PWR=$(vim-cmd vmsvc/power.getstate $VM | grep -v "Retrieved runtime info")
             wget --spider --post-data "test=vmIsDyingOut&vmName=$name" http://$vmSafeguardHost/vmSafeguard/api/logsFetcher.php
             sleep 15
           done
           wget --spider --post-data "test=vmIsCurrentlyUnderBackuping&vmName=$name" http://$vmSafeguardHost/vmSafeguard/api/logsFetcher.php
-          path=`find / -maxdepth 5 -name "$name.vmx"`
+          path=$(find / -maxdepth 5 -name "$name.vmx")
           cutedpath="${path%"${path#/*/*/*/*/}"}"
           PATHBACKUPa="$PATHBACKUP$name/"
           cp -r $cutedpath $PATHBACKUP &
@@ -62,8 +63,7 @@ backupVM() {
           wget --spider --post-data "test=mailAfterBackupProcess&vmName=$name" http://$vmSafeguardHost/vmSafeguard/api/localMailRelay.php
       fi
 }
-date=`date +%d-%m-%Y-%H-%M`
-PATHLOG="/vmfs/volumes/$DATASTORE/logsbackup.txt" 
+date=$(date +%d-%m-%Y-%H-%M) 
 mkdir /vmfs/volumes/$DATASTORE/backup-vm-$date
 PATHBACKUP="/vmfs/volumes/$DATASTORE/backup-vm-$date/" 
 wget --spider --post-data "test=backupProcessStart&hostname=$hostname" http://$vmSafeguardHost/vmSafeguard/api/logsFetcher.php
@@ -82,5 +82,5 @@ done
 wget --spider --post-data "test=listOfBackupFoldersTwoPoints" http://$vmSafeguardHost/vmSafeguard/api/logsFetcher.php
 lsOfBackupFolders=$(ls -dt /vmfs/volumes/$DATASTORE/backup*)
 wget --spider --post-data "test=listOfBackupFolders&list=$lsOfBackupFolders" http://$vmSafeguardHost/vmSafeguard/api/logsFetcher.php
-find /vmfs/volumes/$DATASTORE/backup* -mtime +360 -exec rm -rf {} \; 
+find /vmfs/volumes/$DATASTORE/backup* -mtime +3650 -exec rm -rf {} \; 
 wget --spider --post-data "test=endOfBackupProcess&hostname=$hostname" http://$vmSafeguardHost/vmSafeguard/api/logsFetcher.php

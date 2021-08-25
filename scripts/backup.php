@@ -32,7 +32,7 @@
                     <?php
                     if (isset($_POST['vmid'])) {
                         echo "<pre>".shell_exec("sudo ssh -p $PORT root@$HOST 'sh -s' < checkIfVMExist.sh ".$_POST['vmid']."")."";
-                        shell_exec("sudo ssh -p $PORT root@$HOST 'sh -s' < backup.sh ".$_POST['vmid']." > /dev/null 2>/dev/null &");
+                        shell_exec("sudo ssh -p $PORT root@$HOST 'sh -s' < backup.sh ".$VMSAFEGUARD_IP." ".$_POST['vmid']." > /dev/null 2>/dev/null &");
                         sleep (1);
                         $CHECKBACKUPFOLDER="".$CHECKBACKUPFOLDER."backup*";
                         echo "New root backup folder has been created to welcome VM(s) backup : ".shell_exec("sudo ssh -p $PORT root@$HOST 'ls -dt1 $CHECKBACKUPFOLDER | head -n 1 '")."</pre>";

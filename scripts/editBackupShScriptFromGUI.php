@@ -34,8 +34,16 @@
                         shell_exec("sed -i 's/timeRefreshPercentBackup=.*/timeRefreshPercentBackup=\"sleep ".$_POST['timeRefreshPercent']."\"/' backup.sh");
                         echo "<pre>".shell_exec("sudo cat backup.sh")."</pre>";
                       }
+                      if (!empty($_POST['ChangeBackupDatastore'])) {
+                        shell_exec("sed -i 's/DATASTORE=.*/DATASTORE=\"".$_POST['ChangeBackupDatastore']."\"/' backup.sh");
+                        echo "<pre>".shell_exec("sudo cat backup.sh")."</pre>";
+                      }
+                      if (isset($_POST['valueInDays'])) {
+                        shell_exec('sed -i \'/-mtime/cfind /vmfs/volumes/$DATASTORE/backup* -mtime +'.$_POST['valueInDays'].' -exec rm -rf {} \\\; \' backup.sh');
+                        echo "<pre>".shell_exec("sudo cat backup.sh")."</pre>";
+                      }
                       else {
-                        echo "Wrong value.";
+                        echo "Wrong action.";
                       }
                     ?>
                   </p>

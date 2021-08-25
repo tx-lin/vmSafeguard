@@ -8,6 +8,8 @@ youtube video (same content as bellow): https://youtu.be/UtxZ28hAzQ4
 
 ## I. Pull (run) vmSafeguard's image from docker hub 
 
+### For current ESXi version 7.X 
+
 As root, execute the following commands : 
 
 ```
@@ -20,6 +22,18 @@ You are into the container with a bash shell
 cd /root/.ssh/
 ```
 <img src="https://i.imgur.com/X9tX4RW.png"> <br> <br>
+
+### For old ESXi version 6.x 
+
+```
+docker run -d -p 8080:80 archidote/vmsafeguard:6.x
+# docker run -d -p 8080:443 archidote/vmsafeguard if you want to use https protocol
+docker ps 
+docker exec -it <id of the container vmSafeguard> bash
+-----------------
+You are into the container with a bash shell
+cd /root/.ssh/
+```
 
 ## II. Copy your ssh public key to your ESXi(s)
 

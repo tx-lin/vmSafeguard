@@ -35,6 +35,24 @@ And especially not like that
 <br>
 /vmfs/volume/datastore1/VMsdebian/MyDebian10Vm/ :x:
 
+# ESXi supported version 
+
+vmSafeguard is currently available for the following ESXi version : 
+
+- 7.0.X (Follow the step by step the readme)
+- 6.x 
+
+root@kali:/var/www/html/test# cd vmSafeguard/
+root@kali:/var/www/html/test/vmSafeguard# git checkout 6.1.1
+Branch '6.1.1' set up to track remote branch '6.1.1' from 'origin'.
+Switched to a new branch '6.1.1'
+root@kali:/var/www/html/test/vmSafeguard# chown www-data:www-data -R vmSafeguard
+chown: cannot access 'vmSafeguard': No such file or directory
+root@kali:/var/www/html/test/vmSafeguard# cd .. 
+root@kali:/var/www/html/test# chmod 755 -R vmSafeguard
+root@kali:/var/www/html/test# chown www-data:www-data -R vmSafeguard
+
+
 # :pushpin: Installation (Easyest)
 
 ### Easiest Way - Run setup.sh with curl, to automating the installation
@@ -45,10 +63,20 @@ Update your server before to start the installation. <code>apt update</code>
 
 if you used debian, please execute this command as root <code> su - </code>  before to run the next command. :) 
 
+For ESXi version 7.X run this command : 
+
 ```
 sudo curl -sL https://raw.githubusercontent.com/archidote/vmSafeguard/master/setup.sh | bash
 ```
-## Do you want to run vmSafeguard as a contaiener with docker (beta) ? 
+
+For old ESXi version (6.x), please run this command : 
+
+```
+sudo curl -sL https://raw.githubusercontent.com/archidote/vmSafeguard/master/setup.sh | bash -s 6.x
+```
+
+
+## Docker install "On the fly" - Do you want to run vmSafeguard as a contaiener with docker ? 
 
 It's now possible ! But I don't recommanded this alternative for a production environnement !
 
