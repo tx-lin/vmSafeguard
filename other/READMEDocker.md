@@ -1,6 +1,6 @@
 # vmSafeguard - Docker install 
 
-<em> This little guid will show you how to setup vmSafeguard app as a docker container (not for a production environnement) </em> <b>
+<em> This little guid will show you how to setup vmSafeguard app as a docker container (not for a production environnement) </em> <br>
 <strong> Some feature are not available fore the moment like backup scheduling </strong>
 
 <strong> I suppose that you have read the root readme (until installation part) </strong>
