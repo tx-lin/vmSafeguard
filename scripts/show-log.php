@@ -45,3 +45,11 @@ require('../controller.php');
         <!-- content-wrapper ends -->
         <!-- partial:partials/_footer.html -->
 <?php include('scripts-footer.php') ?>
+                      <!-- <script>
+                        fetch('../api/vmSafeguard-server.log')
+                          .then(response => response.text())
+                          .then(data => {
+                            
+                            document.write.innerHTML(data);
+                          });
+                      </script> -->

@@ -82,5 +82,5 @@ done
 wget --spider --post-data "test=listOfBackupFoldersTwoPoints" http://$vmSafeguardHost/vmSafeguard/api/logsFetcher.php
 lsOfBackupFolders=$(ls -dt /vmfs/volumes/$DATASTORE/backup*)
 wget --spider --post-data "test=listOfBackupFolders&list=$lsOfBackupFolders" http://$vmSafeguardHost/vmSafeguard/api/logsFetcher.php
-find /vmfs/volumes/$DATASTORE/backup* -mtime +3650 -exec rm -rf {} \; 
+find /vmfs/volumes/$DATASTORE/backup* -mtime +365 -exec rm -rf {} \; 
 wget --spider --post-data "test=endOfBackupProcess&hostname=$hostname" http://$vmSafeguardHost/vmSafeguard/api/logsFetcher.php

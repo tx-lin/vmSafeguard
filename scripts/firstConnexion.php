@@ -31,11 +31,11 @@
                   <p class="card-description">
 					<?php
 
-              $HOST = $_POST['ip'] ;
-              $PORT = $_POST['port'];
-              $CHECKBACKUPFOLDER = $_POST['CheckBackupFolder'] ;
-              $ADMINEMAIL = $_POST["email"]; 
-              $VMSAFEGUARD_IP = $_POST["vmSafeguardIP"] ; 
+              $HOST = htmlspecialchars($_POST['ip']) ;
+              $PORT = htmlspecialchars($_POST['port']) ;
+              $CHECKBACKUPFOLDER = htmlspecialchars($_POST['CheckBackupFolder']) ;
+              $ADMINEMAIL = htmlspecialchars($_POST["email"]); 
+              $VMSAFEGUARD_IP = htmlspecialchars($_POST["vmSafeguardIP"]) ; 
 
               echo "<pre>";
 
@@ -51,8 +51,8 @@
                   // print_r($result);
                       
                   foreach ($rows as $row) {
-                      $HOST = $row['ip'];
-                      $PORT = $row['port'];
+                      $HOST = htmlspecialchars($row['ip']);
+                      $PORT = htmlspecialchars($row['port']);
                       echo "ESXi <strong>$HOST</strong> on ssh port <strong>$PORT</strong> has been added. <br>";
                       shell_exec('sudo sh -c \'echo "$(date) - you have added a new ESXi to vmSafeguard IP : '.$HOST.' PORT : '.$PORT.' ! " >> /var/log/vmSafeguard-server.log\'');
 
@@ -71,7 +71,7 @@
                   $rows = $statement->fetchAll();
 
                   foreach ($rows as $row) {
-                      $CHECKBACKUPFOLDER = $row['CheckBackupFolder'];
+                      $CHECKBACKUPFOLDER = htmlspecialchars($row['CheckBackupFolder']);
                       echo "Dashboard will check the latest backups with this absolute path <strong>$CHECKBACKUPFOLDER</strong> <br>";
                       shell_exec('sudo sh -c \'echo "$(date) - The dashboard will check '.$CHECKBACKUPFOLDER.' for the latest backup. " >> /var/log/vmSafeguard-server.log\'');
                   }
@@ -89,7 +89,7 @@
                     $rows = $statement->fetchAll();
                     
                     foreach ($rows as $row) {
-                      $ADMINEMAIL = $row['Email'];
+                      $ADMINEMAIL = htmlspecialchars($row['Email']);
                       echo "You have added the following admin email : <strong>$ADMINEMAIL</strong> <br>";
                       shell_exec('sudo sh -c \'echo "$(date) - you have added the following admin email : '.$ADMINEMAIL.' !" >> /var/log/vmSafeguard-server.log\'');
 
@@ -107,7 +107,7 @@
                     $rows = $statement->fetchAll();
                     
                     foreach ($rows as $row) {
-                      $VMSAFEGUARD_IP = $row['Ip'];
+                      $VMSAFEGUARD_IP = htmlspecialchars($row['Ip']);
                       echo "You had change the vm Safeguard ip : <strong>$VMSAFEGUARD_IP</strong> <br>";
                       shell_exec('sudo sh -c \'echo "$(date) - You had change the vm Safeguard ip : '.$VMSAFEGUARD_IP.'" >> /var/log/vmSafeguard-server.log\'');
 

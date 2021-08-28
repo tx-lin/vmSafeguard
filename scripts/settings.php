@@ -85,7 +85,6 @@
                       </div>
                     </div>
                     <button name="submit" type="submit" class="btn btn-primary mr-2">Save</button>
-                    <button class="btn btn-light">Cancel</button>
                   </form>
                 </div>
               </div>
@@ -144,7 +143,7 @@
                   <form class="forms-sample" action="refreshTime.php" method="post" >
                     <div class="form-group">
                       <div class="input-group">
-                        <input type="number" min="1800" name="refreshTime" class="form-control" required placeholder="30">
+                        <input type="number" name="refreshTime" class="form-control" required placeholder="30">
                         <div class="input-group-append">
                           <button name="submit" class="btn btn-sm btn-primary" type="submit">Save</button>
                         </div>

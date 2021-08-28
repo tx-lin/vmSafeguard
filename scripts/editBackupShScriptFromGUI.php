@@ -30,15 +30,15 @@
                   <p class="card-description">
                     the file bash.sh will be updated. 
                     <?php
-                      if (!empty($_POST['timeRefreshPercent'])) {
+                      if (!empty(htmlspecialchars($_POST['timeRefreshPercent']))) {
                         shell_exec("sed -i 's/timeRefreshPercentBackup=.*/timeRefreshPercentBackup=\"sleep ".$_POST['timeRefreshPercent']."\"/' backup.sh");
                         echo "<pre>".shell_exec("sudo cat backup.sh")."</pre>";
                       }
-                      if (!empty($_POST['ChangeBackupDatastore'])) {
+                      if (!empty(htmlspecialchars($_POST['ChangeBackupDatastore']))) {
                         shell_exec("sed -i 's/DATASTORE=.*/DATASTORE=\"".$_POST['ChangeBackupDatastore']."\"/' backup.sh");
                         echo "<pre>".shell_exec("sudo cat backup.sh")."</pre>";
                       }
-                      if (isset($_POST['valueInDays'])) {
+                      if (!empty(htmlspecialchars($_POST['valueInDays']))) {
                         shell_exec('sed -i \'/-mtime/cfind /vmfs/volumes/$DATASTORE/backup* -mtime +'.$_POST['valueInDays'].' -exec rm -rf {} \\\; \' backup.sh');
                         echo "<pre>".shell_exec("sudo cat backup.sh")."</pre>";
                       }

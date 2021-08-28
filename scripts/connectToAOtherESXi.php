@@ -31,10 +31,10 @@
                   <p class="card-description">
                   <?php
                     // if (isset($_POST['ip']) && isset($_POST['port'])) {
-                    if (isset($_POST['submit'])) {
+                    if (!empty($_POST['ip']) && (!empty($_POST['ip']))) {
                       
-                      $ip = $_POST['ip'] ;
-                      $port = $_POST['port'];
+                      $ip = htmlspecialchars($_POST['ip']) ;
+                      $port = htmlspecialchars($_POST['port']) ;
           
                         // open the database
                         // $db = new PDO('sqlite:' . __DIR__ . '/vmSafeguard.db');
@@ -47,8 +47,8 @@
                         $rows = $statement->fetchAll();
                         
                         foreach ($rows as $row) {
-                            $ip_esxi_from_db = $row['ip'];
-                            $port_esxi_from_db = $row['port'];
+                            $ip_esxi_from_db = htmlspecialchars($row['ip']);
+                            $port_esxi_from_db = htmlspecialchars($row['port']);
                             echo "<pre>You have switched to an other ESXI : $ip_esxi_from_db port $port_esxi_from_db </pre>";
                             echo "<button class=\"btn btn-primary mt-2 mt-xl-0\"><a style=\"color:white;\"href=\"../\" >Reload the dashboard</a></button>";
     

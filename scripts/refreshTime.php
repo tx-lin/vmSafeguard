@@ -30,9 +30,9 @@
                   <h4 class="card-title">vmSafeguard | REFRESH AUTOMATICALLY YOUR DASHBOARD EVERY X SECONDS </h4>
                   <p class="card-description">
                   <?php
-                    if (isset($_POST['submit'])) {
+                    if (!empty($_POST['refreshTime'])) {
                       
-                        $refreshTime = $_POST['refreshTime'] ;
+                        $refreshTime = htmlspecialchars($_POST['refreshTime']) ;
                         //open the database
                         $db = new PDO('sqlite:' . __DIR__ . '/vmSafeguard.db');
                         // TRUNCATE Table 
@@ -44,7 +44,7 @@
                         $rows = $statement->fetchAll();
                         
                         foreach ($rows as $row) {
-                            $valueFromTheDB = $row['RefreshTime'];
+                            $valueFromTheDB = htmlspecialchars($row['RefreshTime']);
                             echo "<pre>You dashboard will reload itself every $valueFromTheDB seconds</pre>";
                             echo "<button class=\"btn btn-primary mt-2 mt-xl-0\"><a style=\"color:white;\"href=\"../\" >Reload the dashboard</a></button>";
                             
