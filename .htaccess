@@ -2,5 +2,6 @@ RewriteCond %{REQUEST_URI} ^/api/
 RewriteRule ^ - [L]
 AuthName "Access is restricted"
 AuthType Basic
+Options -Indexes
 AuthUserFile "/var/www/html/vmSafeguard/.htpasswd"
 Require valid-user

@@ -111,13 +111,13 @@ $starttime = microtime(true); // Top of page
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="scripts/crontask.php">
+            <a class="nav-link" href="scripts/router.php?action=crontask">
               <i class="mdi mdi-calendar-clock menu-icon"></i>
               <span class="menu-title">Schedule a backup</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="scripts/show-log.php#footer">
+            <a class="nav-link" href="scripts/router.php?action=showLogs">
               <i class="mdi mdi-note-text menu-icon"></i>
               <span class="menu-title">Logs</span>
             </a>
@@ -152,7 +152,7 @@ $starttime = microtime(true); // Top of page
                   </div>
                 </div>
                 <div class="d-flex justify-content-between align-items-end flex-wrap">
-                  <button class="btn btn-primary mt-2 mt-xl-0"><a style="color:white;"href="scripts/esxiStats.php" >ESXI Stats</a></button>
+                  <button class="btn btn-primary mt-2 mt-xl-0"><a style="color:white;"href="scripts/router.php?action=stats" >ESXI Stats</a></button>
                 </div>
               </div>
             </div>
@@ -210,7 +210,7 @@ $starttime = microtime(true); // Top of page
                     <div class="tab-pane fade" id="sales" role="tabpanel" aria-labelledby="sales-tab">
                       <div class="d-flex flex-wrap justify-content-xl-between">
                         <div class="d-none d-xl-flex border-md-right flex-grow-1 align-items-center justify-content-center p-3 item">
-                          <form class="form-inline" target="_blank" action="scripts/summarySingleVM.php" method="post">                  
+                          <form class="form-inline" target="_blank" action="scripts/router.php?action=summarySingleVM" method="post">                  
                             <label class="sr-only" for="inlineFormInputGroupUsername2"></label>
                             <div class="input-group mb-2 mr-sm-2">
                               <div class="input-group-prepend">
@@ -273,10 +273,10 @@ $starttime = microtime(true); // Top of page
 	                <p class="card-title">Quick actions : </p>
 	                <p class="text-muted"></p>
 	                <div id="total-sales-chart-legend"></div>                  
-	                	<button type="button" class="btn btn-success btn-rounded btn-fw" style="width:165px;height:40px;margin:0 auto;display:block;"><a style="color:white;"href="scripts/startAll.php">Start all VM</a></button> <br>
-                    <button type="button" class="btn btn-danger btn-rounded btn-fw" style="width:165px;height:40px;margin:0 auto;display:block;"><a style="color:white;"href="scripts/shutdownAll.php">Shutdown all VM</a></button> <br>
-                    <button type="button" class="btn btn-warning btn-rounded btn-fw" style="width:165px;height:40px;margin:0 auto;display:block;"><a style="color:white;"href="scripts/suspendAll.php">Suspend all VM</a></button> </br>
-                    <button type="button" class="btn btn-primary btn-rounded btn-fw" style="width:165px;height:40px;margin:0 auto;display:block;"><a style="color:white;"href="scripts/summaryAll.php">Summary all VM</a></button> <br>
+	                	<button type="button" class="btn btn-success btn-rounded btn-fw" style="width:165px;height:40px;margin:0 auto;display:block;"><a style="color:white;"href="scripts/router.php?action=startAll">Start all VM</a></button> <br>
+                    <button type="button" class="btn btn-danger btn-rounded btn-fw" style="width:165px;height:40px;margin:0 auto;display:block;"><a style="color:white;"href="scripts/router.php?action=shutdownAll">Shutdown all VM</a></button> <br>
+                    <button type="button" class="btn btn-warning btn-rounded btn-fw" style="width:165px;height:40px;margin:0 auto;display:block;"><a style="color:white;"href="scripts/router.php?action=suspendAll">Suspend all VM</a></button> </br>
+                    <button type="button" class="btn btn-primary btn-rounded btn-fw" style="width:165px;height:40px;margin:0 auto;display:block;"><a style="color:white;"href="scripts/router.php?action=summaryAll">Summary all VM</a></button> <br>
 	                    <!--<button type="button" class="btn btn-primary btn-rounded btn-fw" style="width:165px;height:40px;margin:0 auto;display:block;"><a style="color:white;"href="scripts/shutdownAll.php">Shutdown all VM</a></button> </br>-->     
                 </div>
             </div>
@@ -286,7 +286,7 @@ $starttime = microtime(true); // Top of page
                 <div class="card-body">
                   <h4 class="card-title">Single Backup</h4>
                   <p class="card-description"><i>When you have submitted the form, you can check the logs</i></p>
-                  <form class="form-inline" target="_blank" action="scripts/backup.php" method="post">                  
+                  <form class="form-inline" target="_blank" action="scripts/router.php?action=backup" method="post">                  
                     <label class="sr-only" for="inlineFormInputGroupUsername2"></label>
                     <div class="input-group mb-2 mr-sm-2">
                       <div class="input-group-prepend">
@@ -307,7 +307,7 @@ $starttime = microtime(true); // Top of page
                 <h4 class="card-title">Pool Backup</h4>
                 <p class="card-description"><i><strong>Enter the VM VMIDs separate with a space.</strong> When you submitted the form, you can check the logs</i></p>
                 <p class="card-description"><i><strong></strong></i></p>
-                <form class="form-inline" target="_blank" action="scripts/backup.php" method="post">                  
+                <form class="form-inline" target="_blank" action="scripts/router.php?action=backup" method="post">                  
                     <label class="sr-only" for="inlineFormInputGroupUsername2"></label>
                     <div class="input-group mb-2 mr-sm-2">
                       <div class="input-group-prepend">

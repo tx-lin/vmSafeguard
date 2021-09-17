@@ -1,24 +1,3 @@
-<?php
-require ('../controller.php');
-?>
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <!-- Required meta tags -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>vmSafeguard / ESXI Stats</title>
-  <!-- plugins:css -->
-  <link rel="stylesheet" href="../vendors/mdi/css/materialdesignicons.min.css">
-  <link rel="stylesheet" href="../vendors/base/vendor.bundle.base.css">
-  <!-- endinject -->
-  <!-- inject:css -->
-  <link rel="stylesheet" href="../css/style.css">
-  <!-- endinject -->
-  <link rel="shortcut icon" href="../images/favicon.png" />
-</head>
-<?php include('scripts-menu-header-top-left.php');?>
 <?php 
 // backend 
     $countVMs = shell_exec("sudo ssh -p $PORT root@$HOST 'vim-cmd vmsvc/getallvms | tail -n +2 | wc -l'");
@@ -31,8 +10,7 @@ require ('../controller.php');
     echo "<input type=\"hidden\" id=\"vmOSWindows\" name=\"whichOs\" value=\"$osWindows\"/>";
 ?>
       <!-- partial -->
-      <div class="main-panel">
-        <div class="content-wrapper">
+
           <div class="row">
             <div class="col-lg-6 grid-margin stretch-card">
               <div class="card">
@@ -47,8 +25,7 @@ require ('../controller.php');
                 <div class="card-body">
                   <h4 class="card-title">% OS kind  </h4>
                   <canvas id="doughnutChart"></canvas>
-                </div>
+                  </div>
               </div>
             </div>
           </div>
-        <?php require 'scripts-footer.php'; ?>

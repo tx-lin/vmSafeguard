@@ -30,7 +30,7 @@
                   <p class="card-description">
                   Before to complete the form, don't forget to add your public ssh key to the ESXi. follow the <a href="https://github.com/archidote/vmSafeguard/blob/master/README.md" target="_blank">documentation</a>, if you don't know how to do that. 
                   </p>
-                  <form class="forms-sample" action="firstConnexion.php" method="post">
+                  <form class="forms-sample" action="router.php?action=editCoreValue" method="post">
                     <div class="form-group row">
                       <label for="exampleInputUsername2" class="col-sm-3 col-form-label">ESXi IP</label>
                       <div class="col-sm-9">
@@ -65,7 +65,7 @@
                   <p class="card-description">
                     Update your credentials.
                   </p>
-                  <form class="forms-sample" action="updateCredentials.php" method="post" >
+                  <form class="forms-sample" action="router.php?action=updateCredentials" method="post" >
                     <div class="form-group row">
                       <label for="exampleInputUsername2" class="col-sm-3 col-form-label">Admin Username</label>
                       <div class="col-sm-9">
@@ -95,7 +95,7 @@
               <div class="card">
                 <div class="card-body">
                 <h4 class="card-title">Change Backup datastore (that store the backups)</h4>
-                  <form class="forms-sample" action="editBackupShScriptFromGUI.php" method="post" >
+                  <form class="forms-sample" action="router.php?action=ChangeBackupDatastore" method="post" >
                     <div class="form-group">
                       <div class="input-group">
                         <input type="text" name="ChangeBackupDatastore" class="form-control" required placeholder="ex : datastore1 ">
@@ -106,7 +106,7 @@
                     </div>
                   </form>
                 <h4 class="card-title">Refresh automatically your copy percentage (logs section) </h4>
-                  <form class="forms-sample" action="editBackupShScriptFromGUI.php" method="post" >
+                  <form class="forms-sample" action="router.php?action=timeRefreshPercent" method="post" >
                     <div class="form-group">
                       <div class="input-group">
                         <input type="number" min="5" max="3600" name="timeRefreshPercent" class="form-control" required placeholder="ex : 5">
@@ -120,7 +120,7 @@
                   <p class="card-description">
                     Win datastore space and delete old backups > x days. 
                   </p>
-                  <form class="forms-sample" action="editBackupShScriptFromGUI.php" method="post" >
+                  <form class="forms-sample" action="router.php?action=valueInDays" method="post" >
                     <div class="form-group">
                       <div class="input-group">
                         <input type="number" min="2" max="3650" name="valueInDays" class="form-control" required placeholder="ex : 365">
@@ -140,7 +140,7 @@
                   <p class="card-description">
                     Enter only seconds value into the form. 
                   </p>
-                  <form class="forms-sample" action="refreshTime.php" method="post" >
+                  <form class="forms-sample" action="router.php?action=refreshTime" method="post" >
                     <div class="form-group">
                       <div class="input-group">
                         <input type="number" name="refreshTime" class="form-control" required placeholder="30">
@@ -149,16 +149,6 @@
                         </div>
                       </div>
                     </div>
-                  </form>
-                  <h4 class="card-title"> <u> Beta feature </u> : Convert a virtual disk from Thick to Thin and vice versa</h4>
-                  <p class="card-description">
-                    First input : VMID. <br> Second Input : enter 0 if you want to convert Thin -> Thick. 1 for the reverse 
-                  </p>
-                  <form class="form-inline" action="changeDiskFormat.php" method="post">
-                    <label class="sr-only" for="inlineFormInputName2">Name</label>
-                    <input type="text" name="vmid" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2" placeholder="VMID">
-                    <input type="text" name="changeDiskFormat" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2" placeholder="0 = Thin 1 = thick">
-                    <button type="submit" class="btn btn-primary mb-2">Submit</button>
                   </form>
                 </div>
               </div>

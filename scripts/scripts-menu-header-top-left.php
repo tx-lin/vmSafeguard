@@ -53,19 +53,19 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="crontask.php">
+            <a class="nav-link" href="router.php?action=crontask">
               <i class="mdi mdi-calendar-clock menu-icon"></i>
               <span class="menu-title">Schedule a backup</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="show-log.php#footer">
+            <a class="nav-link" href="router.php?action=showLogs">
               <i class="mdi mdi-note-text menu-icon"></i>
               <span class="menu-title">Logs</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="esxiStats.php">
+            <a class="nav-link" href="router.php?action=stats">
               <i class="mdi mdi-trending-up menu-icon"></i>
               <span class="menu-title">ESXi stats</span>
             </a>
