@@ -33,7 +33,7 @@
                   <p class="card-description">
                     Before to complete the form, don't forget to add your public ssh key to the ESXi. follow the <a href="https://github.com/archidote/vmSafeguard/blob/master/README.md" target="_blank">documentation</a>, if you don't know how to do that. 
                   </p>
-                  <form class="forms-sample" action="firstConnexion.php" method="post">
+                  <form class="forms-sample" action="router.php?action=editCoreValue" method="post">
                     <div class="form-group row">
                       <label for="exampleInputUsername2" class="col-sm-3 col-form-label">ESXi IP</label>
                       <div class="col-sm-9">
