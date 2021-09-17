@@ -171,12 +171,11 @@ cd /var/www/html/vmSafeguard/scripts
 nano backup.sh
 ```
 
-at the top of the file these lines : 
+at the top of the file this line : 
 ```
 #!/bin/sh
 # --- Global Variables ---
 DATASTORE="datastore-backup" # Your specific datastore for the futur backup 
-vmSafeguardHost="192.168.130.128" # Ip of vmSafeguard host 
 <...>
 ```
 
