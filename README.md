@@ -80,26 +80,7 @@ sudo curl -sL https://raw.githubusercontent.com/archidote/vmSafeguard/master/set
 
 It's now possible ! But I don't recommanded this alternative for a production environnement !
 
-Navigate to other/READMEDocker.md, to see a quick tutorial for setup vmSafeguard as a docker container.
-
-# :pushpin: Installation (Hand installation -> tedious)
-```
-sudo apt update && apt upgrade
-sudo apt install git apache2 php htop wget sudo curl
-sudo git clone https://github.com/archidote/vmSafeguard
-sudo mv vmSafeguard /var/www/html
-sudo chmod 700 -R /var/www/html/vmSafeguard
-sudo chown -R www-data:www-data /var/www/html/vmSafeguard
-sudo echo 'www-data ALL = (ALL) NOPASSWD: ALL' >> /etc/sudoers.d/myOverrides
-sudo sed -i '/<Directory \/var\/www\/>/,/<\/Directory>/ s/AllowOverride None/AllowOverride All/' /etc/apache2/apache2.conf
-sudo a2enmod ssl
-sudo systemctl restart apache2
-sudo a2enmod rewrite
-sudo systemctl restart apache2
-sudo a2ensite default-ssl.conf
-sudo systemctl restart apache2
-sudo systemctl enable apache2
-``` 
+Navigate to <a href="https://github.com/archidote/vmSafeguard/blob/master/other/READMEDocker.md">other/READMEDocker.md </a>, to see a quick tutorial for setup vmSafeguard as a docker container.
 
 **WARNING** : <i>You need to be <b>root</b> or have sudo rights for executing these commands.</i>
 
@@ -198,7 +179,7 @@ if it's not the case, change the value of the variable <code>"cutedpath=" </code
 
 ## Authentification .htaccess / .htpasswd and first connexion
 
-Setup your first connexion : http(s)://your-ip/vmSafeguard/scripts/starter.php
+Setup your first connexion : http(s)://vmsafeguard-ip/vmSafeguard/scripts/router.php?action=welcome
 
 When you access to vmSafeguard, you need to provide an id and a password : 
 

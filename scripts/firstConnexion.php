@@ -21,7 +21,7 @@
             $HOST = htmlspecialchars($row['ip']);
             $PORT = htmlspecialchars($row['port']);
             echo "ESXi <strong>$HOST</strong> on ssh port <strong>$PORT</strong> has been added. <br>";
-            shell_exec('sudo sh -c \'echo "$(date) - you have added a new ESXi to vmSafeguard IP : '.$HOST.' PORT : '.$PORT.' ! " >> /var/log/vmSafeguard-server.log\'');
+            shell_exec('echo "$(date) - you have added a new ESXi to vmSafeguard IP : '.$HOST.' PORT : '.$PORT.' ! " >> /var/log/vmSafeguard-server.log');
 
         }        
     }
@@ -39,7 +39,7 @@
         foreach ($rows as $row) {
             $CHECKBACKUPFOLDER = htmlspecialchars($row['CheckBackupFolder']);
             echo "Dashboard will check the latest backups with this absolute path <strong>$CHECKBACKUPFOLDER</strong> <br>";
-            shell_exec('sudo sh -c \'echo "$(date) - The dashboard will check '.$CHECKBACKUPFOLDER.' for the latest backup. " >> /var/log/vmSafeguard-server.log\'');
+            shell_exec('echo "$(date) - The dashboard will check '.$CHECKBACKUPFOLDER.' for the latest backup. " >> /var/log/vmSafeguard-server.log');
         }
     }          
               
@@ -56,7 +56,7 @@
         foreach ($rows as $row) {
             $ADMINEMAIL = htmlspecialchars($row['Email']);
             echo "You have added the following admin email : <strong>$ADMINEMAIL</strong> <br>";
-            shell_exec('sudo sh -c \'echo "$(date) - you have added the following admin email : '.$ADMINEMAIL.' !" >> /var/log/vmSafeguard-server.log\'');
+            shell_exec('echo "$(date) - you have added the following admin email : '.$ADMINEMAIL.' !" >> /var/log/vmSafeguard-server.log');
         } 
     }
                   
@@ -72,7 +72,7 @@
         foreach ($rows as $row) {
             $VMSAFEGUARD_IP = htmlspecialchars($row['Ip']);
             echo "You had change the vm Safeguard ip : <strong>$VMSAFEGUARD_IP</strong> <br>";
-            shell_exec('sudo sh -c \'echo "$(date) - You had change the vm Safeguard ip : '.$VMSAFEGUARD_IP.'" >> /var/log/vmSafeguard-server.log\'');
+            shell_exec('echo "$(date) - You had change the vm Safeguard ip : '.$VMSAFEGUARD_IP.'" >> /var/log/vmSafeguard-server.log');
         } 
     }
 echo "</pre>";

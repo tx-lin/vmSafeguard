@@ -2,7 +2,6 @@
                   <h4 class="card-title">Current Crontab of www-data :</h4>
                   <p class="card-description">
                     <?php echo "<pre>".shell_exec("sudo cat /var/spool/cron/crontabs/www-data")."</pre>"; ?>
-                    <i> Enter the ID of the crontask that you want to delete, or fill up the form with "000", to delete the whole crontab. </i>
                   </p>
                   <form class="form-inline" action="router.php?action=saveCronTask" method="post">   
                     <label class="sr-only" for="crontaskID">Crontask ID</label>

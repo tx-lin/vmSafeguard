@@ -59,7 +59,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="router.php?action=showLogs">
+            <a class="nav-link" href="router.php?action=showLogs#footer">
               <i class="mdi mdi-note-text menu-icon"></i>
               <span class="menu-title">Logs</span>
             </a>

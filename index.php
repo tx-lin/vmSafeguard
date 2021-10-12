@@ -24,10 +24,10 @@ $starttime = microtime(true); // Top of page
   <link rel="shortcut icon" href="other/favicon-32x32.png" />
   <script>
       if (performance.navigation.type == 1) {
-        <?php shell_exec('sudo sh -c \'echo "$(date) - Web panel has reloaded" >> /var/log/vmSafeguard-server.log\''); ?>
-        console.info( "This page is reloaded" );
+        <?php shell_exec('echo "$(date) - Web panel has reloaded" >> /var/log/vmSafeguard-server.log'); ?>
+        console.info("This page is reloaded");
       } else {
-        console.info( "This page is not reloaded");
+        console.info("This page is not reloaded");
       }
   </script>
   <?php
@@ -37,24 +37,24 @@ $starttime = microtime(true); // Top of page
     if ($result == 1) {
 
         echo "<script>alert('Your ESXi ".$HOST." appears to be offline ')</script>";
-        shell_exec('sudo sh -c \'echo "$(date) - WARNING vmSafeguard has detected that your ESXi '.$HOST.' appears to be offline" >> /var/log/vmSafeguard-server.log\'');
+        shell_exec('echo "$(date) - WARNING vmSafeguard has detected that your ESXi '.$HOST.' appears to be offline" >> /var/log/vmSafeguard-server.log');
         shell_exec('curl -d "test=ESXiAppearsToBeOffline&esxiHost='.$HOST.'&adminEmail='.$ADMINEMAIL.'" -X POST http://localhost/vmSafeguard/api/localMailRelay.php');
 
     } else {
       
-      shell_exec('sudo sh -c \'echo "$(date) - your ESXi '.$HOST.' is reachable" >> /var/log/vmSafeguard-server.log\'');   
+      shell_exec('echo "$(date) - your ESXi '.$HOST.' is reachable" >> /var/log/vmSafeguard-server.log');   
       
       $checkDatastoresSpaceLeft=shell_exec('sudo ssh -p '.$PORT.' root@'.$HOST.' \'sh -s\' < scripts/checkDatastoreSpaceLeft.sh');
 
       if (!empty($checkDatastoresSpaceLeft)) {
   
         echo "<script>alert('".preg_replace('/[^\p{L}[:print:]]/u', ' ', $checkDatastoresSpaceLeft)."')</script>";
-        shell_exec('sudo sh -c \'echo "$(date) - WARNING vmSafeguard has detected that '.preg_replace('/[^\p{L}[:print:]]/u', ' ', $checkDatastoresSpaceLeft).'" >> /var/log/vmSafeguard-server.log\'');
+        shell_exec('echo "$(date) - WARNING vmSafeguard has detected that '.preg_replace('/[^\p{L}[:print:]]/u', ' ', $checkDatastoresSpaceLeft).'" >> /var/log/vmSafeguard-server.log');
         // this regex allow all special chars, number and Aa, trought a non-php string (come from a output of the following shell script : checkDatastoreSpaceLeft.sh)
       
       } else {
   
-        shell_exec('sudo sh -c \'echo "$(date) - Storage capacity left of your datastores appears to be convenable" >> /var/log/vmSafeguard-server.log\'');     
+        shell_exec('echo "$(date) - Storage capacity left of your datastores appears to be convenable" >> /var/log/vmSafeguard-server.log');     
       }
     }
 
@@ -117,7 +117,7 @@ $starttime = microtime(true); // Top of page
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="scripts/router.php?action=showLogs">
+            <a class="nav-link" href="scripts/router.php?action=showLogs#footer">
               <i class="mdi mdi-note-text menu-icon"></i>
               <span class="menu-title">Logs</span>
             </a>
@@ -362,7 +362,7 @@ $starttime = microtime(true); // Top of page
 $endtime = microtime(true); // Bottom of page
 $loadingIndexTimer = $endtime - $starttime ; 
 $loadingIndexTimerroundedValue = round($loadingIndexTimer,2);
-shell_exec('sudo sh -c \'echo "$(date) - vmSafeguard has been loaded in '.$loadingIndexTimerroundedValue.' seconds" >> /var/log/vmSafeguard-server.log\'');
+shell_exec('echo "$(date) - vmSafeguard has been loaded in '.$loadingIndexTimerroundedValue.' seconds" >> /var/log/vmSafeguard-server.log');
 // printf("Page loaded in %f seconds", $endtime - $starttime );
 ?>
 

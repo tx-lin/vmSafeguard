@@ -1,4 +1,5 @@
 <p class="card-description"> Verify that your task has been corretly written ! Otherwise, check again the crontask syntax. </p>
+
 <?php 
 $crontaskID = random_int (100,1000 ) ;
 $scriptPath = "".__DIR__."/backup.sh" ; 
@@ -14,9 +15,6 @@ $scriptPath = "".__DIR__."/backup.sh" ;
         // cron task will be stored in /var/spool/cron/crontabs/www-data
     }
     else if (isset($_POST['crontaskID'])) {
-        if ($_POST['crontaskID'] == "000") {
-            shell_exec("sudo rm /var/spool/cron/crontabs/www-data");
-        }
         shell_exec("sudo sed -i '/".$_POST['crontaskID']."/d' /var/spool/cron/crontabs/www-data");
         echo "<pre>".shell_exec("sudo cat /var/spool/cron/crontabs/www-data")."</pre>";
     }

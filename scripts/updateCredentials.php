@@ -3,7 +3,7 @@
         if ($_POST["password"] == $_POST["password2"]) {
             if (!empty($_POST["username"])) {
                 shell_exec("htpasswd -nbB ".$_POST['username']." ".$_POST['password']." > ../.htpasswd"); // B = pour bcrypt, nouvel fonction de hashage sécurisé ++ <=> sha1, md5 crypt : Cette commande est exec par www:data
-                shell_exec('sudo sh -c \'echo "$(date) - your credentials has been updated ! " >> /var/log/vmSafeguard-server.log\'');
+                shell_exec('echo "$(date) - your credentials has been updated ! " >> /var/log/vmSafeguard-server.log');
                 echo "<pre>Credentials has been updated <strong>".$_POST['username']."</strong> ! <br></pre>";
             } 
             else {
@@ -12,7 +12,7 @@
         } 
         else {
             echo "<pre> ERROR : The passwords provided are not the same ! </pre>";
-            shell_exec('sudo sh -c \'echo "$(date) - WARNING your credentials has not been updated, because the password checking has failed ! " >> /var/log/vmSafeguard-server.log\'');
+            shell_exec('echo "$(date) - WARNING your credentials has not been updated, because the password checking has failed ! " >> /var/log/vmSafeguard-server.log');
           }
     }
 

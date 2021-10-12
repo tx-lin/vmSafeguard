@@ -33,7 +33,6 @@ $action = htmlspecialchars($_GET['action']);
                   <h4 class="card-title">/ Action / <?php echo $action; ?> </h4>
                   <p class="card-description">
                       <?php
-
                             switch($action) {
                             
                                 case "shutdownAll":    
@@ -53,25 +52,17 @@ $action = htmlspecialchars($_GET['action']);
                                 case "summarySingleVM":
                                     echo "<pre>".shell_exec("sudo ssh -p $PORT root@$HOST 'sh -s' < summarySingleVM.sh ".$_POST['vmid']." &")."</pre>";
                                     break;
-                                case "summarySingleVM":
-                                    if (!empty(htmlspecialchars($_POST['vmid']))) {
-                                        echo "<pre>".shell_exec("sudo ssh -p $PORT root@$HOST 'sh -s' < summarySingleVM.sh ".$_POST['vmid']." &")."</pre>";
-                                    }
-                                    else {
-                                        echo "<pre> The vmid can not be nul ! </pre>";
-                                    }
-                                    break;
                                 case "timeRefreshPercent":
                                     shell_exec("sed -i 's/timeRefreshPercentBackup=.*/timeRefreshPercentBackup=\"sleep ".$_POST['timeRefreshPercent']."\"/' backup.sh");
-                                    echo "<pre>".shell_exec("sudo cat backup.sh")."</pre>";
+                                    echo "<pre>".shell_exec("cat backup.sh")."</pre>";
                                     break;
                                 case "ChangeBackupDatastore":
                                     shell_exec("sed -i 's/DATASTORE=.*/DATASTORE=\"".$_POST['ChangeBackupDatastore']."\"/' backup.sh");
-                                    echo "<pre>".shell_exec("sudo cat backup.sh")."</pre>";
+                                    echo "<pre>".shell_exec("cat backup.sh")."</pre>";
                                     break;
                                 case "valueInDays": 
                                     shell_exec('sed -i \'/-mtime/cfind /vmfs/volumes/$DATASTORE/backup* -mtime +'.$_POST['valueInDays'].' -exec rm -rf {} \\\; \' backup.sh');
-                                    echo "<pre>".shell_exec("sudo cat backup.sh")."</pre>";
+                                    echo "<pre>".shell_exec("cat backup.sh")."</pre>";
                                     break;
                                 case "refreshTime": 
                                     require("refreshTime.php");
@@ -93,7 +84,7 @@ $action = htmlspecialchars($_GET['action']);
                                     break; 
                                 case "showLogs":
                                     echo "<button class=\"btn btn-primary mt-2 mt-xl-0\"><a style=\"color:white;\"href=\"#footer\" >Latest logs</a></button>";
-                                    echo "<pre>".shell_exec("sudo sh -c 'cat /var/log/vmSafeguard-server.log | tail -1000'")."</pre>";
+                                    echo "<pre>".shell_exec("cat /var/log/vmSafeguard-server.log | tail -1000")."</pre>";
                                     echo "<button class=\"btn btn-primary mt-2 mt-xl-0\"><a style=\"color:white;\"href=\"#head\" >Oldest logs</a></button>";
                                     break;
                                 case "stats": 
@@ -101,6 +92,9 @@ $action = htmlspecialchars($_GET['action']);
                                     break;
                                 case "backup": 
                                     require("backup.php"); 
+                                    break;
+                                case "welcome":
+                                    require("starter.php");
                                     break;
                                 default: 
                                     echo "<pre>Wrong value action</pre>";
