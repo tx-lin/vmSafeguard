@@ -9,6 +9,7 @@ function setup () {
     sudo chown -R www-data:www-data /var/www/html/vmSafeguard
     sudo echo 'www-data ALL=(ALL) NOPASSWD: /usr/bin/ssh, /usr/bin/cat, /usr/bin/crontab, /usr/bin/echo, /usr/bin/rm, /usr/bin/sed' >> /etc/sudoers.d/myOverrides
     sudo touch /var/log/vmSafeguard-server.log
+    sudo chown www-data:www-data /var/log/vmSafeguard-server.log
     sudo sed -i '/<Directory \/var\/www\/>/,/<\/Directory>/ s/AllowOverride None/AllowOverride All/' /etc/apache2/apache2.conf
     sudo a2enmod ssl
     sleep 2
