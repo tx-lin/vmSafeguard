@@ -9,7 +9,7 @@ To make things simpler, I will simply use the HTTP protocol with port 80 of the 
 
 ## I. Pull (run) vmSafeguard's image from docker hub 
 
-### For current ESXi version 7.X 
+### A. For current ESXi version 7.X 
 
 As root, execute the following commands : 
 
@@ -25,7 +25,7 @@ cd /root/.ssh/
 ```
 <img src="https://i.imgur.com/X9tX4RW.png"> <br> <br>
 
-### For old ESXi version 6.x 
+### B. For old ESXi version 6.x (Old, depreciated)
 
 ```
 docker run -d -p 8080:80 archidote/vmsafeguard:6.x
@@ -44,8 +44,11 @@ cd /root/.ssh/
 cat id_rsa.pub | ssh -p 22 root@the-ip-of-your-esxi \ 'cat >> /etc/ssh/keys-root/authorized_keys'
 <enter the password of esxi user (root) (just one time)>
 exit
-ssh -p 22 root@the-ip-of-your-esxi # try to connect to the esxi trought ssh (now, you don't need to provide a password)
-# OPTIONAL : Disable the ESXi firewall to allow API req to an pother port than 80 (if use 8080 like above, from your docker host)
+
+# try to connect to the esxi trought ssh (now, you don't need to provide a password)
+ssh -p 22 root@the-ip-of-your-esxi 
+
+# Disable the ESXi firewall to allow API req to an pother port than 80 (if use 8080 like above, from your docker host)
 esxcli network firewall set --enabled false
 exit
 -----------------
@@ -71,7 +74,7 @@ exit # From the vmSafeguard container terminal
 
 With a browser that can communicate with your docker host and (ESXi(s)) enter the following url for setuping your first connexion : 
 
-http(s)://localhost:8080/vmSafeguard/scripts/starter.php
+Setup your first connexion : http(s)://docker-host-ip:8080/vmSafeguard/scripts/router.php?action=welcome
 
 <a href="https://github.com/archidote/vmSafeguard/#fast_forward-access-to-the-web-panel"> Return to the root README, to configure the web panel. </a> Section :  Access to the web panel
 

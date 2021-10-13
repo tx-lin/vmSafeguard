@@ -39,19 +39,8 @@ And especially not like that
 
 vmSafeguard is currently available for the following ESXi version : 
 
-- 7.0.X (Follow the step by step the readme)
-- 6.x 
-
-root@kali:/var/www/html/test# cd vmSafeguard/
-root@kali:/var/www/html/test/vmSafeguard# git checkout 6.1.1
-Branch '6.1.1' set up to track remote branch '6.1.1' from 'origin'.
-Switched to a new branch '6.1.1'
-root@kali:/var/www/html/test/vmSafeguard# chown www-data:www-data -R vmSafeguard
-chown: cannot access 'vmSafeguard': No such file or directory
-root@kali:/var/www/html/test/vmSafeguard# cd .. 
-root@kali:/var/www/html/test# chmod 755 -R vmSafeguard
-root@kali:/var/www/html/test# chown www-data:www-data -R vmSafeguard
-
+- 7.0.X (Follow step by step the readme)
+- 6.x   (Read the <a href="https://github.com/archidote/vmSafeguard/tree/6.1.1#readme">readme of this branch</a>, to setup vmSafeguard for an ESXi < 7.0)
 
 # :pushpin: Installation (Easyest)
 
@@ -191,7 +180,7 @@ Feel free to change them ASAP via the settings menu
 
 If you want to disable the auth process, remove .htaccess / .htpasswd (location : root of the project)
 
-<img src="https://i.imgur.com/QjxGCc1.png">
+<img src="https://i.imgur.com/7BxqUwv.png">
 
 Backup folder : /vmfs/volumes/datastore-backup/
 - place that will welcome the futur backup 
@@ -200,13 +189,13 @@ Logs Path : /vmfs/volumes/datastore-backup/logsbackup.txt
 - vmSafeguard logs are stored on the datastore.
 
 Fill all the fields and submit. <br><br>
-<img src="https://i.imgur.com/z3pL20V.png">
+<img src="https://i.imgur.com/TQbzmT5.png">
 
 All the information have been stored into the db, click to "reload the dashboard", to access to the main menu of vmSafeguard.  <br><br><br>
 
 ## :anchor: vmSafeguard's Dashboard
 
-<img src="https://i.imgur.com/raRj3uU.png">
+<img src="https://i.imgur.com/ZKgljIE.png">
 <i> This is the welcome page of vmSafeguard. </i> <br> <br>
 
 ### Execute Backup(s) from the Web interface 
@@ -223,25 +212,32 @@ All the information have been stored into the db, click to "reload the dashboard
 <br> 
 <br>
 
+### Video Tutorials  
+
+Demo for backup a single virtual machine : https://www.youtube.com/watch?v=J-1uHs3L4Go
+
+Demo for backup a pool of virtual machines : https://www.youtube.com/watch?v=4wjztK1N38U
+
+:bookmark_tabs: Note that, if your machine is powered on, the backup folder will take a few moment before it's creation. vmSafeguard shutdown a VM with a safety mode. If the VM install some update, vmSafeguard, will wait until it's finished before to start the copy. (View the logs section for follow the backup process)
+
 # :ferris_wheel: Automating the backup process with a cron task
 
 ## With the web panel (Easyest way): 
 
 You can schedule a crontask for create a "Pool Backup", or just for one VM, with the Graphical Interface. Also, if you want in the futur to remove one crontask or all of them, you can use the "inline form" at the top of the screen. 
 
-<img src="https://i.imgur.com/yj4qTQF.png">
+<img src="https://i.imgur.com/COWvgua.png">
 
 
 Once you have submited the form, you will see the crontask (If the cron syntax has been respected)
 
-<img src="https://i.imgur.com/os4cFp9.png">
+<img src="https://i.imgur.com/gTGALK1.png">
 
-### Remove a crontask ore the whole crontab (www-data's crontab)
+### Remove a crontask (www-data's crontab)
 
-- In case of you want to remove one crontask or more, enter the id of the task cron and then press "submit". 
-- In case of you want to remove THE WHOLE CRONTAB, enter the code 000, and press "submit". 
+- In case of you want to remove one crontask, enter the id of the task cron and then press "submit". 
 
-<img src="https://i.imgur.com/BdfFH1F.png">
+<img src="https://i.imgur.com/pNqiGgY.png">
 
 
 # Other interesting features 
@@ -254,21 +250,14 @@ Once you have submited the form, you will see the crontask (If the cron syntax h
 
 For exemple, when I press "Shutdown all VM", this is what will be displayed on your browser. 
 
-<img src="https://i.imgur.com/Iza3VUk.png">
+<img src="https://i.imgur.com/7CTlAjl.png">
 
 <br> <br>
 Example of the summary section. Very useful part if you want to know the vmid of a VM(s) and other information like the ip adress, the os type etc.  <br> 
 
-<img src="https://i.imgur.com/ATbuaQe.png">
+<img src="https://i.imgur.com/GXb8PHK.png">
 
 <br> <br>
-
-## ESXi VM OS stats 
-
-This page show you the percent of windows / linux VMs of your ESXi, and how many VMs are started/powered off etc. 
-
-<img src="https://i.imgur.com/boIPUnv.png">
-
 
 ##  Settings Menu 
 
@@ -280,7 +269,7 @@ This menu allow you to do a lot of different things like :
 
 (Maybe in the futur other features will be implemented. If you have any ideas, submit it to me)
 
-<img src="https://i.imgur.com/gdNr6bx.png">
+<img src="https://i.imgur.com/hyZAhVN.png">
 
 # Revive a VM from a backup 
 
@@ -295,16 +284,6 @@ Following the next steps :
 <img src="https://i.imgur.com/1HaCxLe.png">
 <img src="https://i.imgur.com/In1Qhmm.png">
 <img src="https://i.imgur.com/qaNVjhS.png">
-
-
-
-# Video Tutorial  
-
-Demo for backup a single virtual machine : https://www.youtube.com/watch?v=J-1uHs3L4Go
-
-Demo for backup a pool of virtual machines : https://www.youtube.com/watch?v=4wjztK1N38U
-
-:bookmark_tabs: Note that, if your machine is powered on, the backup folder will take a few moment before it's creation. vmSafeguard shutdown a VM with a safety mode. If the VM install some update, vmSafeguard, will wait until it's finished before to start the copy. (View the logs section for follow the backup process)
 
 # :question::speech_balloon: Notes / common questions
 
