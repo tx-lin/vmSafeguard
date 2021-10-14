@@ -7,7 +7,7 @@ function setup () {
     sudo mv vmSafeguard /var/www/html
     sudo chmod 700 -R /var/www/html/vmSafeguard
     sudo chown -R www-data:www-data /var/www/html/vmSafeguard
-    sudo echo 'www-data ALL=(ALL) NOPASSWD: /usr/bin/ssh, /usr/bin/cat, /usr/bin/crontab, /usr/bin/echo, /usr/bin/rm, /usr/bin/sed' >> /etc/sudoers.d/myOverrides
+    sudo echo 'www-data ALL=(ALL) NOPASSWD: /usr/bin/ssh, /usr/bin/cat, /usr/bin/crontab, /usr/bin/echo, /usr/bin/sed' >> /etc/sudoers.d/myOverrides
     sudo touch /var/log/vmSafeguard-server.log
     sudo chown www-data:www-data /var/log/vmSafeguard-server.log
     sudo sed -i '/<Directory \/var\/www\/>/,/<\/Directory>/ s/AllowOverride None/AllowOverride All/' /etc/apache2/apache2.conf
