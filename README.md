@@ -44,7 +44,7 @@ vmSafeguard is currently available for the following ESXi version :
 
 # :pushpin: Installation (Easyest)
 
-### Easiest Way - Run setup.sh with curl, to automating the installation
+## Easiest Way - Run setup.sh with curl, to automating the installation
 
 **WARNING**: You need to be <b>root</b> or have sudo rights for executing these commands.
 
@@ -64,6 +64,16 @@ For old ESXi version (6.x), please run this command :
 sudo curl -sL https://raw.githubusercontent.com/archidote/vmSafeguard/master/setup.sh | bash -s 6.x
 ```
 
+## Videos Tutorials  
+
+vmSafeguard with <b>Docker</b> - Install and setup the application : https://youtu.be/dsc6TYfgpRw
+
+vmSafeguard <b>docker</b> - Schedulle a Pool Backup of VMs : https://youtu.be/2AuQU-mtRLc
+
+vmSafeguard <b>Standard installation </b> - Install and setup the application + demo (Production environnement) : https://www.youtube.com/watch?v=GAi09Jx7kIk&ab_channel=Archidote
+
+
+:bookmark_tabs: Note that, if your machine is powered on, the backup folder will take a few moment before it's creation. vmSafeguard shutdown a VM with a safety mode. If the VM install some update, vmSafeguard, will wait until it's finished before to start the copy. (View the logs section for follow the backup process)
 
 ## Docker install "On the fly" - Do you want to run vmSafeguard as a contaiener with docker ? 
 
@@ -211,14 +221,6 @@ All the information have been stored into the db, click to "reload the dashboard
 
 <br> 
 <br>
-
-### Video Tutorials  
-
-Demo for backup a single virtual machine : https://www.youtube.com/watch?v=J-1uHs3L4Go
-
-Demo for backup a pool of virtual machines : https://www.youtube.com/watch?v=4wjztK1N38U
-
-:bookmark_tabs: Note that, if your machine is powered on, the backup folder will take a few moment before it's creation. vmSafeguard shutdown a VM with a safety mode. If the VM install some update, vmSafeguard, will wait until it's finished before to start the copy. (View the logs section for follow the backup process)
 
 # :ferris_wheel: Automating the backup process with a cron task
 
