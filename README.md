@@ -277,7 +277,7 @@ This menu allow you to do a lot of different things like :
 
 Following the next steps : 
 
-<styrong> Warning, you can't revive an VM from a ESXi 7 to a 6.7 if the vmx file if your vmx file is upper than the the current esxi support. <strong> // à modifier 
+<strong> Warning, you can't revive an VM from a ESXi 7 to a 6.7 if the vmx file if your vmx file is upper than the the current esxi support. </strong>
 
 <img src="https://i.imgur.com/gBMcAyv.png">
 <img src="https://i.imgur.com/7zLJORP.png">
@@ -289,21 +289,22 @@ Following the next steps :
 
 # :question::speech_balloon: Notes / common questions
 
-1 - vmSafeguard is available only for debian based OS family 
-2 - web panel logs are stored into the following file : /var/log/vmSafeguard-server.log
-3 - Backups process logs are stored into the <b> backup datastore (at it's root)</b> with the following name : logsbackup.txt
+- vmSafeguard is available only for debian based OS family 
+- web panel logs are stored into the following file : /var/log/vmSafeguard-server.log
+- Backups process logs are stored into the <b> backup datastore (at it's root)</b> with the following name : logsbackup.txt
 ## Know Issues 
-1 - If the .htaccess / .htpasswd (not crutial for the project) auth does not work, please check the apache2.conf (/etc/apache2) and replace if you did not have the same result as the following picture : 
+- If the .htaccess / .htpasswd (not crutial for the project) auth does not work, please check the apache2.conf (/etc/apache2) and replace if you did not have the same result as the following picture : 
 
 <img src="https://i.imgur.com/qJnXFUs.png">
 
-2 - Don't add comment into the description of a vm trought the official ESXI web panel (not multiple line, just one line. Otherwise the " number (total) of VMs will be false")
+- Don't add comment into the description of a vm trought the official ESXI web panel (not multiple line, just one line. Otherwise the " number (total) of VMs will be false")
 
-3 - Don't turn off your server who host vmSafeguard :blush: , when a backup is running. Otherwise it will be cancel the ssh connexion between vmSafeguard and the ESXI
+- Don't turn off your server who host vmSafeguard :blush: , when a backup is running. Otherwise it will be cancel the ssh connexion between vmSafeguard and the ESXI
 
-4 - If you want to reinstall vmSafeGuard, just git clone the projet into /var/www/html, and put the correct rights and owner to the project folder. 
+- If you want to reinstall vmSafeGuard, just <code>git clone </code> the projet into /var/www/html, and put the correct rights and owner to the project folder. 
 
 ``` 
+git clone https://github.com/archidote/vmSafeguard
 chmod 700 -R /var/www/html/vmSafeguard
 chown www-data:www-data -R /var/www/html/vmSafeguard
 ``` 
@@ -312,7 +313,7 @@ chown www-data:www-data -R /var/www/html/vmSafeguard
 # Other
 
 
-If you detect an error in vmSafeguard, please open a github issue.
+If you detect an error in vmSafeguard, <b>please open a github issue.</b>
 
 Releases details : https://github.com/archidote/vmSafeguard/projects/1 (section "version" (english))
 
