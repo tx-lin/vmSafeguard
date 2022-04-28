@@ -8,12 +8,12 @@ switch($_POST['test']) {
       ### If you want to use your own mail sender server (SMTP Or SMTP Relay) ###
       // shell_exec('echo "Backup processs has been achieved succefully for the following VM : '.$_POST['vmName'].'" | mail -s "Backup Report vmSafeguard" '.$ADMINEMAIL.'');
       ### and comment the following line ! 
-      shell_exec('curl -d "test=mailAfterBackupProcess&vmName='.$vmName.'&adminEmail='.$ADMINEMAIL.'" -X POST https://le-guide-du-sysops.fr/vmsafeguard-mail-api/mail.php');
-      shell_exec('echo "   --> $(date) - vmSafeguard has sent a Backup report email from https://le-guide-du-sysops.fr/vmsafeguard-mail-api/mail.php" >> /var/log/vmSafeguard-server.log');
+      shell_exec('curl -d "test=mailAfterBackupProcess&vmName='.$vmName.'&adminEmail='.$ADMINEMAIL.'" -X POST https://le-guide-du-secops.fr/vmsafeguard-mail-api/mail.php');
+      shell_exec('echo "   --> $(date) - vmSafeguard has sent a Backup report email from https://le-guide-du-secops.fr/vmsafeguard-mail-api/mail.php" >> /var/log/vmSafeguard-server.log');
       break;
    case "ESXiAppearsToBeOffline":
       $esxiHost = $_POST['esxiHost'] ;
-      shell_exec('curl -d "test=ESXiAppearsToBeOffline&esxiHost='.$esxiHost.'&adminEmail='.$ADMINEMAIL.'" -X POST https://le-guide-du-sysops.fr/vmsafeguard-mail-api/mail.php');
+      shell_exec('curl -d "test=ESXiAppearsToBeOffline&esxiHost='.$esxiHost.'&adminEmail='.$ADMINEMAIL.'" -X POST https://le-guide-du-secops.fr/vmsafeguard-mail-api/mail.php');
       // a message is already writte to the local log if vmSafeguard detect an Offline ESXi.
       break;
    default:
